@@ -1,0 +1,28 @@
+<div class="container container-fluid">
+    <!--<legend>Журнал событий</legend>-->
+    <div class="row">
+        <div class="col-xs-12">
+            <pagination
+                        page = "$ctrl.page"
+                        page-count = "$ctrl.pageCount"
+                        page-clean = "$ctrl.pageClean"
+                        on-page-change="$ctrl.setPage($event.page)" />
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Идентификатор</th>
+                        <th>Тип</th>
+                        <th>Время</th>
+                        <th>Комментарий</th>
+                    </tr>
+                    <tr ng-repeat="log in $ctrl.logs">
+                        <td>{{log.id}}</td>
+                        <td>{{log.type.name}}</td>
+                        <td>{{log.date.dayOfMonth + '.' + log.date.monthValue + '.' + log.date.year}}</td>
+                        <td>{{log.comment}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

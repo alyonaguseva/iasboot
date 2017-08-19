@@ -1,0 +1,10 @@
+<ul class="pagination pagination-sm">
+    <li ng-class="{disabled:$ctrl.page == 1}"><a ng-click="$ctrl.firstPage()"><<</a></li>
+    <li ng-class="{disabled:$ctrl.page == 1}"><a ng-click="$ctrl.prev()"><</a></li>
+    <li ng-repeat="page in $ctrl.pages track by $index" ng-class="[{disabled: page == 0}, {active: $ctrl.page == page}]">
+        <a ng-if="page != 0" ng-click="$ctrl.setPage(page)">{{page}}</a>
+        <a ng-if="page == 0" >..</a>
+    </li>
+    <li ng-class="{disabled:$ctrl.page == $ctrl.pageCount}"><a ng-click="$ctrl.next()">></a></li>
+    <li ng-class="{disabled:$ctrl.page == $ctrl.pageCount}"><a ng-click="$ctrl.lastPage()">>></a></li>
+</ul>

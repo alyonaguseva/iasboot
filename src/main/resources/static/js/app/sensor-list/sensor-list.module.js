@@ -1,0 +1,1 @@
+angular.module('sensorList', ['core.sensor', 'core.dictionary']);

@@ -1,0 +1,24 @@
+<div class="container container-fluid">
+    <!--<legend>Журнал событий</legend>-->
+    <div class="row">
+        <div class="col-xs-12">
+            <pagination
+                        page = "$ctrl.page"
+                        page-count = "$ctrl.pageCount"
+                        page-clean = "$ctrl.pageClean"
+                        on-page-change="$ctrl.setPage($event.page)" />
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Имя</th>
+                        <th>Описание</th>
+                    </tr>
+                    <tr ng-repeat="signal in $ctrl.signals">
+                        <td>{{signal.name}}</td>
+                        <td>{{signal.snippet}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
