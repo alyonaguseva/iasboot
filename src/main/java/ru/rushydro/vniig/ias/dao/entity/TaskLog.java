@@ -1,7 +1,6 @@
 package ru.rushydro.vniig.ias.dao.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -32,6 +31,7 @@ public class TaskLog {
 
     private String comment;
 
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm:ss")
     private LocalDateTime date;
 
     public Long getId() {
@@ -88,5 +88,25 @@ public class TaskLog {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public String getText() {
+        String template = "%s";
+        switch (type.getSystemname()) {
+            case "NEW":
+                template = "Получено новое задание получения данных датчика %s.";
+                break;
+            case "SENDTOSENSOR":
+                template = "Задание о получение данных датчика %s отправлено на выполенение.";
+                break;
+            case "NEEDTOSEND":
+                template = "Данные датчика %s получены. Ожидается отправка в буферную зону.";
+                break;
+            case "COMPLETE":
+                template = "Отправка данных датчика %s в буферную зону.";
+                break;
+        }
+
+        return String.format(template, task.getSignal().getSensor().getName());
     }
 }

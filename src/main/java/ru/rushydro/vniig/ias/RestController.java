@@ -4,16 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.rushydro.vniig.ias.dao.entity.TaskLog;
+import ru.rushydro.vniig.ias.dao.specification.TaskLogSpecification;
 import ru.rushydro.vniig.ias.model.PageCount;
 import ru.rushydro.vniig.ias.model.Sensor;
 import ru.rushydro.vniig.ias.model.Signal;
 import ru.rushydro.vniig.ias.service.TaskLogService;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.IntStream;
 
@@ -78,8 +85,13 @@ public class RestController {
 
     @RequestMapping("/logs")
     @ResponseBody
-    public Page<TaskLog> getLogs(Pageable pageable) {
-        return taskLogService.findAll(pageable);
+    public Page<TaskLog> getLogs(Pageable pageable,
+                                 @RequestParam(value = "startDate", required = false) String startDate,
+                                 @RequestParam(value = "endDate", required = false) String endDate,
+                                 @RequestParam(value = "success", required = false) String success) {
+
+        return taskLogService.findAll(new TaskLogSpecification(startDate, endDate, success), pageable);
+//        return taskLogService.findAll(pageable);
     }
 
     @RequestMapping("/signalsCount")

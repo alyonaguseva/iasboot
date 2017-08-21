@@ -62,10 +62,10 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="HeaderController">
             <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive('/journal')}"><a href="#">Журнал событий</a></li>
-                <li ng-class="{ active: isActive('/archive')}"><a href="#!archive">Архив событий</a></li>
-                <li ng-class="{ active: isActive('/sensors')}"><a href="#!sensors">Работа с датчиками</a></li>
-                <li ng-class="{ active: isActive('/logs')}"><a href="#!logs">Логирование</a></li>
+                <#--<li ng-class="{ active: isActive('/journal')}"><a href="#">Журнал событий</a></li>-->
+                <#--<li ng-class="{ active: isActive('/archive')}"><a href="#!archive">Архив событий</a></li>-->
+                    <li ng-class="{ active: isActive('/logs')}"><a href="#!logs">Журнал событий</a></li>
+                    <li ng-class="{ active: isActive('/sensors')}"><a href="#!sensors">Работа с датчиками</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

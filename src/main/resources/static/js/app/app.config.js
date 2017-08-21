@@ -17,6 +17,6 @@ config(['$locationProvider', '$routeProvider',
         when('/logs', {
             template: '<log-list></log-list>'
         }).
-        otherwise('/journal');
+        otherwise('/logs');
     }
 ]);

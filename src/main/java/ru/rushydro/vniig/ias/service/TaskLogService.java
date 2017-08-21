@@ -3,6 +3,7 @@ package ru.rushydro.vniig.ias.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.dao.TaskLogRepository;
 import ru.rushydro.vniig.ias.dao.TaskLogTypeRepository;
@@ -42,7 +43,11 @@ public class TaskLogService {
     }
 
     public Page<TaskLog> findAll(Pageable pageable) {
-        return taskLogRepository.findAll(pageable);
+        return taskLogRepository.findByOrderByIdDesc(pageable);
+    }
+
+    public Page<TaskLog> findAll(Specification<TaskLog> specification,Pageable pageable) {
+        return taskLogRepository.findAll(specification, pageable);
     }
 
 }
