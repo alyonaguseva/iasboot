@@ -44,13 +44,13 @@ public class TaskLogSpecification implements Specification<TaskLog> {
         if (StringUtils.isNotEmpty(startDate) && StringUtils.isNotEmpty(endDate)) {
             predicates.add(criteriaBuilder.between(root.get("date"),
                     LocalDate.parse(startDate, formatter).atStartOfDay(),
-                    LocalDate.parse(endDate, formatter).atTime(23,59)));
+                    LocalDate.parse(endDate, formatter).atTime(23,59, 59)));
         } else if (StringUtils.isNotEmpty(startDate)) {
             predicates.add(criteriaBuilder.greaterThan(root.get("date"),
                     LocalDate.parse(startDate, formatter).atStartOfDay()));
         } else if (StringUtils.isNotEmpty(endDate)) {
             predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get("date"),
-                    LocalDate.parse(endDate, formatter).atTime(23,59)));
+                    LocalDate.parse(endDate, formatter).atTime(23,59, 59)));
         }
 
         if (predicates.isEmpty()) {
