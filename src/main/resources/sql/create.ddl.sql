@@ -118,3 +118,10 @@ create table output_signal_value(
   PRIMARY KEY(id)
 );
 
+-- Таблица загрузки данных из датчиков
+create table signal_value_ext (
+  id SERIAL,
+  id_signal INTEGER REFERENCES signal(id) NOT NULL,
+  value float NOT NULL,
+  primary key(id)
+);

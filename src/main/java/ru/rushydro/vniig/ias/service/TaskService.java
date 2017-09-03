@@ -16,6 +16,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
+ * Сервис по обработке заданий
  * Created by yazik on 14.05.2017.
  */
 @Service
@@ -68,23 +69,23 @@ public class TaskService {
 
     private void processNewTasks(List<Task> tasks) {
 
-        Random random = new Random();
+//        Random random = new Random();
 
         //todo send
 
         addStatus(tasks, TaskStatusEnum.SENDTOSENSOR.name());
 
-        List<SignalValue> signalValues = new ArrayList<>();
-        tasks.forEach(task -> {
-            SignalValue signalValue = new SignalValue();
-            signalValue.setTask(task);
-            signalValue.setSignal(task.getSignal());
-            signalValue.setTime(LocalDateTime.now());
-            signalValue.setValue(new BigDecimal(random.nextDouble() * 100));
-            signalValues.add(signalValue);
-        });
-
-        signalValueRepository.save(signalValues);
+//        List<SignalValue> signalValues = new ArrayList<>();
+//        tasks.forEach(task -> {
+//            SignalValue signalValue = new SignalValue();
+//            signalValue.setTask(task);
+//            signalValue.setSignal(task.getSignal());
+//            signalValue.setTime(LocalDateTime.now());
+//            signalValue.setValue(new BigDecimal(random.nextDouble() * 100));
+//            signalValues.add(signalValue);
+//        });
+//
+//        signalValueRepository.save(signalValues);
 
         //todo remove
     }
@@ -101,7 +102,7 @@ public class TaskService {
         exchangeRepository.sendTasks(tasks);
     }
 
-    public void addStatus(List<Task> tasks, String systemName) {
+    private void addStatus(List<Task> tasks, String systemName) {
         tasks.forEach(task -> task.setStatus(taskStatusRepository.findBySystemname(systemName)));
         taskLogService.addStatus(taskRepository.save(tasks), systemName);
     }

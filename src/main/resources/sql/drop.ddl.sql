@@ -11,3 +11,4 @@ drop table if EXISTS sensor;
 drop table if EXISTS measured_parameter;
 drop table if EXISTS object_monitor;
 drop table if EXISTS users;
+drop table if exists signal_value_ext;
