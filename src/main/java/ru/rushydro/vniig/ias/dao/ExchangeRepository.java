@@ -90,6 +90,10 @@ public class ExchangeRepository {
             }
         }
 
+        jdbcTemplate.execute("LOCK TABLE schedule WRITE");
+
+        jdbcTemplate.execute("delete from schedule");
+
         jdbcTemplate.execute("UNLOCK TABLES");
 
         if (!tasks.isEmpty()) {
