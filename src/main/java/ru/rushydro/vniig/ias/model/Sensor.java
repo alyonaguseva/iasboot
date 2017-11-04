@@ -6,6 +6,8 @@ package ru.rushydro.vniig.ias.model;
  */
 public class Sensor {
 
+    private Integer id;
+
     private String name;
 
     private boolean on;
@@ -74,5 +76,13 @@ public class Sensor {
 
     public void setSensorType(String sensorType) {
         this.sensorType = sensorType;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

@@ -13,8 +13,8 @@ module('sensorList').component(
                 vm.sensors = Sensor.query();
                 vm.controlObjects = ControlObjects.query();
                 vm.controlElements = ControlElements.query();
-                vm.measurementTypes = MeasurementTypes.query();
-                vm.sensorGroups = SensorGroups.query();
+                // vm.measurementTypes = MeasurementTypes.query();
+                // vm.sensorGroups = SensorGroups.query();
                 vm.sensorTypes = SensorTypes.query();
             };
 
@@ -25,8 +25,8 @@ module('sensorList').component(
             vm.clearFilter = function (filter) {
                 filter.controlObject = null;
                 filter.controlElement = null;
-                filter.measurementType = null;
-                filter.sensorGroup = null;
+                // filter.measurementType = null;
+                // filter.sensorGroup = null;
                 filter.sensorType = null;
             };
 

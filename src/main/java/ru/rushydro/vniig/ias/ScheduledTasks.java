@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.rushydro.vniig.ias.dao.ExchangeRepository;
+import ru.rushydro.vniig.ias.service.ParseFileService;
 import ru.rushydro.vniig.ias.service.TaskService;
 
 import java.util.logging.Logger;
@@ -22,11 +23,16 @@ public class ScheduledTasks {
     private final
     TaskService taskService;
 
+    private final
+    ParseFileService parseFileService;
+
     @Autowired
     public ScheduledTasks(ExchangeRepository exchangeRepository,
-                          TaskService taskService) {
+                          TaskService taskService,
+                          ParseFileService parseFileService) {
         this.exchangeRepository = exchangeRepository;
         this.taskService = taskService;
+        this.parseFileService = parseFileService;
     }
 
     @Scheduled(fixedRateString = "${get.task.time}")
@@ -37,6 +43,11 @@ public class ScheduledTasks {
     @Scheduled(fixedRateString = "${process.task.time}")
     public void processTask() {
         taskService.processTasks();
+    }
+
+    @Scheduled(fixedRateString = "${process.file.time}")
+    public void processFile() {
+        parseFileService.parseFile();
     }
 
 }

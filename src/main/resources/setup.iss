@@ -38,8 +38,8 @@ Source: "C:\Users\yazik\IdeaProjects\iasboot\target\iasboot-1.0.jar"; DestDir: "
 Source: "C:\Users\yazik\IdeaProjects\iasboot\src\main\resources\sql\*"; DestDir: "{app}\sql";
 ;Source: "C:\Users\yazik\IdeaProjects\iasboot\src\main\resources\application.properties"; DestDir: "{app}"; 
 Source: "C:\Users\yazik\IdeaProjects\iasboot\src\main\resources\run.cmd"; DestDir: "{app}";
-;Source: "C:\Users\yazik\Downloads\jre-8u144-windows-x64.exe"; DestDir: "{app}\advanced"; AfterInstall: RunOtherInstaller('jre-8u144-windows-x64.exe'); 
-;Source: "C:\Users\yazik\Downloads\postgresql-9.6.5-1-windows-x64.exe"; DestDir: "{app}\advanced"; AfterInstall: RunOtherInstaller('postgresql-9.6.5-1-windows-x64.exe'); 
+Source: "C:\Users\yazik\Downloads\jre-8u144-windows-x64.exe"; DestDir: "{app}\advanced"; AfterInstall: RunOtherInstaller('jre-8u144-windows-x64.exe'); 
+Source: "C:\Users\yazik\Downloads\postgresql-9.6.5-1-windows-x64.exe"; DestDir: "{app}\advanced"; AfterInstall: RunOtherInstaller('postgresql-9.6.5-1-windows-x64.exe'); 
 Source: "C:\Users\yazik\IdeaProjects\iasboot\src\main\resources\install.cmd"; DestDir: "{app}\advanced"; AfterInstall: RunOtherInstaller('install.cmd');
 
 [Icons]

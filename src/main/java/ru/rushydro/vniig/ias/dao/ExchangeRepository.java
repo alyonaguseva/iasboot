@@ -67,7 +67,7 @@ public class ExchangeRepository {
         jdbcTemplate.execute("LOCK TABLE schedule as s WRITE, sensors_ext as se WRITE");
 
         SqlRowSet rowSet = jdbcTemplate
-                .queryForRowSet("select s.datime, se.idsign, se.code, s.id, s.expdate " +
+                .queryForRowSet("select s.datime, se.sensor, se.code, s.id, s.expdate " +
                         "from schedule s " +
                         "join sensors_ext se " +
                         "on s.sensor = se.sensor " +
@@ -102,17 +102,15 @@ public class ExchangeRepository {
     }
 
     public synchronized void sendTasks(List<Task> tasks) {
-        jdbcTemplate.execute("LOCK TABLE buffer  WRITE, sensors_ext  WRITE");
+        jdbcTemplate.execute("LOCK TABLE buffer  WRITE");
 
         tasks.forEach(task -> {
             SignalValue signalValue = signalValueRepository.findByTask(task);
             Object[] args = new Object[2];
             args[0] = signalValue.getSignal().getSensor().getId();
             args[1] = signalValue.getSignal().getMeasuredParameter().getId();
-            Long sensorId = jdbcTemplate.queryForObject("select sensor " +
-                    "from sensors_ext where idsign = ? and code = ?", args, Long.class);
             jdbcTemplate.update("insert into buffer(sensor, date, code, value, errcode, comment) " +
-                    "values(?,?,?,?,?,?)", sensorId, signalValue.getTime(), args[1],
+                    "values(?,?,?,?,?,?)", args[0], signalValue.getTime(), args[1],
                                             signalValue.getValue(), signalValue.getErrorCode(),
                                             signalValue.getComment());
 

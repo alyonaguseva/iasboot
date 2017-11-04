@@ -3,10 +3,10 @@
         <div class="col-xs-5">
             <div class="row">
                 <div class="col-xs-6"><h3>Список датчиков</h3></div>
-                <div class="col-xs-6 text-right">
-                    <button class="btn btn-default" data-toggle="modal" data-target="#filterModal"
-                            style="margin-top: 15px;">Фильтр</button>
-                </div>
+                <!--<div class="col-xs-6 text-right">-->
+                    <!--<button class="btn btn-default" data-toggle="modal" data-target="#filterModal"-->
+                            <!--style="margin-top: 15px;">Фильтр</button>-->
+                <!--</div>-->
             </div>
             <div class="row" style="margin-bottom: 10px;">
                 <div class="col-xs-12">
@@ -14,18 +14,18 @@
                         {{filter.controlObject}}
                         <span ng-click="filter.controlObject = ''">x</span>
                     </span>
-                    <span class="label label-info" ng-if="filter.controlElement != null && filter.controlElement != ''">
-                        {{filter.controlElement}}
-                        <span ng-click="filter.controlElement = ''">x</span>
-                    </span>
-                    <span class="label label-info" ng-if="filter.measurementType != null && filter.measurementType != ''">
-                        {{filter.measurementType}}
-                        <span ng-click="filter.measurementType = ''">x</span>
-                    </span>
-                    <span class="label label-info" ng-if="filter.sensorGroup != null && filter.sensorGroup != ''">
-                        {{filter.sensorGroup}}
-                        <span ng-click="filter.sensorGroup = ''">x</span>
-                    </span>
+                    <!--<span class="label label-info" ng-if="filter.controlElement != null && filter.controlElement != ''">-->
+                        <!--{{filter.controlElement}}-->
+                        <!--<span ng-click="filter.controlElement = ''">x</span>-->
+                    <!--</span>-->
+                    <!--<span class="label label-info" ng-if="filter.measurementType != null && filter.measurementType != ''">-->
+                        <!--{{filter.measurementType}}-->
+                        <!--<span ng-click="filter.measurementType = ''">x</span>-->
+                    <!--</span>-->
+                    <!--<span class="label label-info" ng-if="filter.sensorGroup != null && filter.sensorGroup != ''">-->
+                        <!--{{filter.sensorGroup}}-->
+                        <!--<span ng-click="filter.sensorGroup = ''">x</span>-->
+                    <!--</span>-->
                     <span class="label label-info" ng-if="filter.sensorType != null && filter.sensorType != ''">
                         {{filter.sensorType}}
                         <span ng-click="filter.sensorType = ''">x</span>
@@ -66,20 +66,20 @@
                         <td>Объект контроля</td>
                         <td>{{$ctrl.sensor.controlObject}}</td>
                     </tr>
+                    <!--<tr>-->
+                        <!--<td>Элемент контроля</td>-->
+                        <!--<td>{{$ctrl.sensor.controlElement}}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>Вид измерения</td>-->
+                        <!--<td>{{$ctrl.sensor.measurementType}}</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td>Группа приборов</td>-->
+                        <!--<td>{{$ctrl.sensor.sensorGroup}}</td>-->
+                    <!--</tr>-->
                     <tr>
-                        <td>Элемент контроля</td>
-                        <td>{{$ctrl.sensor.controlElement}}</td>
-                    </tr>
-                    <tr>
-                        <td>Вид измерения</td>
-                        <td>{{$ctrl.sensor.measurementType}}</td>
-                    </tr>
-                    <tr>
-                        <td>Группа приборов</td>
-                        <td>{{$ctrl.sensor.sensorGroup}}</td>
-                    </tr>
-                    <tr>
-                        <td>Выбор типа прибора</td>
+                        <td>Тип прибора</td>
                         <td>{{$ctrl.sensor.sensorType}}</td>
                     </tr>
                 </table>
@@ -109,45 +109,45 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Элемент контроля</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" ng-model="filter.controlElement"
-                                    ng-model-options="{ getterSetter: true }">
-                                <option></option>
-                                <option ng-repeat="controlElement in $ctrl.controlElements"
-                                        value="{{controlElement}}">
-                                    {{controlElement}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Вид измерения</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" ng-model="filter.measurementType"
-                                    ng-model-options="{ getterSetter: true }">
-                                <option></option>
-                                <option ng-repeat="measurementType in $ctrl.measurementTypes"
-                                        value="{{measurementType}}">
-                                    {{measurementType}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-4 control-label">Группа приборов</label>
-                        <div class="col-sm-8">
-                            <select class="form-control" ng-model="filter.sensorGroup"
-                                    ng-model-options="{ getterSetter: true }">
-                                <option></option>
-                                <option ng-repeat="sensorGroup in $ctrl.sensorGroups"
-                                        value="{{sensorGroup}}">
-                                    {{sensorGroup}}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-4 control-label">Элемент контроля</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--<select class="form-control" ng-model="filter.controlElement"-->
+                                    <!--ng-model-options="{ getterSetter: true }">-->
+                                <!--<option></option>-->
+                                <!--<option ng-repeat="controlElement in $ctrl.controlElements"-->
+                                        <!--value="{{controlElement}}">-->
+                                    <!--{{controlElement}}-->
+                                <!--</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-4 control-label">Вид измерения</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--<select class="form-control" ng-model="filter.measurementType"-->
+                                    <!--ng-model-options="{ getterSetter: true }">-->
+                                <!--<option></option>-->
+                                <!--<option ng-repeat="measurementType in $ctrl.measurementTypes"-->
+                                        <!--value="{{measurementType}}">-->
+                                    <!--{{measurementType}}-->
+                                <!--</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label class="col-sm-4 control-label">Группа приборов</label>-->
+                        <!--<div class="col-sm-8">-->
+                            <!--<select class="form-control" ng-model="filter.sensorGroup"-->
+                                    <!--ng-model-options="{ getterSetter: true }">-->
+                                <!--<option></option>-->
+                                <!--<option ng-repeat="sensorGroup in $ctrl.sensorGroups"-->
+                                        <!--value="{{sensorGroup}}">-->
+                                    <!--{{sensorGroup}}-->
+                                <!--</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="form-group">
                         <label class="col-sm-4 control-label">Выбор типа прибора</label>
                         <div class="col-sm-8">

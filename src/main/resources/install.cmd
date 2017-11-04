@@ -1,4 +1,7 @@
 @echo off
+set /p filepath=Enter sensor data file path(DATA.txt):
+if [%filepath%]==[] (set filepath=DATA.txt)
+
 set /p phost=Enter postgres host(default localhost):
 if [%phost%]==[] (set phost=localhost)
 set /p pport=Enter postgres port(default 5432):
@@ -42,6 +45,8 @@ echo spring.jackson.serialization.write_dates_as_timestamps=false>>application.p
 
 echo get.task.time=30000>>application.properties
 echo process.task.time=15000>>application.properties
+echo process.file.time=60000>>application.properties
+echo file.path=%filepath%>>application.properties
 
 echo logging.file=myapplication.log>>application.properties
 

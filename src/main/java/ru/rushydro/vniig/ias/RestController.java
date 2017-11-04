@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,14 +13,14 @@ import ru.rushydro.vniig.ias.dao.specification.TaskLogSpecification;
 import ru.rushydro.vniig.ias.model.PageCount;
 import ru.rushydro.vniig.ias.model.Sensor;
 import ru.rushydro.vniig.ias.model.Signal;
+import ru.rushydro.vniig.ias.service.SensorService;
 import ru.rushydro.vniig.ias.service.TaskLogService;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -36,6 +35,9 @@ public class RestController {
 
     private final
     TaskLogService taskLogService;
+
+    private final
+    SensorService sensorService;
 
     private static String[] controlObjects = {"Ж/Б плотина", "Ж/Б плотина 2", "Ж/Б плотина 3"};
     private static String[] controlElements = {"Низовая грань", "Низовая грань 2", "Низовая грань 3"};
@@ -67,8 +69,10 @@ public class RestController {
     }
 
     @Autowired
-    public RestController(TaskLogService taskLogService) {
+    public RestController(TaskLogService taskLogService,
+                          SensorService sensorService) {
         this.taskLogService = taskLogService;
+        this.sensorService = sensorService;
     }
 
     @RequestMapping("/signals")
@@ -105,7 +109,16 @@ public class RestController {
     @RequestMapping("/sensors")
     @ResponseBody
     public List<Sensor> getSensors() {
-        return sensors;
+        //        return sensors;
+        return sensorService.getAll().stream().map(sensor -> {
+            Sensor s = new Sensor();
+            s.setId(sensor.getId());
+            s.setName(sensor.getName());
+            s.setControlObject(sensor.getObjectMonitor().getName());
+            s.setSensorType(sensor.getType());
+            s.setOn(sensor.isOn());
+            return s;
+        }).collect(Collectors.toList());
     }
 
     @RequestMapping("/controlObjects")

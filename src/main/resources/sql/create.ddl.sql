@@ -17,6 +17,7 @@ create table object_monitor(
 create table measured_parameter(
   id integer UNIQUE NOT NULL,
   name varchar(128) UNIQUE NOT NULL,
+  data_type integer,
   primary key(id)
 );
 
@@ -122,6 +123,14 @@ create table output_signal_value(
 create table signal_value_ext (
   id SERIAL,
   id_signal INTEGER REFERENCES signal(id) NOT NULL,
+  calibrated integer,
   value float NOT NULL,
+  primary key(id)
+);
+
+create table app_data (
+  id integer UNIQUE NOT NULL,
+  name VARCHAR(256) UNIQUE NOT NULL,
+  value VARCHAR(256),
   primary key(id)
 );
