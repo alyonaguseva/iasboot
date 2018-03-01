@@ -27,4 +27,10 @@ public class SensorService {
         return sensors;
     }
 
+    public List<Sensor> findByInTag(Boolean inTag) {
+        List<Sensor> sensors = new ArrayList<>();
+        sensorRepository.findByInTag(inTag).forEach(sensors::add);
+        return sensors;
+    }
+
 }

@@ -13,4 +13,6 @@ public interface SignalRepository extends CrudRepository<Signal, Integer> {
     Signal findBySensorAndMeasuredParameter(Sensor sensor,
                                             MeasuredParameter measuredParameter);
 
+    Signal findBySensor(Sensor sensor);
+
 }

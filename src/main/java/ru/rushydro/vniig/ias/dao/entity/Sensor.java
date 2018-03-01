@@ -23,6 +23,9 @@ public class Sensor {
     @Column(name = "on_sensor")
     private boolean on;
 
+    @Column(name = "in_tag")
+    private Boolean inTag;
+
     public Integer getId() {
         return id;
     }
@@ -61,5 +64,13 @@ public class Sensor {
 
     public void setOn(boolean on) {
         this.on = on;
+    }
+
+    public Boolean isInTag() {
+        return inTag;
+    }
+
+    public void setInTag(Boolean inTag) {
+        this.inTag = inTag;
     }
 }

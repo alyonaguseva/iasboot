@@ -91,7 +91,6 @@ public class ParseFileService {
                         if (!values.isEmpty()) {
                             signalValueExtService.saveAll(values);
                             appDataService.save(appData);
-//                            clearFile();
                         }
                     }
 
