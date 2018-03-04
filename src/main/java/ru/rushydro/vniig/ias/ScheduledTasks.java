@@ -8,15 +8,11 @@ import ru.rushydro.vniig.ias.service.ParseFileService;
 import ru.rushydro.vniig.ias.service.TagService;
 import ru.rushydro.vniig.ias.service.TaskService;
 
-import java.util.logging.Logger;
-
 /**
  * Created by yazik on 13.05.2017.
  */
 @Component
 public class ScheduledTasks {
-
-    private final static Logger log = Logger.getLogger(ScheduledTasks.class.getName());
 
     private final
     ExchangeRepository exchangeRepository;

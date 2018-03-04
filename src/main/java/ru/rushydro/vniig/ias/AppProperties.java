@@ -9,6 +9,8 @@ import java.util.Map;
 @ConfigurationProperties()
 @Component
 public class AppProperties {
+    private String type;
+
     private Map<String, String> tags = new HashMap<>();
 
     public Map<String, String> getTags() {
@@ -17,5 +19,13 @@ public class AppProperties {
 
     public void setTags(Map<String, String> tags) {
         this.tags = tags;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 }
