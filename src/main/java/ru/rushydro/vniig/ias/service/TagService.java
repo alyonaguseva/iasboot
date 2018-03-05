@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -98,6 +99,10 @@ public class TagService {
                 URL getUrl = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
                 con.setRequestMethod("GET");
+                con.setConnectTimeout(5 * 60 * 1000);
+                con.setReadTimeout(60 * 1000);
+                con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                con.setRequestProperty("Accept-Encoding", "gzip, deflate");
                 try (InputStream is = con.getInputStream();
                      BufferedReader rd = new BufferedReader(new InputStreamReader(is))) {
                     StringBuilder response = new StringBuilder();
@@ -108,11 +113,11 @@ public class TagService {
                     }
                     tagValues = response.toString();
                 } catch (IOException e) {
-                    log.warning("Ошибка запроса: " + e.getMessage());
+                    log.log(Level.WARNING, "Ошибка запроса:", e);
                     e.printStackTrace();
                 }
             } catch (IOException e) {
-                log.warning("Ошибка запроса: " + e.getMessage());
+                log.log(Level.WARNING, "Ошибка запроса:", e);
                 e.printStackTrace();
             }
 
