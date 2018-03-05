@@ -49,6 +49,9 @@ public class TagService {
     @Value("${tag.service.path}")
     private String tagUrl;
 
+    @Value("${tag.password}")
+    private String tagPassword;
+
     private final
     SensorService sensorService;
 
@@ -108,7 +111,7 @@ public class TagService {
                 webClient.setJavaScriptEnabled(false);
                 HtmlPage currentPage = webClient.getPage(tagUrl); //Load page at the STRING address.
                 HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
-                password.setValueAttribute("201275"); //Set value for password
+                password.setValueAttribute(tagPassword); //Set value for password
                 List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
                 HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
                 currentPage = submitBtn.click(); //Click on the button.
