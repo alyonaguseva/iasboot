@@ -3,6 +3,14 @@ package ru.rushydro.vniig.ias.service;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gargoylesoftware.htmlunit.UnexpectedPage;
+import com.gargoylesoftware.htmlunit.WebClient;
+import com.gargoylesoftware.htmlunit.WebRequest;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
+import com.gargoylesoftware.htmlunit.html.HtmlInput;
+import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -93,11 +101,33 @@ public class TagService {
 
         String tagValues = null;
 
-        if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core")) {
+        if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("web")) {
+            log.info("Получение данных датчиков с помощью java web");
+            try {
+                WebClient webClient = new WebClient();
+                webClient.setJavaScriptEnabled(false);
+                HtmlPage currentPage = webClient.getPage(tagUrl); //Load page at the STRING address.
+                HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
+                password.setValueAttribute("201275"); //Set value for password
+                List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
+                HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
+                currentPage = submitBtn.click(); //Click on the button.
+                UnexpectedPage page = webClient.getPage(url);
+                page.getWebResponse().getContentAsString();
+                log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
+                tagValues = page.getWebResponse().getContentAsString();
+            } catch (IOException e) {
+                log.log(Level.WARNING, "Ошибка запроса:", e);
+                e.printStackTrace();
+            }
+        } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core")) {
             log.info("Получение данных датчиков с помощью java core");
             try {
                 URL getUrl = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
+                String userCredentials = ":201275";
+                String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
+                con.setRequestProperty ("Authorization", basicAuth);
                 con.setRequestMethod("GET");
                 con.setConnectTimeout(5 * 60 * 1000);
                 con.setReadTimeout(60 * 1000);
