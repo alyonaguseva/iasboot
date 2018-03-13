@@ -38,6 +38,9 @@ echo app.datasource.main.password=%ppassword%>>application.properties
 echo app.datasource.exchange.url=jdbc:mysql://%mhost%:%mport%/%mdatabasename%>>application.properties
 echo app.datasource.exchange.username=%musername%>>application.properties
 echo app.datasource.exchange.password=%mpassword%>>application.properties
+echo app.datasource.exchange.test-while-idle=true>>application.properties
+echo app.datasource.exchange.testOnBorrow=true>>application.properties
+echo app.datasource.exchange.validationQuery=SELECT 1>>application.properties
 
 echo spring.jpa.properties.javax.persistence.sharedCache.mode=ALL>>application.properties
 

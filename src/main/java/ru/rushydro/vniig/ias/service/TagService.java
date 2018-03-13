@@ -178,7 +178,7 @@ public class TagService {
                             signalValueExt.setValue(new BigDecimal(node.toString()
                                     .replaceAll("\"", "")));
                             signalValueExt.setSignalId(signal.getId());
-                            signalValueExt.setCalibrated(0);
+                            signalValueExt.setCalibrated(1);
                             values.add(signalValueExt);
                             log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
                                     " значение сигнала: " + signalValueExt.getValue());

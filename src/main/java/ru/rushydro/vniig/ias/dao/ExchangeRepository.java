@@ -11,6 +11,7 @@ import ru.rushydro.vniig.ias.dao.entity.SignalValue;
 import ru.rushydro.vniig.ias.dao.entity.Task;
 import ru.rushydro.vniig.ias.dao.entity.enumeration.TaskLogTypeEnum;
 import ru.rushydro.vniig.ias.dao.entity.enumeration.TaskStatusEnum;
+import ru.rushydro.vniig.ias.service.ParseFileService;
 import ru.rushydro.vniig.ias.service.TaskLogService;
 
 import javax.sql.DataSource;
@@ -18,12 +19,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by yazik on 13.05.2017.
  */
 @Service
 public class ExchangeRepository {
+    private final static Logger log = Logger.getLogger(ExchangeRepository.class.getName());
 
     private final TaskRepository taskRepository;
 
@@ -74,19 +77,30 @@ public class ExchangeRepository {
                         "order by s.datime desc, s.id desc");
         while(rowSet.next()) {
             LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
-            Sensor sensor = sensorRepository.findOne(rowSet.getInt(2));
-            Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
-                    measuredParameterRepository.findOne(rowSet.getInt(3)));
-            if (taskRepository.findByDateAndSignal(date, signal) != null) {
-                break;
+            int sensorId = rowSet.getInt(2);
+            int measuredParameterId = rowSet.getInt(3);
+            Sensor sensor = sensorRepository.findOne(sensorId);
+            if (sensor != null) {
+                Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
+                        measuredParameterRepository.findOne(measuredParameterId));
+                if (signal != null) {
+                    if (taskRepository.findByDateAndSignal(date, signal) != null) {
+                        break;
+                    } else {
+                        Task task = new Task();
+                        task.setSignal(signal);
+                        task.setIdIDS(rowSet.getLong(4));
+                        task.setDateMax(rowSet.getTimestamp(5).toLocalDateTime());
+                        task.setDate(date);
+                        task.setStatus(taskStatusRepository.findBySystemname(TaskStatusEnum.NEW.name()));
+                        tasks.add(task);
+                    }
+                } else {
+                    log.warning("Сигнал с id датчика: " + sensorId + " и с кодом измеряемого параметра: "
+                            + measuredParameterId + " не найден!");
+                }
             } else {
-                Task task = new Task();
-                task.setSignal(signal);
-                task.setIdIDS(rowSet.getLong(4));
-                task.setDateMax(rowSet.getTimestamp(5).toLocalDateTime());
-                task.setDate(date);
-                task.setStatus(taskStatusRepository.findBySystemname(TaskStatusEnum.NEW.name()));
-                tasks.add(task);
+                log.warning("Датчик с id: " + sensorId + " не найден!");
             }
         }
 
