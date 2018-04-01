@@ -42,6 +42,14 @@
     <script src="<@spring.url "/js/app/pagination/pagination.module.js" />"></script>
     <script src="<@spring.url "/js/app/pagination/pagination.component.js" />"></script>
 
+    <script src="<@spring.url "/js/app/exchangeZone/exchangeService/exchangeService.module.js" />"></script>
+    <script src="<@spring.url "/js/app/exchangeZone/exchangeService/exchangeService.service.js" />"></script>
+
+    <script src="<@spring.url "/js/app/exchangeZone/exchange.module.js" />"></script>
+    <script src="<@spring.url "/js/app/exchangeZone/exchange.component.js" />"></script>
+
+
+
 
     <script src="<@spring.url "/js/app/app.module.js" />"></script>
     <script src="<@spring.url "/js/app/app.config.js" />"></script>

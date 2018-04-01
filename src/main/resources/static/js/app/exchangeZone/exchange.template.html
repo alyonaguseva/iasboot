@@ -1,0 +1,95 @@
+<div class="container container-fluid">
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3>Измеряемый параметр</h3>
+                </div>
+                <div class="col-xs-4 text-right" style="padding-top: 18px">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.add()">Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>Идентификатор</th>
+                                <th>Наименование</th>
+                                <th>Тип данных</th>
+                            </tr>
+                            <tr ng-repeat="meas in $ctrl.measures" ng-click="$ctrl.setMeas(meas)">
+                                <td>{{meas.id}}</td>
+                                <td>{{meas.name}}</td>
+                                <td>{{meas.dataType}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h3>Информация о параметре <span ng-if="$ctrl.sensor != null">{{$ctrl.sensor.name}}</span></h3>
+            <div ng-if="$ctrl.meas != null">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Наименование</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.meas.name" /></td>
+                    </tr>
+                    <tr>
+                        <td>Тип данных</td>
+                        <td><input class="form-control" type="number" ng-model="$ctrl.meas.dataType" /></td>
+                    </tr>
+                </table>
+                <button class="btn btn-default" ng-click="$ctrl.save(meas)">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+            <!--<h3>Список датчиков</h3>-->
+            <!--<div class="table-responsive">-->
+                <!--<table class="table table-bordered table-hover">-->
+                    <!--<tr>-->
+                        <!--<th>Идентификатор</th>-->
+                        <!--<th>Наименование</th>-->
+                        <!--<th>Объект</th>-->
+                        <!--<th>Тип</th>-->
+                    <!--</tr>-->
+                    <!--<tr ng-repeat="sensor in $ctrl.sensors">>-->
+                        <!--<td>{{sensor.id}}</td>-->
+                        <!--<td>{{sensor.name}}</td>-->
+                        <!--<td>{{sensor.objMonitor.name}}</td>-->
+                        <!--<td>{{sensor.type.name}}</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="container container-fluid">-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+            <!--<h3>Список сигналов</h3>-->
+            <!--<div class="table-responsive">-->
+                <!--<table class="table table-bordered table-hover">-->
+                    <!--<tr>-->
+                        <!--<th>Идентификатор</th>-->
+                        <!--<th>Датчик</th>-->
+                        <!--<th>Тип</th>-->
+                        <!--<th>Измеряемый параметр</th>-->
+                    <!--</tr>-->
+                    <!--<tr ng-repeat="signal in $ctrl.signals">>-->
+                        <!--<td>{{signal.id}}</td>-->
+                        <!--<td>{{signal.sensor.name}}</td>-->
+                        <!--<td>{{signal.type.name}}</td>-->
+                        <!--<td>{{signal.measureParam.name}}</td>-->
+                    <!--</tr>-->
+                <!--</table>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

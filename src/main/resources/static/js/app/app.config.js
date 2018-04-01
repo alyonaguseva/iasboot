@@ -14,6 +14,9 @@ config(['$locationProvider', '$routeProvider',
         when('/sensors', {
             template: '<sensor-list></sensor-list>'
         }).
+        when('/exchange', {
+            template: '<exchange></exchange>'
+        }).
         when('/logs', {
             template: '<log-list></log-list>'
         }).
