@@ -34,4 +34,9 @@ factory('GetMeasures', ['$resource',
             }
         });
     }
+]).
+factory('SaveMeasures', ['$resource',
+    function($resource) {
+        return $resource('exchange/measure/save');
+    }
 ]);

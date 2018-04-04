@@ -33,6 +33,11 @@
             <div ng-if="$ctrl.meas != null">
                 <table class="table table-bordered">
                     <tr>
+                        <td>Идентификатор</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.meas.id"
+                                   ng-disabled="$ctrl.selectedMeas != null"/></td>
+                    </tr>
+                    <tr>
                         <td>Наименование</td>
                         <td><input class="form-control" type="text" ng-model="$ctrl.meas.name" /></td>
                     </tr>
@@ -41,7 +46,10 @@
                         <td><input class="form-control" type="number" ng-model="$ctrl.meas.dataType" /></td>
                     </tr>
                 </table>
-                <button class="btn btn-default" ng-click="$ctrl.save(meas)">Сохранить</button>
+                <div ng-if="$ctrl.error != null" class="alert alert-danger">
+                    {{$ctrl.error}}
+                </div>
+                <button class="btn btn-default" ng-click="$ctrl.save($ctrl.meas)">Сохранить</button>
             </div>
         </div>
     </div>

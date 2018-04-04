@@ -3,15 +3,18 @@ package ru.rushydro.vniig.ias.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.rushydro.vniig.ias.dao.MeasuredParameterRepository;
 import ru.rushydro.vniig.ias.dao.SensorRepository;
 import ru.rushydro.vniig.ias.dao.SignalRepository;
+import ru.rushydro.vniig.ias.dao.entity.MeasuredParameter;
 import ru.rushydro.vniig.ias.types.*;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -44,19 +47,27 @@ public class ExchangeController {
            measure.setDataType(entity.getDataType());
            result.add(measure);
        });
+        result.sort(Comparator.comparingInt(Measure::getId));
         return result;
     }
 
-    @RequestMapping("/measure/add")
+    @RequestMapping("/measure/save")
     @ResponseBody
-    public SimpleResponse addMeasuresParam(@RequestParam(value = "measure") Measure measure){
-        return null;
-    }
-
-    @RequestMapping("/measure/edit")
-    @ResponseBody
-    public SimpleResponse editMeasuresParam(@RequestParam(value = "measure")Measure measure){
-        return null;
+    public SimpleResponse saveMeasuresParam(@RequestBody Measure measure){
+        MeasuredParameter measuredParameter = measuredParameterRepository.findOne(measure.getId());
+        if (measuredParameter == null) {
+            measuredParameter = new MeasuredParameter();
+            measuredParameter.setId(measure.getId());
+        }
+        measuredParameter.setName(measure.getName());
+        measuredParameter.setDataType(measure.getDataType());
+        try {
+            measuredParameterRepository.save(measuredParameter);
+            return new SimpleResponse(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new SimpleResponse(false, e.getMessage());
+        }
     }
 
     @RequestMapping("/sensors")
