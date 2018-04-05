@@ -31,11 +31,11 @@ module('sensorList').component(
             };
 
             vm.sensorOn = function (sensor) {
-                sensor.on = true;
+                sensor.on = 1;
             };
 
             vm.sensorOff = function (sensor) {
-                sensor.on = false;
+                sensor.on = 0;
             };
         }]
     }

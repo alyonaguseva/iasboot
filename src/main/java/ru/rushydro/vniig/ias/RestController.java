@@ -58,7 +58,7 @@ public class RestController {
         IntStream.range(0, 20).forEach(i -> {
             Sensor sensor = new Sensor();
             sensor.setName("Сенсор " + i);
-            sensor.setOn(!(i % 3 == 0));
+            sensor.setOn(!(i % 3 == 0) ? 1 : 0);
             sensor.setControlObject(controlObjects[random.nextInt(3)]);
             sensor.setControlElement(controlElements[random.nextInt(3)]);
             sensor.setMeasurementType(measurementTypes[random.nextInt(3)]);
@@ -116,7 +116,7 @@ public class RestController {
             s.setName(sensor.getName());
             s.setControlObject(sensor.getObjectMonitor().getName());
             s.setSensorType(sensor.getType());
-            s.setOn(sensor.isOn());
+            s.setOn(sensor.getOn());
             return s;
         }).collect(Collectors.toList());
     }

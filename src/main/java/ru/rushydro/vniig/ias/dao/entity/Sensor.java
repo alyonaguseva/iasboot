@@ -21,7 +21,7 @@ public class Sensor {
     private String type;
 
     @Column(name = "on_sensor")
-    private boolean on;
+    private Integer on = 0;
 
     @Column(name = "in_tag")
     private Boolean inTag;
@@ -58,11 +58,11 @@ public class Sensor {
         this.type = type;
     }
 
-    public boolean isOn() {
+    public Integer getOn() {
         return on;
     }
 
-    public void setOn(boolean on) {
+    public void setOn(Integer on) {
         this.on = on;
     }
 

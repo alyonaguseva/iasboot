@@ -10,7 +10,7 @@ public class Sensor {
 
     private String name;
 
-    private boolean on;
+    private Integer on = 1;
 
     private String controlObject;
 
@@ -30,11 +30,11 @@ public class Sensor {
         this.name = name;
     }
 
-    public boolean isOn() {
+    public Integer getOn() {
         return on;
     }
 
-    public void setOn(boolean on) {
+    public void setOn(Integer on) {
         this.on = on;
     }
 

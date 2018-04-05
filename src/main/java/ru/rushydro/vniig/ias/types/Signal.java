@@ -18,7 +18,7 @@ public class Signal {
         this.id = id;
     }
 
-    public Dictionary getSensors() {
+    public Dictionary getSensor() {
         return sensor;
     }
 

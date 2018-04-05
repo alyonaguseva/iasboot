@@ -37,17 +37,17 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <tr ng-repeat="sensor in $ctrl.sensors | filter:filter"
-                                ng-class="{success: sensor.on, danger: !sensor.on, active: $ctrl.sensor == sensor}"
+                                ng-class="{success: sensor.on == 1, danger: sensor.on == 0, active: $ctrl.sensor == sensor}"
                                 ng-click="$ctrl.setSensor(sensor)">
                                 <td>
                                     {{sensor.name}}
                                 </td>
                                 <td class="text-right">
-                                    <button ng-if="!sensor.on" ng-click="$ctrl.sensorOn(sensor)"
+                                    <button ng-if="sensor.on == 0" ng-click="$ctrl.sensorOn(sensor)"
                                             class="btn btn-default" style="min-width: 120px;">
                                         Включить
                                     </button>
-                                    <button ng-if="sensor.on" ng-click="$ctrl.sensorOff(sensor)"
+                                    <button ng-if="sensor.on == 1" ng-click="$ctrl.sensorOff(sensor)"
                                             class="btn btn-default" style="min-width: 120px;">
                                         Выключить
                                     </button>

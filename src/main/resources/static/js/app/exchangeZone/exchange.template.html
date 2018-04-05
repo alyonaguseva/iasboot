@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <h3>Информация о параметре <span ng-if="$ctrl.sensor != null">{{$ctrl.sensor.name}}</span></h3>
+            <h3>Информация о параметре <span ng-if="$ctrl.meas != null">{{$ctrl.meas.name}}</span></h3>
             <div ng-if="$ctrl.meas != null">
                 <table class="table table-bordered">
                     <tr>
@@ -54,50 +54,133 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3>Датчики</h3>
+                </div>
+                <div class="col-xs-4 text-right" style="padding-top: 18px">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.addSensor()">Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>Идентификатор</th>
+                                <th>Наименование</th>
+                                <th>Тип</th>
+                            </tr>
+                            <tr ng-repeat="sensor in $ctrl.sensors" ng-click="$ctrl.setSensor(sensor)">
+                                <td>{{sensor.id}}</td>
+                                <td>{{sensor.name}}</td>
+                                <td>{{sensor.type}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h3>Информация о датчике <span ng-if="$ctrl.sensor != null">{{$ctrl.sensor.name}}</span></h3>
+            <div ng-if="$ctrl.sensor != null">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Идентификатор</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.sensor.id"
+                                   ng-disabled="$ctrl.selectedSensor != null"/></td>
+                    </tr>
+                    <tr>
+                        <td>Наименование</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.sensor.name" /></td>
+                    </tr>
+                    <tr>
+                        <td>Тип данных</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.sensor.type" /></td>
+                    </tr>
+                </table>
+                <div ng-if="$ctrl.errorSensor != null" class="alert alert-danger">
+                    {{$ctrl.errorSensor}}
+                </div>
+                <button class="btn btn-default" ng-click="$ctrl.saveSensor($ctrl.sensor)">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3>Сигналы</h3>
+                </div>
+                <div class="col-xs-4 text-right" style="padding-top: 18px">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.addSignal()">Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>Идентификатор</th>
+                                <th>Датчик</th>
+                                <th>Измеряеный параметр</th>
+                            </tr>
+                            <tr ng-repeat="signal in $ctrl.signals" ng-click="$ctrl.setSignal(signal)">
+                                <td>{{signal.id}}</td>
+                                <td>{{signal.sensor.name}}</td>
+                                <td>{{signal.measureParam.name}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h3>Информация о сигнале <span ng-if="$ctrl.signal != null">{{$ctrl.signal.id}}</span></h3>
+            <div ng-if="$ctrl.signal != null">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Идентификатор</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.signal.id"
+                                   ng-disabled="$ctrl.selectedSignal != null"/></td>
+                    </tr>
+                    <tr>
+                        <td>Датчик</td>
+                        <td>
+                            <select data-ng-model="$ctrl.signal.sensor"
+                                    data-ng-options="sensor.name for sensor in $ctrl.comboSensors track by sensor.id">
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Тип</td>
+                        <td>
+                            <select ng-model="$ctrl.signal.type"
+                                    ng-options="option.name for option in $ctrl.comboSignalTypes track by option.id">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Измеряемый параметр</td>
+                        <td>
+                            <select ng-model="$ctrl.signal.measureParam"
+                                    ng-options="option.name for option in $ctrl.comboMeasures track by option.id">
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <div ng-if="$ctrl.errorSignal != null" class="alert alert-danger">
+                    {{$ctrl.errorSignal}}
+                </div>
+                <button class="btn btn-default" ng-click="$ctrl.saveSignal($ctrl.signal)">Сохранить</button>
+            </div>
+        </div>
+    </div>
 
 
-    <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-            <!--<h3>Список датчиков</h3>-->
-            <!--<div class="table-responsive">-->
-                <!--<table class="table table-bordered table-hover">-->
-                    <!--<tr>-->
-                        <!--<th>Идентификатор</th>-->
-                        <!--<th>Наименование</th>-->
-                        <!--<th>Объект</th>-->
-                        <!--<th>Тип</th>-->
-                    <!--</tr>-->
-                    <!--<tr ng-repeat="sensor in $ctrl.sensors">>-->
-                        <!--<td>{{sensor.id}}</td>-->
-                        <!--<td>{{sensor.name}}</td>-->
-                        <!--<td>{{sensor.objMonitor.name}}</td>-->
-                        <!--<td>{{sensor.type.name}}</td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<!--<div class="container container-fluid">-->
-    <!--<div class="row">-->
-        <!--<div class="col-xs-12">-->
-            <!--<h3>Список сигналов</h3>-->
-            <!--<div class="table-responsive">-->
-                <!--<table class="table table-bordered table-hover">-->
-                    <!--<tr>-->
-                        <!--<th>Идентификатор</th>-->
-                        <!--<th>Датчик</th>-->
-                        <!--<th>Тип</th>-->
-                        <!--<th>Измеряемый параметр</th>-->
-                    <!--</tr>-->
-                    <!--<tr ng-repeat="signal in $ctrl.signals">>-->
-                        <!--<td>{{signal.id}}</td>-->
-                        <!--<td>{{signal.sensor.name}}</td>-->
-                        <!--<td>{{signal.type.name}}</td>-->
-                        <!--<td>{{signal.measureParam.name}}</td>-->
-                    <!--</tr>-->
-                <!--</table>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+
 </div>

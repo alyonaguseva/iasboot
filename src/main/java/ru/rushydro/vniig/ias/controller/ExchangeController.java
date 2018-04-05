@@ -1,15 +1,11 @@
 package ru.rushydro.vniig.ias.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ru.rushydro.vniig.ias.dao.MeasuredParameterRepository;
-import ru.rushydro.vniig.ias.dao.SensorRepository;
-import ru.rushydro.vniig.ias.dao.SignalRepository;
+import ru.rushydro.vniig.ias.dao.*;
 import ru.rushydro.vniig.ias.dao.entity.MeasuredParameter;
 import ru.rushydro.vniig.ias.types.*;
 
@@ -27,13 +23,21 @@ public class ExchangeController {
 
     private final SignalRepository signalRepository;
 
+    private final SignalTypeRepository signalTypeRepository;
+
+    private final ObjectMonitorRepository objectMonitorRepository;
+
     @Autowired
     public ExchangeController(MeasuredParameterRepository measuredParameterRepository,
                               SensorRepository sensorRepository,
-                              SignalRepository signalRepository) {
+                              SignalRepository signalRepository,
+                              SignalTypeRepository signalTypeRepository,
+                              ObjectMonitorRepository objectMonitorRepository) {
         this.measuredParameterRepository = measuredParameterRepository;
         this.sensorRepository = sensorRepository;
         this.signalRepository = signalRepository;
+        this.signalTypeRepository = signalTypeRepository;
+        this.objectMonitorRepository = objectMonitorRepository;
     }
 
     @RequestMapping("/measures")
@@ -48,6 +52,20 @@ public class ExchangeController {
            result.add(measure);
        });
         result.sort(Comparator.comparingInt(Measure::getId));
+        return result;
+    }
+
+    @RequestMapping("/combo/measures")
+    @ResponseBody
+    public List<Dictionary> getMeasuresParamsDictionary(){
+        List<Dictionary> result = new ArrayList<>();
+        measuredParameterRepository.findAll().forEach(entity -> {
+            Dictionary measure = new Dictionary();
+            measure.setId(entity.getId());
+            measure.setName(entity.getName());
+            result.add(measure);
+        });
+        result.sort(Comparator.comparingInt(Dictionary::getId));
         return result;
     }
 
@@ -85,19 +103,63 @@ public class ExchangeController {
             sensor.setType(entity.getType());
             result.add(sensor);
         });
+        result.sort(Comparator.comparingInt(Sensor::getId));
         return result;
     }
 
-    @RequestMapping("/sensor/add")
+    @RequestMapping("/combo/sensors")
     @ResponseBody
-    public SimpleResponse addSensor(@RequestParam(value = "sensor")Sensor sensor){
-        return null;
+    public List<Dictionary> getSensorsDictionary(){
+        List<Dictionary> result = new ArrayList<>();
+        sensorRepository.findAll().forEach(entity -> {
+            Dictionary sensor = new Dictionary();
+            sensor.setId(entity.getId());
+            sensor.setName(entity.getName());
+            result.add(sensor);
+        });
+        result.sort(Comparator.comparingInt(Dictionary::getId));
+        return result;
     }
 
-    @RequestMapping("/sensor/edit")
+    @RequestMapping("/combo/signalTypes")
     @ResponseBody
-    public SimpleResponse editSensor(@RequestParam(value = "sensor")Sensor sensor){
-        return null;
+    public List<Dictionary> getSignalTypesDictionary(){
+        List<Dictionary> result = new ArrayList<>();
+        signalTypeRepository.findAll().forEach(entity -> {
+            Dictionary sensor = new Dictionary();
+            sensor.setId(entity.getId());
+            sensor.setName(entity.getName());
+            result.add(sensor);
+        });
+        result.sort(Comparator.comparingInt(Dictionary::getId));
+        return result;
+    }
+
+    @RequestMapping("/sensor/save")
+    @ResponseBody
+    public SimpleResponse saveSensor(@RequestBody Sensor sensor){
+        ru.rushydro.vniig.ias.dao.entity.Sensor saveSensor = sensorRepository.findOne(sensor.getId());
+        if (saveSensor == null) {
+            saveSensor = new ru.rushydro.vniig.ias.dao.entity.Sensor();
+            saveSensor.setId(sensor.getId());
+        }
+        saveSensor.setName(sensor.getName());
+        saveSensor.setType(sensor.getType());
+        saveSensor.setOn(1);
+        saveSensor.setInTag(false);
+        if (sensor.getObjMonitor() != null) {
+            saveSensor.setObjectMonitor(objectMonitorRepository.findOne(sensor.getObjMonitor().getId()));
+        } else {
+            saveSensor.setObjectMonitor(objectMonitorRepository.findOne(1));
+        }
+
+        try {
+            sensorRepository.save(saveSensor);
+            return new SimpleResponse(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new SimpleResponse(false, e.getMessage());
+        }
     }
 
     @RequestMapping("/signals")
@@ -121,18 +183,33 @@ public class ExchangeController {
             signal.setMeasureParam(measureParam);
             result.add(signal);
         });
+        result.sort(Comparator.comparingInt(Signal::getId));
         return result;
     }
 
-    @RequestMapping("/signal/add")
+    @RequestMapping("/signal/save")
     @ResponseBody
-    public SimpleResponse addSignal(@RequestParam(value = "signal")Signal signal){
-        return null;
-    }
-
-    @RequestMapping("/signal/edit")
-    @ResponseBody
-    public SimpleResponse editSignal(@RequestParam(value = "signal")Signal signal){
-        return null;
+    public SimpleResponse saveSignal(@RequestBody Signal signal){
+        ru.rushydro.vniig.ias.dao.entity.Signal saveSignal = signalRepository.findOne(signal.getId());
+        if (saveSignal == null) {
+            saveSignal = new ru.rushydro.vniig.ias.dao.entity.Signal();
+            saveSignal.setId(signal.getId());
+        }
+        if (signal.getSensor() != null && signal.getSensor().getId() != null) {
+            saveSignal.setSensor(sensorRepository.findOne(signal.getSensor().getId()));
+        }
+        if (signal.getType() != null && signal.getType().getId() != null) {
+            saveSignal.setType(signalTypeRepository.findOne(signal.getType().getId()));
+        }
+        if (signal.getMeasureParam() != null && signal.getMeasureParam().getId() != null) {
+            saveSignal.setMeasuredParameter(measuredParameterRepository.findOne(signal.getMeasureParam().getId()));
+        }
+        try {
+            signalRepository.save(saveSignal);
+            return new SimpleResponse(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new SimpleResponse(false, e.getMessage());
+        }
     }
 }
