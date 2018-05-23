@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.dao.entity.AppData;
+import ru.rushydro.vniig.ias.dao.entity.Signal;
 import ru.rushydro.vniig.ias.dao.entity.SignalValueExt;
 
 import java.io.*;
@@ -27,14 +28,18 @@ public class ParseFileService {
     SignalValueExtService signalValueExtService;
 
     private final
+    SignalService signalService;
+
+    private final
     AppDataService appDataService;
 
     @Value("${file.path}")
     private String filePath;
 
     @Autowired
-    public ParseFileService(SignalValueExtService signalValueExtService, AppDataService appDataService) {
+    public ParseFileService(SignalValueExtService signalValueExtService, SignalService signalService, AppDataService appDataService) {
         this.signalValueExtService = signalValueExtService;
+        this.signalService = signalService;
         this.appDataService = appDataService;
     }
 
@@ -45,7 +50,7 @@ public class ParseFileService {
                 Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
                 int i = 0;
                 Map<Integer, Integer> datas = new HashMap<>();
-                List<SignalValueExt> values = null;
+                List<SignalValueExt> values;
                 CSVRecord lastRecord = null;
                 for (CSVRecord record : records) {
                     if (i > 1) {
@@ -81,11 +86,17 @@ public class ParseFileService {
                                     value != null
                                     && !value.isEmpty()
                                     && !value.equalsIgnoreCase("NAN")) {
-                                SignalValueExt signalValueExt = new SignalValueExt();
-                                signalValueExt.setValue(new BigDecimal(value));
-                                signalValueExt.setSignalId(signalId > 999 ? signalId / 10 : signalId);
-                                signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
-                                values.add(signalValueExt);
+                                Integer sId = signalId > 999 ? signalId / 10 : signalId;
+                                Signal signal = signalService.findById(sId);
+                                if (signal != null) {
+                                    SignalValueExt signalValueExt = new SignalValueExt();
+                                    signalValueExt.setValue(new BigDecimal(value));
+                                    signalValueExt.setSignalId(sId);
+                                    signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
+                                    values.add(signalValueExt);
+                                } else {
+                                    log.warning("Сигнал с id : " + sId + " при разборе файла не найден!");
+                                }
                             }
                         }
                         if (!values.isEmpty()) {
