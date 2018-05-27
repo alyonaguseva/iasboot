@@ -1,6 +1,7 @@
 package ru.rushydro.vniig.ias;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.rushydro.vniig.ias.dao.ExchangeRepository;
@@ -26,6 +27,9 @@ public class ScheduledTasks {
     private final
     TagService tagService;
 
+    @Value("${insert.test.data:false}")
+    private boolean insertTestData;
+
     @Autowired
     public ScheduledTasks(ExchangeRepository exchangeRepository,
                           TaskService taskService,
@@ -49,6 +53,13 @@ public class ScheduledTasks {
     @Scheduled(fixedRateString = "${process.file.time}")
     public void processFile() {
         parseFileService.parseFile();
+    }
+
+    @Scheduled(fixedRateString = "${test.file.time:60000}")
+    public void insertTestFileData() {
+        if (insertTestData) {
+            parseFileService.insertTestData();
+        }
     }
 
     @Scheduled(fixedRateString = "${process.tag.time}")

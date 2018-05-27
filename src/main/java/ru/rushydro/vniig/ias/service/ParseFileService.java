@@ -12,9 +12,15 @@ import ru.rushydro.vniig.ias.dao.entity.SignalValueExt;
 import java.io.*;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Сервис по обработке файла
@@ -35,6 +41,8 @@ public class ParseFileService {
 
     @Value("${file.path}")
     private String filePath;
+
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
     @Autowired
     public ParseFileService(SignalValueExtService signalValueExtService, SignalService signalService, AppDataService appDataService) {
@@ -134,6 +142,53 @@ public class ParseFileService {
         } catch (IOException e) {
             log.info("Ошибка копирования файла");
             e.printStackTrace();
+        }
+    }
+
+    public void insertTestData() {
+        File file = new File(filePath);
+        if (file.exists()) {
+            try (Reader in = new FileReader(filePath)) {
+                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+                int i = 0;
+                Map<Integer, Integer> datas = new HashMap<>();
+                List<SignalValueExt> values;
+                CSVRecord lastRecord = null;
+                for (CSVRecord record : records) {
+                    if (i > 1) {
+                        lastRecord = record;
+                    } else if (i == 1) {
+                        for (int j = 0; j < record.size(); j++) {
+                            String str = record.get(j);
+                            if (str != null
+                                    && !str.isEmpty()
+                                    && !str.equalsIgnoreCase("NAN")) {
+                                datas.put(j, Integer.parseInt(str));
+                            }
+                        }
+                    }
+                    i++;
+                }
+                if (lastRecord != null) {
+                    Random random = new Random();
+
+                    try {
+                        String str = Integer.parseInt(lastRecord.get(0)) + 1 + ","
+                                + LocalDateTime.now().format(dtf) + "," +
+                                random.doubles(datas.size()).mapToObj(d -> ""
+                                        + BigDecimal.valueOf(d).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue())
+                                        .collect(Collectors.joining(",")) + "\r\n";
+                        Files.write(file.toPath(), str.getBytes(), StandardOpenOption.APPEND);
+
+                    } catch (Exception e) {
+                        log.info("Ошибка записи тестовых данных в файл: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                }
+            } catch (Exception e) {
+                log.info("Ошибка при разборе файла: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }
 }
