@@ -2,6 +2,7 @@ package ru.rushydro.vniig.ias.dao.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * Created by yazik on 04.11.2017.
@@ -20,6 +21,9 @@ public class SignalValueExt {
     private BigDecimal value;
 
     private Integer calibrated;
+
+    @Column
+    private LocalDateTime valueTime;
 
     public Long getId() {
         return id;
@@ -51,5 +55,13 @@ public class SignalValueExt {
 
     public void setCalibrated(Integer calibrated) {
         this.calibrated = calibrated;
+    }
+
+    public LocalDateTime getValueTime() {
+        return valueTime;
+    }
+
+    public void setValueTime(LocalDateTime valueTime) {
+        this.valueTime = valueTime;
     }
 }

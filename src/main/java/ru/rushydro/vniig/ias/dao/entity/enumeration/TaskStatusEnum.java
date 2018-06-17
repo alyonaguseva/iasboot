@@ -7,5 +7,6 @@ public enum TaskStatusEnum {
     NEW,
     SENDTOSENSOR,
     NEEDTOSEND,
-    COMPLETE
+    COMPLETE,
+    OVERDUE
 }

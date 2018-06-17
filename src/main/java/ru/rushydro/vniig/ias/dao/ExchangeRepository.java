@@ -11,8 +11,8 @@ import ru.rushydro.vniig.ias.dao.entity.SignalValue;
 import ru.rushydro.vniig.ias.dao.entity.Task;
 import ru.rushydro.vniig.ias.dao.entity.enumeration.TaskLogTypeEnum;
 import ru.rushydro.vniig.ias.dao.entity.enumeration.TaskStatusEnum;
-import ru.rushydro.vniig.ias.service.ParseFileService;
 import ru.rushydro.vniig.ias.service.TaskLogService;
+import ru.rushydro.vniig.ias.service.TaskStatusService;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -38,7 +38,7 @@ public class ExchangeRepository {
 
     private final MeasuredParameterRepository measuredParameterRepository;
 
-    private final TaskStatusRepository taskStatusRepository;
+    private final TaskStatusService taskStatusService;
 
     private final TaskLogService taskLogService;
 
@@ -50,15 +50,14 @@ public class ExchangeRepository {
                               SignalRepository signalRepository,
                               SensorRepository sensorRepository,
                               MeasuredParameterRepository measuredParameterRepository,
-                              TaskStatusRepository taskStatusRepository,
-                              TaskLogService taskLogService,
+                              TaskStatusService taskStatusService, TaskLogService taskLogService,
                               SignalValueRepository signalValueRepository) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.taskRepository = taskRepository;
         this.signalRepository = signalRepository;
         this.sensorRepository = sensorRepository;
         this.measuredParameterRepository = measuredParameterRepository;
-        this.taskStatusRepository = taskStatusRepository;
+        this.taskStatusService = taskStatusService;
         this.taskLogService = taskLogService;
         this.signalValueRepository = signalValueRepository;
     }
@@ -73,7 +72,7 @@ public class ExchangeRepository {
                 .queryForRowSet("select s.datime, se.sensor, se.code, s.id, s.expdate " +
                         "from schedule s " +
                         "join sensors_ext se " +
-                        "on s.sensor = se.sensor " +
+                        "on s.sensor = se.sensor and s.code = se.code " +
                         "order by s.datime desc, s.id desc");
         while(rowSet.next()) {
             LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
@@ -92,7 +91,7 @@ public class ExchangeRepository {
                         task.setIdIDS(rowSet.getLong(4));
                         task.setDateMax(rowSet.getTimestamp(5).toLocalDateTime());
                         task.setDate(date);
-                        task.setStatus(taskStatusRepository.findBySystemname(TaskStatusEnum.NEW.name()));
+                        task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.NEW.name()));
                         tasks.add(task);
                     }
                 } else {
@@ -128,7 +127,7 @@ public class ExchangeRepository {
                                             signalValue.getValue(), signalValue.getErrorCode(),
                                             signalValue.getComment());
 
-            task.setStatus(taskStatusRepository.findBySystemname(TaskStatusEnum.COMPLETE.name()));
+            task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
             task.setComplete(true);
 
             taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),

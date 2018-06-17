@@ -1,7 +1,7 @@
 package ru.rushydro.vniig.ias.service;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,13 +14,11 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Сервис по обработке файла
@@ -54,26 +52,28 @@ public class ParseFileService {
     public void parseFile() {
         File file = new File(filePath);
         if (file.exists()) {
-            try (Reader in = new FileReader(filePath)) {
-                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-                int i = 0;
+            try (Reader in = new FileReader(filePath);
+                 CSVReader reader = new CSVReaderBuilder(in).withSkipLines(1).build()) {
+                Iterator<String[]> records = reader.iterator();
                 Map<Integer, Integer> datas = new HashMap<>();
                 List<SignalValueExt> values;
-                CSVRecord lastRecord = null;
-                for (CSVRecord record : records) {
-                    if (i > 1) {
-                        lastRecord = record;
-                    } else if (i == 1) {
-                        for (int j = 0; j < record.size(); j++) {
-                            String str = record.get(j);
-                            if (str != null
-                                    && !str.isEmpty()
-                                    && !str.equalsIgnoreCase("NAN")) {
-                                datas.put(j, Integer.parseInt(str));
-                            }
+
+                String[] record = records.next();
+                if (record != null) {
+                    for (int j = 0; j < record.length; j++) {
+                        String str = record[j];
+                        if (str != null
+                                && !str.isEmpty()
+                                && !str.equalsIgnoreCase("NAN")) {
+                            datas.put(j, Integer.parseInt(str));
                         }
                     }
-                    i++;
+                }
+
+                String[] lastRecord = null;
+
+                while (records.hasNext()) {
+                    lastRecord = records.next();
                 }
                 if (lastRecord != null) {
                     AppData appData = appDataService.findById(1);
@@ -83,13 +83,13 @@ public class ParseFileService {
                         appData.setName("lastParseRow");
                         appData.setValue("0");
                     }
-                    String lastNumber = lastRecord.get(0);
+                    String lastNumber = lastRecord[0];
                     if (lastNumber != null && !lastNumber.equalsIgnoreCase(appData.getValue())) {
                         appData.setValue(lastNumber);
                         values = new ArrayList<>();
-                        for (int j = 0; j < lastRecord.size(); j++) {
+                        for (int j = 0; j < lastRecord.length; j++) {
                             Integer signalId = datas.get(j);
-                            String value = lastRecord.get(j);
+                            String value = lastRecord[j];
                             if (signalId != null &&
                                     value != null
                                     && !value.isEmpty()
@@ -101,6 +101,7 @@ public class ParseFileService {
                                     signalValueExt.setValue(new BigDecimal(value));
                                     signalValueExt.setSignalId(sId);
                                     signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
+                                    signalValueExt.setValueTime(LocalDateTime.now());
                                     values.add(signalValueExt);
                                 } else {
                                     log.warning("Сигнал с id : " + sId + " при разборе файла не найден!");
@@ -148,32 +149,33 @@ public class ParseFileService {
     public void insertTestData() {
         File file = new File(filePath);
         if (file.exists()) {
-            try (Reader in = new FileReader(filePath)) {
-                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-                int i = 0;
+            try (Reader in = new FileReader(filePath);
+                 CSVReader reader = new CSVReaderBuilder(in).withSkipLines(1).build()) {
+                Iterator<String[]> records = reader.iterator();
                 Map<Integer, Integer> datas = new HashMap<>();
-                List<SignalValueExt> values;
-                CSVRecord lastRecord = null;
-                for (CSVRecord record : records) {
-                    if (i > 1) {
-                        lastRecord = record;
-                    } else if (i == 1) {
-                        for (int j = 0; j < record.size(); j++) {
-                            String str = record.get(j);
-                            if (str != null
-                                    && !str.isEmpty()
-                                    && !str.equalsIgnoreCase("NAN")) {
-                                datas.put(j, Integer.parseInt(str));
-                            }
+
+                String[] record = records.next();
+                if (record != null) {
+                    for (int j = 0; j < record.length; j++) {
+                        String str = record[j];
+                        if (str != null
+                                && !str.isEmpty()
+                                && !str.equalsIgnoreCase("NAN")) {
+                            datas.put(j, Integer.parseInt(str));
                         }
                     }
-                    i++;
+                }
+
+                String[] lastRecord = null;
+
+                while (records.hasNext()) {
+                    lastRecord = records.next();
                 }
                 if (lastRecord != null) {
                     Random random = new Random();
 
                     try {
-                        String str = Integer.parseInt(lastRecord.get(0)) + 1 + ","
+                        String str = Integer.parseInt(lastRecord[0]) + 1 + ","
                                 + LocalDateTime.now().format(dtf) + "," +
                                 random.doubles(datas.size()).mapToObj(d -> ""
                                         + BigDecimal.valueOf(d).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue())
@@ -191,4 +193,51 @@ public class ParseFileService {
             }
         }
     }
+
+//    public void insertTestData() {
+//        File file = new File(filePath);
+//        if (file.exists()) {
+//            try (Reader in = new FileReader(filePath)) {
+//                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+//                int i = 0;
+//                Map<Integer, Integer> datas = new HashMap<>();
+//                List<SignalValueExt> values;
+//                CSVRecord lastRecord = null;
+//                for (CSVRecord record : records) {
+//                    if (i > 1) {
+//                        lastRecord = record;
+//                    } else if (i == 1) {
+//                        for (int j = 0; j < record.size(); j++) {
+//                            String str = record.get(j);
+//                            if (str != null
+//                                    && !str.isEmpty()
+//                                    && !str.equalsIgnoreCase("NAN")) {
+//                                datas.put(j, Integer.parseInt(str));
+//                            }
+//                        }
+//                    }
+//                    i++;
+//                }
+//                if (lastRecord != null) {
+//                    Random random = new Random();
+//
+//                    try {
+//                        String str = Integer.parseInt(lastRecord.get(0)) + 1 + ","
+//                                + LocalDateTime.now().format(dtf) + "," +
+//                                random.doubles(datas.size()).mapToObj(d -> ""
+//                                        + BigDecimal.valueOf(d).setScale(2,BigDecimal.ROUND_HALF_DOWN).doubleValue())
+//                                        .collect(Collectors.joining(",")) + "\r\n";
+//                        Files.write(file.toPath(), str.getBytes(), StandardOpenOption.APPEND);
+//
+//                    } catch (Exception e) {
+//                        log.info("Ошибка записи тестовых данных в файл: " + e.getMessage());
+//                        e.printStackTrace();
+//                    }
+//                }
+//            } catch (Exception e) {
+//                log.info("Ошибка при разборе файла: " + e.getMessage());
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 }

@@ -32,6 +32,7 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -179,6 +180,7 @@ public class TagService {
                                     .replaceAll("\"", "")));
                             signalValueExt.setSignalId(signal.getId());
                             signalValueExt.setCalibrated(1);
+                            signalValueExt.setValueTime(LocalDateTime.now());
                             values.add(signalValueExt);
                             log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
                                     " значение сигнала: " + signalValueExt.getValue());

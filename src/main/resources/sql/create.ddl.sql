@@ -125,6 +125,7 @@ create table signal_value_ext (
   id_signal INTEGER REFERENCES signal(id) NOT NULL,
   calibrated integer,
   value float NOT NULL,
+  value_time TIMESTAMP,
   primary key(id)
 );
 
