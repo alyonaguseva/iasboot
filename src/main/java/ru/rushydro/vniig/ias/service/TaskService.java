@@ -83,26 +83,7 @@ public class TaskService {
     }
 
     private void processNewTasks(List<Task> tasks) {
-
-//        Random random = new Random();
-
-        //todo send
-
         addStatus(tasks, TaskStatusEnum.SENDTOSENSOR.name());
-
-//        List<SignalValue> signalValues = new ArrayList<>();
-//        tasks.forEach(task -> {
-//            SignalValue signalValue = new SignalValue();
-//            signalValue.setTask(task);
-//            signalValue.setSignal(task.getSignal());
-//            signalValue.setTime(LocalDateTime.now());
-//            signalValue.setValue(new BigDecimal(random.nextDouble() * 100));
-//            signalValues.add(signalValue);
-//        });
-//
-//        signalValueRepository.save(signalValues);
-
-        //todo remove
     }
 
     private void processOverdue(List<Task> tasks) {
@@ -146,7 +127,4 @@ public class TaskService {
         task.setComplete(true);
         addStatus(Collections.singletonList(task), TaskStatusEnum.COMPLETE.name());
     }
-
-
-
 }

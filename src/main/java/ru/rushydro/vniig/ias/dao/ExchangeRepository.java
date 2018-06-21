@@ -1,5 +1,7 @@
 package ru.rushydro.vniig.ias.dao;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,14 +21,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Created by yazik on 13.05.2017.
  */
 @Service
 public class ExchangeRepository {
-    private final static Logger log = Logger.getLogger(ExchangeRepository.class.getName());
+    private final static Logger log = LoggerFactory.getLogger(ExchangeRepository.class.getName());
 
     private final TaskRepository taskRepository;
 
@@ -83,6 +84,8 @@ public class ExchangeRepository {
                 Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
                         measuredParameterRepository.findOne(measuredParameterId));
                 if (signal != null) {
+                    log.debug("Обработка сигнала: " + signal.getId() + " код: "
+                            + signal.getMeasuredParameter().getId() + " дата " + date);
                     if (taskRepository.findByDateAndSignal(date, signal) != null) {
                         break;
                     } else {
@@ -95,11 +98,11 @@ public class ExchangeRepository {
                         tasks.add(task);
                     }
                 } else {
-                    log.warning("Сигнал с id датчика: " + sensorId + " и с кодом измеряемого параметра: "
+                    log.warn("Сигнал с id датчика: " + sensorId + " и с кодом измеряемого параметра: "
                             + measuredParameterId + " не найден!");
                 }
             } else {
-                log.warning("Датчик с id: " + sensorId + " не найден!");
+                log.warn("Датчик с id: " + sensorId + " не найден!");
             }
         }
 
@@ -115,26 +118,29 @@ public class ExchangeRepository {
     }
 
     public synchronized void sendTasks(List<Task> tasks) {
-        jdbcTemplate.execute("LOCK TABLE buffer  WRITE");
+        if (tasks != null && !tasks.isEmpty()) {
+            jdbcTemplate.execute("LOCK TABLE buffer  WRITE");
 
-        tasks.forEach(task -> {
-            SignalValue signalValue = signalValueRepository.findByTask(task);
-            Object[] args = new Object[2];
-            args[0] = signalValue.getSignal().getSensor().getId();
-            args[1] = signalValue.getSignal().getMeasuredParameter().getId();
-            jdbcTemplate.update("insert into buffer(sensor, date, code, value, errcode, comment) " +
-                    "values(?,?,?,?,?,?)", args[0], signalValue.getTime(), args[1],
-                                            signalValue.getValue(), signalValue.getErrorCode(),
-                                            signalValue.getComment());
+            tasks.forEach(task -> {
+                SignalValue signalValue = signalValueRepository.findByTask(task);
+                Object[] args = new Object[2];
+                args[0] = signalValue.getSignal().getSensor().getId();
+                args[1] = signalValue.getSignal().getMeasuredParameter().getId();
+                log.debug("Отправка данных датчика: " + args[0]);
+                jdbcTemplate.update("insert into buffer(sensor, date, code, value, errcode, comment) " +
+                                "values(?,?,?,?,?,?)", args[0], signalValue.getTime(), args[1],
+                        signalValue.getValue(), signalValue.getErrorCode(),
+                        signalValue.getComment());
 
-            task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
-            task.setComplete(true);
+                task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
+                task.setComplete(true);
 
-            taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),
-                    TaskLogTypeEnum.COMPLETE.name());
+                taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),
+                        TaskLogTypeEnum.COMPLETE.name());
 
-        });
+            });
 
-        jdbcTemplate.execute("UNLOCK TABLES");
+            jdbcTemplate.execute("UNLOCK TABLES");
+        }
     }
 }

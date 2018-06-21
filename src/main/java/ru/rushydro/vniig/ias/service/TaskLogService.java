@@ -27,7 +27,7 @@ public class TaskLogService {
     @Autowired
     TaskLogTypeRepository taskLogTypeRepository;
 
-    public void addStatus(Iterable<Task> tasks, String systemName) {
+    public void addStatus(List<Task> tasks, String systemName) {
         List<TaskLog> taskLogs = new ArrayList<>();
         tasks.forEach(task -> {
             TaskLog taskLog = new TaskLog();
