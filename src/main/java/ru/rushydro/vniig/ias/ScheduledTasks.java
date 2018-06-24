@@ -31,6 +31,12 @@ public class ScheduledTasks {
     private final
     TagService tagService;
 
+    private boolean getTaskProgress;
+
+    private boolean processTaskProgress;
+
+    private boolean processSendTaskProgress;
+
     @Value("${insert.test.data:false}")
     private boolean insertTestData;
 
@@ -47,15 +53,50 @@ public class ScheduledTasks {
     @Async
     @Scheduled(fixedRateString = "${get.task.time}")
     public void getTasksFromExchange() {
-        log.debug("Запуск задачи получение заданий");
-        exchangeRepository.getTasks();
+        try {
+            if (!getTaskProgress) {
+                getTaskProgress = true;
+                log.debug("Запуск задачи получение заданий");
+                exchangeRepository.getTasks();
+                getTaskProgress = false;
+            }
+
+        } catch (Exception e) {
+            log.error("Ошибка получения заданий: ", e);
+            getTaskProgress = false;
+        }
     }
 
     @Async
     @Scheduled(fixedRateString = "${process.task.time}")
     public void processTask() {
-        log.debug("Запуск задачи обработки заданий");
-        taskService.processTasks();
+        try {
+            if (!processTaskProgress) {
+                processTaskProgress = true;
+                log.debug("Запуск задачи обработки заданий");
+                taskService.processTasks();
+                processTaskProgress = false;
+            }
+        } catch (Exception e) {
+            log.error("Ошибка обработки заданий: ", e);
+            processTaskProgress = false;
+        }
+    }
+
+    @Async
+    @Scheduled(fixedRateString = "${process.task.time}")
+    public void processSendTask() {
+        try {
+            if (!processSendTaskProgress) {
+                processSendTaskProgress = true;
+                log.debug("Запуск задачи отправки заданий");
+                taskService.processSendTasks();
+                processSendTaskProgress = false;
+            }
+        } catch (Exception e) {
+            log.error("Ошибка отправки заданий: ", e);
+            processSendTaskProgress = false;
+        }
     }
 
     @Async

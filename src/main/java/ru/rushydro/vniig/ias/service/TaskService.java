@@ -62,8 +62,6 @@ public class TaskService {
                 .findBySystemname(TaskStatusEnum.NEW.name()).getId();
         Integer sendToSensorId = taskStatusService
                 .findBySystemname(TaskStatusEnum.SENDTOSENSOR.name()).getId();
-        Integer needToSendId = taskStatusService
-                .findBySystemname(TaskStatusEnum.NEEDTOSEND.name()).getId();
 
         LocalDateTime now = LocalDateTime.now();
 
@@ -77,6 +75,23 @@ public class TaskService {
         processSendToSensorTasks(tasks.stream().filter(task -> task.getStatus().getId()
                 .equals(sendToSensorId))
                 .collect(Collectors.toList()));
+    }
+
+    public void processSendTasks() {
+
+        Page<Task> taskPage = taskRepository.findByCompleteFalseOrderByIdDesc(new PageRequest(0, 10000));
+
+        List<Task> tasks = taskPage.getContent();
+
+        Integer needToSendId = taskStatusService
+                .findBySystemname(TaskStatusEnum.NEEDTOSEND.name()).getId();
+
+        LocalDateTime now = LocalDateTime.now();
+
+        //Обработка на просроченные
+        processOverdue(tasks.stream().filter(task -> task.getDateMax().isBefore(now))
+                .collect(Collectors.toList()));
+
         processNeedToSendTasks(tasks.stream().filter(task -> task.getStatus().getId()
                 .equals(needToSendId))
                 .collect(Collectors.toList()));
