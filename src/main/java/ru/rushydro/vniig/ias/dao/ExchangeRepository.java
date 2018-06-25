@@ -67,14 +67,14 @@ public class ExchangeRepository {
 
         List<Task> tasks = new ArrayList<>();
 
-        jdbcTemplate.execute("LOCK TABLE schedule as s WRITE, sensors_ext as se WRITE");
+        jdbcTemplate.execute("LOCK TABLE schedule WRITE, sensors_ext as se WRITE");
 
         SqlRowSet rowSet = jdbcTemplate
-                .queryForRowSet("select s.datime, se.sensor, se.code, s.id, s.expdate " +
-                        "from schedule s " +
+                .queryForRowSet("select schedule.datime, se.sensor, se.code, schedule.id, schedule.expdate " +
+                        "from schedule " +
                         "join sensors_ext se " +
-                        "on s.sensor = se.sensor and s.code = se.code " +
-                        "order by s.datime desc, s.id desc");
+                        "on schedule.sensor = se.sensor and schedule.code = se.code " +
+                        "order by schedule.datime desc, schedule.id desc");
         while(rowSet.next()) {
             LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
             int sensorId = rowSet.getInt(2);
@@ -106,7 +106,7 @@ public class ExchangeRepository {
             }
         }
 
-        jdbcTemplate.execute("LOCK TABLE schedule WRITE");
+//        jdbcTemplate.execute("LOCK TABLE schedule WRITE");
 
         jdbcTemplate.execute("delete from schedule");
 
