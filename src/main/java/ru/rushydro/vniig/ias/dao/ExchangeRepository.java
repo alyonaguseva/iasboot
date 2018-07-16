@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,8 @@ import ru.rushydro.vniig.ias.service.TaskLogService;
 import ru.rushydro.vniig.ias.service.TaskStatusService;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,50 +70,56 @@ public class ExchangeRepository {
 
         List<Task> tasks = new ArrayList<>();
 
-        jdbcTemplate.execute("LOCK TABLE schedule WRITE, sensors_ext as se WRITE");
+        try {
+            jdbcTemplate.execute("LOCK TABLE schedule WRITE, sensors_ext as se WRITE");
 
-        SqlRowSet rowSet = jdbcTemplate
-                .queryForRowSet("select schedule.datime, se.sensor, se.code, schedule.id, schedule.expdate " +
-                        "from schedule " +
-                        "join sensors_ext se " +
-                        "on schedule.sensor = se.sensor and schedule.code = se.code " +
-                        "order by schedule.datime desc, schedule.id desc");
-        while(rowSet.next()) {
-            LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
-            int sensorId = rowSet.getInt(2);
-            int measuredParameterId = rowSet.getInt(3);
-            Sensor sensor = sensorRepository.findOne(sensorId);
-            if (sensor != null) {
-                Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
-                        measuredParameterRepository.findOne(measuredParameterId));
-                if (signal != null) {
-                    log.debug("Обработка сигнала: " + signal.getId() + " код: "
-                            + signal.getMeasuredParameter().getId() + " дата " + date);
-                    if (taskRepository.findByDateAndSignal(date, signal) != null) {
-                        break;
+            SqlRowSet rowSet = jdbcTemplate
+                    .queryForRowSet("select schedule.datime, se.sensor, se.code, schedule.id, schedule.expdate " +
+                            "from schedule " +
+                            "join sensors_ext se " +
+                            "on schedule.sensor = se.sensor and schedule.code = se.code " +
+                            "order by schedule.datime desc, schedule.id desc");
+            while(rowSet.next()) {
+                LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
+                int sensorId = rowSet.getInt(2);
+                int measuredParameterId = rowSet.getInt(3);
+                Sensor sensor = sensorRepository.findOne(sensorId);
+                if (sensor != null) {
+                    Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
+                            measuredParameterRepository.findOne(measuredParameterId));
+                    if (signal != null) {
+                        log.debug("Обработка сигнала: " + signal.getId() + " код: "
+                                + signal.getMeasuredParameter().getId() + " дата " + date);
+                        if (taskRepository.findByDateAndSignal(date, signal) != null) {
+                            break;
+                        } else {
+                            Task task = new Task();
+                            task.setSignal(signal);
+                            task.setIdIDS(rowSet.getLong(4));
+                            task.setDateMax(rowSet.getTimestamp(5).toLocalDateTime());
+                            task.setDate(date);
+                            task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.NEW.name()));
+                            tasks.add(task);
+                        }
                     } else {
-                        Task task = new Task();
-                        task.setSignal(signal);
-                        task.setIdIDS(rowSet.getLong(4));
-                        task.setDateMax(rowSet.getTimestamp(5).toLocalDateTime());
-                        task.setDate(date);
-                        task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.NEW.name()));
-                        tasks.add(task);
+                        log.warn("Сигнал с id датчика: " + sensorId + " и с кодом измеряемого параметра: "
+                                + measuredParameterId + " не найден!");
                     }
                 } else {
-                    log.warn("Сигнал с id датчика: " + sensorId + " и с кодом измеряемого параметра: "
-                            + measuredParameterId + " не найден!");
+                    log.warn("Датчик с id: " + sensorId + " не найден!");
                 }
-            } else {
-                log.warn("Датчик с id: " + sensorId + " не найден!");
             }
+
+            jdbcTemplate.execute("delete from schedule");
+
+            jdbcTemplate.execute("UNLOCK TABLES");
+
+            commit();
+        } catch (DataAccessException e) {
+            log.error("Ошибка получения заданий: ", e);
+            jdbcTemplate.execute("UNLOCK TABLES");
+            rollback();
         }
-
-//        jdbcTemplate.execute("LOCK TABLE schedule WRITE");
-
-        jdbcTemplate.execute("delete from schedule");
-
-        jdbcTemplate.execute("UNLOCK TABLES");
 
         if (!tasks.isEmpty()) {
             taskLogService.addStatus(taskRepository.save(tasks), TaskLogTypeEnum.NEW.name());
@@ -119,28 +128,60 @@ public class ExchangeRepository {
 
     public synchronized void sendTasks(List<Task> tasks) {
         if (tasks != null && !tasks.isEmpty()) {
-            jdbcTemplate.execute("LOCK TABLE buffer  WRITE");
 
-            tasks.forEach(task -> {
-                SignalValue signalValue = signalValueRepository.findByTask(task);
-                Object[] args = new Object[2];
-                args[0] = signalValue.getSignal().getSensor().getId();
-                args[1] = signalValue.getSignal().getMeasuredParameter().getId();
-                log.debug("Отправка данных датчика: " + args[0]);
-                jdbcTemplate.update("insert into buffer(sensor, date, code, value, errcode, comment) " +
-                                "values(?,?,?,?,?,?)", args[0], signalValue.getTime(), args[1],
-                        signalValue.getValue(), signalValue.getErrorCode(),
-                        signalValue.getComment());
+            try {
+                jdbcTemplate.execute("LOCK TABLE buffer  WRITE");
 
-                task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
-                task.setComplete(true);
+                tasks.forEach(task -> {
+                    SignalValue signalValue = signalValueRepository.findByTask(task);
+                    Object[] args = new Object[2];
+                    args[0] = signalValue.getSignal().getSensor().getId();
+                    args[1] = signalValue.getSignal().getMeasuredParameter().getId();
+                    log.debug("Отправка данных датчика: " + args[0]);
+                    jdbcTemplate.update("insert into buffer(sensor, date, code, value, errcode, comment) " +
+                                    "values(?,?,?,?,?,?)", args[0], signalValue.getTime(), args[1],
+                            signalValue.getValue(), signalValue.getErrorCode(),
+                            signalValue.getComment());
 
-                taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),
-                        TaskLogTypeEnum.COMPLETE.name());
+                    task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
+                    task.setComplete(true);
 
-            });
+                    taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),
+                            TaskLogTypeEnum.COMPLETE.name());
 
-            jdbcTemplate.execute("UNLOCK TABLES");
+                });
+
+                jdbcTemplate.execute("UNLOCK TABLES");
+
+                commit();
+            } catch (DataAccessException e) {
+                log.error("Ошибка отправки заданий: ", e);
+                jdbcTemplate.execute("UNLOCK TABLES");
+                rollback();
+            }
+        }
+    }
+
+    public void commit() {
+        try {
+            Connection connection = jdbcTemplate.getDataSource().getConnection();
+            if (connection != null && !connection.getAutoCommit()) {
+                connection.commit();
+            }
+        } catch (SQLException e) {
+            log.error("Ошибка сохранения данных", e);
+            rollback();
+        }
+    }
+
+    public void rollback() {
+        try {
+            Connection connection = jdbcTemplate.getDataSource().getConnection();
+            if (connection != null && !connection.getAutoCommit()) {
+                connection.rollback();
+            }
+        } catch (SQLException e) {
+            log.error("Ошибка сохранения данных", e);
         }
     }
 }
