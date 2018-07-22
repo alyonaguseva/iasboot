@@ -163,8 +163,7 @@ public class ExchangeRepository {
     }
 
     public void commit() {
-        try {
-            Connection connection = jdbcTemplate.getDataSource().getConnection();
+        try (Connection connection = jdbcTemplate.getDataSource().getConnection()) {
             if (connection != null && !connection.getAutoCommit()) {
                 connection.commit();
             }
@@ -175,8 +174,7 @@ public class ExchangeRepository {
     }
 
     public void rollback() {
-        try {
-            Connection connection = jdbcTemplate.getDataSource().getConnection();
+        try (Connection connection = jdbcTemplate.getDataSource().getConnection()) {
             if (connection != null && !connection.getAutoCommit()) {
                 connection.rollback();
             }
