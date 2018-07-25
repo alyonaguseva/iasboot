@@ -11,6 +11,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -45,7 +46,7 @@ import java.util.stream.Collectors;
 @Service
 public class TagService {
 
-    private final static Logger log = Logger.getLogger(ParseFileService.class.getName());
+    private final static org.slf4j.Logger log = LoggerFactory.getLogger(TagService.class.getName());
 
     @Value("${tag.service.path}")
     private String tagUrl;
@@ -121,7 +122,7 @@ public class TagService {
                 log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
                 tagValues = page.getWebResponse().getContentAsString();
             } catch (IOException e) {
-                log.log(Level.WARNING, "Ошибка запроса:", e);
+                log.error("Ошибка запроса:", e);
                 e.printStackTrace();
             }
         } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core")) {
@@ -147,11 +148,11 @@ public class TagService {
                     }
                     tagValues = response.toString();
                 } catch (IOException e) {
-                    log.log(Level.WARNING, "Ошибка запроса:", e);
+                    log.error("Ошибка запроса:", e);
                     e.printStackTrace();
                 }
             } catch (IOException e) {
-                log.log(Level.WARNING, "Ошибка запроса:", e);
+                log.error("Ошибка запроса:", e);
                 e.printStackTrace();
             }
 
@@ -191,8 +192,11 @@ public class TagService {
                 log.info("Сохранение данных датчиков в базу данных.");
                 signalValueExtService.saveAll(values);
                 log.info("Сохранение данных датчиков в базу данных успешно.");
+            } catch (NumberFormatException e) {
+                log.error("Ошибка разбора json. Получены значения датчиков в невверном формате: " + e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                log.warning("Ошибка разбора json: " + e.getMessage());
+                log.error("Ошибка разбора json: " + e.getMessage());
                 e.printStackTrace();
             }
         }

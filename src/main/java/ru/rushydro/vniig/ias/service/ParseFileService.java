@@ -87,32 +87,37 @@ public class ParseFileService {
                     String lastNumber = lastRecord[0];
                     if (lastNumber != null && !lastNumber.equalsIgnoreCase(appData.getValue())) {
                         appData.setValue(lastNumber);
-                        values = new ArrayList<>();
-                        for (int j = 0; j < lastRecord.length; j++) {
-                            Integer signalId = datas.get(j);
-                            String value = lastRecord[j];
-                            if (signalId != null &&
-                                    value != null
-                                    && !value.isEmpty()
-                                    && !value.equalsIgnoreCase("NAN")) {
-                                Integer sId = signalId > 999 ? signalId / 10 : signalId;
-                                Signal signal = signalService.findById(sId);
-                                if (signal != null) {
-                                    SignalValueExt signalValueExt = new SignalValueExt();
-                                    signalValueExt.setValue(new BigDecimal(value));
-                                    signalValueExt.setSignalId(sId);
-                                    signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
-                                    signalValueExt.setValueTime(LocalDateTime.now());
-                                    values.add(signalValueExt);
-                                } else {
-                                    log.warn("Сигнал с id : " + sId + " при разборе файла не найден!");
+                        if (lastRecord.length != (datas.size() + 2)) {
+                            log.error("Количество столбцов в строке с номером: " +
+                                    lastNumber + " не совпадает с количеством сигналов");
+                        } else {
+                            values = new ArrayList<>();
+                            for (int j = 0; j < lastRecord.length; j++) {
+                                Integer signalId = datas.get(j);
+                                String value = lastRecord[j];
+                                if (signalId != null &&
+                                        value != null
+                                        && !value.isEmpty()
+                                        && !value.equalsIgnoreCase("NAN")) {
+                                    Integer sId = signalId > 999 ? signalId / 10 : signalId;
+                                    Signal signal = signalService.findById(sId);
+                                    if (signal != null) {
+                                        SignalValueExt signalValueExt = new SignalValueExt();
+                                        signalValueExt.setValue(new BigDecimal(value));
+                                        signalValueExt.setSignalId(sId);
+                                        signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
+                                        signalValueExt.setValueTime(LocalDateTime.now());
+                                        values.add(signalValueExt);
+                                    } else {
+                                        log.warn("Сигнал с id : " + sId + " при разборе файла не найден!");
+                                    }
                                 }
                             }
+                            if (!values.isEmpty()) {
+                                signalValueExtService.saveAll(values);
+                            }
                         }
-                        if (!values.isEmpty()) {
-                            signalValueExtService.saveAll(values);
-                            appDataService.save(appData);
-                        }
+                        appDataService.save(appData);
                     }
 
                 }
