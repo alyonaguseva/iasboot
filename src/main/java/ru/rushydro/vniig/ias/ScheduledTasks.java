@@ -110,8 +110,8 @@ public class ScheduledTasks {
     @Scheduled(fixedRateString = "${test.file.time:60000}")
     public void insertTestFileData() {
         if (insertTestData) {
-            log.debug("Запуск задачи ввода тестовых данных файла");
-            parseFileService.insertTestData();
+//            log.debug("Запуск задачи ввода тестовых данных файла");
+//            parseFileService.insertTestData();
         }
     }
 
