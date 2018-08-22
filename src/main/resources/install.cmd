@@ -64,6 +64,5 @@ echo Please retype postgres password
 "%ppath%\bin\createdb.exe" -U %pusername% -W -E UTF-8  %pdatabasename%
 "%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f drop.ddl.sql
 "%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f create.ddl.sql
+"%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f dictionary.sql
 "%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f data.ddl.sql
-"%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f function.sql
-"%ppath%\bin\psql.exe" -U %pusername% -d %pdatabasename% -f triggers.sql

@@ -587,3 +587,642 @@
 2018-08-21 21:16:54.723  INFO 14084 --- [SimpleAsyncTaskExecutor-2] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
 2018-08-21 21:17:08.797 DEBUG 14084 --- [SimpleAsyncTaskExecutor-7] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
 2018-08-21 21:17:08.797 DEBUG 14084 --- [SimpleAsyncTaskExecutor-8] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 21:51:00.846  INFO 6656 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Starting IASApplication on DESKTOP-TK3VCB4 with PID 6656 (C:\Users\yazik\IdeaProjects\iasboot\target\classes started by yazik in C:\Users\yazik\IdeaProjects\iasboot)
+2018-08-22 21:51:00.848 DEBUG 6656 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Running with Spring Boot v1.5.2.RELEASE, Spring v4.3.7.RELEASE
+2018-08-22 21:51:00.849  INFO 6656 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : No active profile set, falling back to default profiles: default
+2018-08-22 21:51:00.959  INFO 6656 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@35c5175d: startup date [Wed Aug 22 21:51:00 MSK 2018]; root of context hierarchy
+2018-08-22 21:51:03.322  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e3c3e275] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.372  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$7c71aaaf] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.385  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.387  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@523beade' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.397  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$a1464d61] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.410  INFO 6656 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 21:51:03.937  INFO 6656 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-08-22 21:51:03.952  INFO 6656 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-08-22 21:51:03.953  INFO 6656 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2018-08-22 21:51:04.058  INFO 6656 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-08-22 21:51:04.059  INFO 6656 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3105 ms
+2018-08-22 21:51:04.265  INFO 6656 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-08-22 21:51:04.266  INFO 6656 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-08-22 21:51:04.267  INFO 6656 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-08-22 21:51:04.267  INFO 6656 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-08-22 21:51:04.268  INFO 6656 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-08-22 21:51:04.268  INFO 6656 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-08-22 21:51:05.663  INFO 6656 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-08-22 21:51:07.412  INFO 6656 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-08-22 21:51:08.621  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@35c5175d: startup date [Wed Aug 22 21:51:00 MSK 2018]; root of context hierarchy
+2018-08-22 21:51:08.705  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login]}" onto public java.lang.String ru.rushydro.vniig.ias.IASApplication.login()
+2018-08-22 21:51:08.706  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto java.lang.String ru.rushydro.vniig.ias.IASApplication.home()
+2018-08-22 21:51:08.710  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParamsDictionary()
+2018-08-22 21:51:08.711  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSensorsDictionary()
+2018-08-22 21:51:08.714  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measure/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveMeasuresParam(ru.rushydro.vniig.ias.types.Measure)
+2018-08-22 21:51:08.714  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Measure> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParams()
+2018-08-22 21:51:08.714  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/signalTypes]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSignalTypesDictionary()
+2018-08-22 21:51:08.715  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensor/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSensor(ru.rushydro.vniig.ias.types.Sensor)
+2018-08-22 21:51:08.716  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signals]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Signal> ru.rushydro.vniig.ias.controller.ExchangeController.getSignals()
+2018-08-22 21:51:08.716  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signal/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSignal(ru.rushydro.vniig.ias.types.Signal)
+2018-08-22 21:51:08.716  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Sensor> ru.rushydro.vniig.ias.controller.ExchangeController.getSensors()
+2018-08-22 21:51:08.717  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/tags]}" onto public ru.rushydro.vniig.ias.model.TestTagContainer ru.rushydro.vniig.ias.controller.TestController.testTag(java.lang.String)
+2018-08-22 21:51:08.720  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlElements]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlElements()
+2018-08-22 21:51:08.722  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/measurementTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getMeasurementTypes()
+2018-08-22 21:51:08.722  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlObjects]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlObjects()
+2018-08-22 21:51:08.723  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signals]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.model.Signal> ru.rushydro.vniig.ias.RestController.getSignals(org.springframework.data.domain.Pageable)
+2018-08-22 21:51:08.723  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.model.Sensor> ru.rushydro.vniig.ias.RestController.getSensors()
+2018-08-22 21:51:08.723  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signalsCount]}" onto public ru.rushydro.vniig.ias.model.PageCount ru.rushydro.vniig.ias.RestController.getSignalsCount()
+2018-08-22 21:51:08.724  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.dao.entity.TaskLog> ru.rushydro.vniig.ias.RestController.getLogs(org.springframework.data.domain.Pageable,java.lang.String,java.lang.String,java.lang.String)
+2018-08-22 21:51:08.724  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorGroups]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorGroups()
+2018-08-22 21:51:08.724  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorTypes()
+2018-08-22 21:51:08.727  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-08-22 21:51:08.727  INFO 6656 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-08-22 21:51:08.774  INFO 6656 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 21:51:08.775  INFO 6656 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 21:51:08.828  INFO 6656 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 21:51:09.134  INFO 6656 --- [restartedMain] o.s.w.s.v.f.FreeMarkerConfigurer         : ClassTemplateLoader for Spring macros added to FreeMarker configuration
+2018-08-22 21:51:09.344  INFO 6656 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2018-08-22 21:51:09.428  INFO 6656 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a8312a1, org.springframework.security.web.context.SecurityContextPersistenceFilter@49f1e36e, org.springframework.security.web.header.HeaderWriterFilter@6ffa7e0, org.springframework.security.web.authentication.logout.LogoutFilter@29238847, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6d5ae716, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64cae021, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@276e6b12, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5ca6263b, org.springframework.security.web.session.SessionManagementFilter@20793b51, org.springframework.security.web.access.ExceptionTranslationFilter@74f349f2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@68e12f10]
+2018-08-22 21:51:09.446  INFO 6656 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/**']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fdafa0, org.springframework.security.web.context.SecurityContextPersistenceFilter@4c4a1a63, org.springframework.security.web.header.HeaderWriterFilter@5ee8e702, org.springframework.security.web.authentication.logout.LogoutFilter@24081cbd, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@25129e0d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b3f4f2e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@32766dbc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14ee57bf, org.springframework.security.web.session.SessionManagementFilter@5bbc19e, org.springframework.security.web.access.ExceptionTranslationFilter@57e61e8a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3814559a]
+2018-08-22 21:51:09.969  INFO 6656 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-08-22 21:51:10.031  INFO 6656 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-08-22 21:51:10.053  INFO 6656 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2018-08-22 21:51:10.061  INFO 6656 --- [pool-2-thread-1] .s.a.AnnotationAsyncExecutionInterceptor : No TaskExecutor bean found for async processing
+2018-08-22 21:51:10.068 DEBUG 6656 --- [SimpleAsyncTaskExecutor-4] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 21:51:10.068 DEBUG 6656 --- [SimpleAsyncTaskExecutor-3] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 21:51:10.068 DEBUG 6656 --- [SimpleAsyncTaskExecutor-6] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 21:51:10.068 DEBUG 6656 --- [SimpleAsyncTaskExecutor-2] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 21:51:10.068 DEBUG 6656 --- [SimpleAsyncTaskExecutor-5] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 21:51:10.160  INFO 6656 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-08-22 21:51:10.166 ERROR 6656 --- [SimpleAsyncTaskExecutor-5] o.h.engine.jdbc.spi.SqlExceptionHelper   : ОШИБКА: столбец sensor0_.in_tag не существует
+  Позиция: 31
+2018-08-22 21:51:10.172  INFO 6656 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Started IASApplication in 9.931 seconds (JVM running for 11.718)
+2018-08-22 21:51:10.198 ERROR 6656 --- [SimpleAsyncTaskExecutor-5] .a.i.SimpleAsyncUncaughtExceptionHandler : Unexpected error occurred invoking async method 'public void ru.rushydro.vniig.ias.ScheduledTasks.processTag()'.
+
+org.springframework.dao.InvalidDataAccessResourceUsageException: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:261) ~[spring-orm-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:244) ~[spring-orm-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.translateExceptionIfPossible(AbstractEntityManagerFactoryBean.java:488) ~[spring-orm-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.dao.support.ChainedPersistenceExceptionTranslator.translateExceptionIfPossible(ChainedPersistenceExceptionTranslator.java:59) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.dao.support.DataAccessUtils.translateIfNecessary(DataAccessUtils.java:213) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:147) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:133) ~[spring-data-jpa-1.11.1.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:92) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.data.repository.core.support.SurroundingTransactionDetectorMethodInterceptor.invoke(SurroundingTransactionDetectorMethodInterceptor.java:57) ~[spring-data-commons-1.13.1.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:213) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at com.sun.proxy.$Proxy95.findByInTag(Unknown Source) ~[na:na]
+	at ru.rushydro.vniig.ias.service.SensorService.findByInTag(SensorService.java:32) ~[classes/:na]
+	at ru.rushydro.vniig.ias.service.TagService.processTags(TagService.java:81) ~[classes/:na]
+	at ru.rushydro.vniig.ias.ScheduledTasks.processTag(ScheduledTasks.java:122) ~[classes/:na]
+	at ru.rushydro.vniig.ias.ScheduledTasks$$FastClassBySpringCGLIB$$79e52896.invoke(<generated>) ~[classes/:na]
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204) ~[spring-core-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:721) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.interceptor.AsyncExecutionInterceptor$1.call(AsyncExecutionInterceptor.java:115) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [na:1.8.0_73]
+	at java.lang.Thread.run(Thread.java:745) [na:1.8.0_73]
+Caused by: org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+	at org.hibernate.exception.internal.SQLStateConversionDelegate.convert(SQLStateConversionDelegate.java:106) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:42) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:109) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:95) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:79) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.getResultSet(Loader.java:2117) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1900) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.executeQueryStatement(Loader.java:1876) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.doQuery(Loader.java:919) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.doQueryAndInitializeNonLazyCollections(Loader.java:336) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2617) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.doList(Loader.java:2600) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.listIgnoreQueryCache(Loader.java:2429) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.Loader.list(Loader.java:2424) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.loader.hql.QueryLoader.list(QueryLoader.java:501) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.list(QueryTranslatorImpl.java:371) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.engine.query.spi.HQLQueryPlan.performList(HQLQueryPlan.java:216) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.internal.SessionImpl.list(SessionImpl.java:1326) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.internal.QueryImpl.list(QueryImpl.java:87) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.jpa.internal.QueryImpl.list(QueryImpl.java:606) ~[hibernate-entitymanager-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.jpa.internal.QueryImpl.getResultList(QueryImpl.java:483) ~[hibernate-entitymanager-5.0.12.Final.jar:5.0.12.Final]
+	at org.hibernate.jpa.criteria.compile.CriteriaQueryTypeQueryAdapter.getResultList(CriteriaQueryTypeQueryAdapter.java:50) ~[hibernate-entitymanager-5.0.12.Final.jar:5.0.12.Final]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_73]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_73]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_73]
+	at java.lang.reflect.Method.invoke(Method.java:497) ~[na:1.8.0_73]
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:372) ~[spring-orm-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at com.sun.proxy.$Proxy117.getResultList(Unknown Source) ~[na:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$CollectionExecution.doExecute(JpaQueryExecution.java:121) ~[spring-data-jpa-1.11.1.RELEASE.jar:na]
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:85) ~[spring-data-jpa-1.11.1.RELEASE.jar:na]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:116) ~[spring-data-jpa-1.11.1.RELEASE.jar:na]
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:106) ~[spring-data-jpa-1.11.1.RELEASE.jar:na]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.doInvoke(RepositoryFactorySupport.java:483) ~[spring-data-commons-1.13.1.RELEASE.jar:na]
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$QueryExecutorMethodInterceptor.invoke(RepositoryFactorySupport.java:461) ~[spring-data-commons-1.13.1.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:61) ~[spring-data-commons-1.13.1.RELEASE.jar:na]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:99) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:282) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:96) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:179) ~[spring-aop-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:136) ~[spring-tx-4.3.7.RELEASE.jar:4.3.7.RELEASE]
+	... 19 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ОШИБКА: столбец sensor0_.in_tag не существует
+  Позиция: 31
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2455) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2155) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:288) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:430) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:356) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:168) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:116) ~[postgresql-9.4.1212.jre7.jar:9.4.1212.jre7]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.extract(ResultSetReturnImpl.java:70) ~[hibernate-core-5.0.12.Final.jar:5.0.12.Final]
+	... 56 common frames omitted
+
+2018-08-22 21:51:10.241 ERROR 6656 --- [SimpleAsyncTaskExecutor-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : ОШИБКА: столбец sensor2_.in_tag не существует
+  Позиция: 285
+2018-08-22 21:51:10.247  INFO 6656 --- [SimpleAsyncTaskExecutor-4] r.r.vniig.ias.service.ParseFileService   : Ошибка при разборе файла: could not extract ResultSet; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not extract ResultSet
+2018-08-22 21:51:25.061 DEBUG 6656 --- [SimpleAsyncTaskExecutor-7] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 21:51:25.061 DEBUG 6656 --- [SimpleAsyncTaskExecutor-8] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 21:51:40.060 DEBUG 6656 --- [SimpleAsyncTaskExecutor-9] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 21:51:40.060 DEBUG 6656 --- [SimpleAsyncTaskExecutor-11] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 21:51:40.060 DEBUG 6656 --- [SimpleAsyncTaskExecutor-10] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 21:51:55.059 DEBUG 6656 --- [SimpleAsyncTaskExecutor-12] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 21:51:55.059 DEBUG 6656 --- [SimpleAsyncTaskExecutor-13] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:00:01.172  INFO 16340 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Starting IASApplication on DESKTOP-TK3VCB4 with PID 16340 (C:\Users\yazik\IdeaProjects\iasboot\target\classes started by yazik in C:\Users\yazik\IdeaProjects\iasboot)
+2018-08-22 22:00:01.186 DEBUG 16340 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Running with Spring Boot v1.5.2.RELEASE, Spring v4.3.7.RELEASE
+2018-08-22 22:00:01.186  INFO 16340 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : No active profile set, falling back to default profiles: default
+2018-08-22 22:00:01.291  INFO 16340 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@44049390: startup date [Wed Aug 22 22:00:01 MSK 2018]; root of context hierarchy
+2018-08-22 22:00:03.352  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$dcd2da66] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.404  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$7580a2a0] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.420  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.422  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6bb761b6' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.436  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$9a554552] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.449  INFO 16340 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:00:03.889  INFO 16340 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-08-22 22:00:03.898  INFO 16340 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-08-22 22:00:03.899  INFO 16340 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2018-08-22 22:00:04.001  INFO 16340 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-08-22 22:00:04.001  INFO 16340 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2715 ms
+2018-08-22 22:00:04.204  INFO 16340 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-08-22 22:00:04.205  INFO 16340 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-08-22 22:00:04.206  INFO 16340 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-08-22 22:00:04.206  INFO 16340 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-08-22 22:00:04.207  INFO 16340 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-08-22 22:00:04.207  INFO 16340 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-08-22 22:00:04.967  INFO 16340 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-08-22 22:00:06.152  INFO 16340 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-08-22 22:00:07.421  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@44049390: startup date [Wed Aug 22 22:00:01 MSK 2018]; root of context hierarchy
+2018-08-22 22:00:07.496  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto java.lang.String ru.rushydro.vniig.ias.IASApplication.home()
+2018-08-22 22:00:07.497  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login]}" onto public java.lang.String ru.rushydro.vniig.ias.IASApplication.login()
+2018-08-22 22:00:07.501  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Measure> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParams()
+2018-08-22 22:00:07.501  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParamsDictionary()
+2018-08-22 22:00:07.503  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/signalTypes]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSignalTypesDictionary()
+2018-08-22 22:00:07.505  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measure/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveMeasuresParam(ru.rushydro.vniig.ias.types.Measure)
+2018-08-22 22:00:07.506  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSensorsDictionary()
+2018-08-22 22:00:07.507  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Sensor> ru.rushydro.vniig.ias.controller.ExchangeController.getSensors()
+2018-08-22 22:00:07.508  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensor/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSensor(ru.rushydro.vniig.ias.types.Sensor)
+2018-08-22 22:00:07.508  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signal/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSignal(ru.rushydro.vniig.ias.types.Signal)
+2018-08-22 22:00:07.509  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signals]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Signal> ru.rushydro.vniig.ias.controller.ExchangeController.getSignals()
+2018-08-22 22:00:07.510  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/tags]}" onto public ru.rushydro.vniig.ias.model.TestTagContainer ru.rushydro.vniig.ias.controller.TestController.testTag(java.lang.String)
+2018-08-22 22:00:07.514  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlObjects]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlObjects()
+2018-08-22 22:00:07.515  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlElements]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlElements()
+2018-08-22 22:00:07.515  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/measurementTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getMeasurementTypes()
+2018-08-22 22:00:07.515  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.model.Sensor> ru.rushydro.vniig.ias.RestController.getSensors()
+2018-08-22 22:00:07.515  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.dao.entity.TaskLog> ru.rushydro.vniig.ias.RestController.getLogs(org.springframework.data.domain.Pageable,java.lang.String,java.lang.String,java.lang.String)
+2018-08-22 22:00:07.516  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signals]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.model.Signal> ru.rushydro.vniig.ias.RestController.getSignals(org.springframework.data.domain.Pageable)
+2018-08-22 22:00:07.516  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorGroups]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorGroups()
+2018-08-22 22:00:07.516  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorTypes()
+2018-08-22 22:00:07.517  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signalsCount]}" onto public ru.rushydro.vniig.ias.model.PageCount ru.rushydro.vniig.ias.RestController.getSignalsCount()
+2018-08-22 22:00:07.520  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-08-22 22:00:07.520  INFO 16340 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-08-22 22:00:07.573  INFO 16340 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:00:07.575  INFO 16340 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:00:07.631  INFO 16340 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:00:07.924  INFO 16340 --- [restartedMain] o.s.w.s.v.f.FreeMarkerConfigurer         : ClassTemplateLoader for Spring macros added to FreeMarker configuration
+2018-08-22 22:00:08.092  INFO 16340 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2018-08-22 22:00:08.180  INFO 16340 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@56d4e4b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d7cc0d2, org.springframework.security.web.header.HeaderWriterFilter@511670c8, org.springframework.security.web.authentication.logout.LogoutFilter@551f5988, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4b3f4d42, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@598973a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5a8ceb00, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@26d42a1f, org.springframework.security.web.session.SessionManagementFilter@749ce221, org.springframework.security.web.access.ExceptionTranslationFilter@2a7a0c1a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d21a266]
+2018-08-22 22:00:08.194  INFO 16340 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/**']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e6542c9, org.springframework.security.web.context.SecurityContextPersistenceFilter@1025db08, org.springframework.security.web.header.HeaderWriterFilter@58bd426, org.springframework.security.web.authentication.logout.LogoutFilter@6db12370, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@5bf70095, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48b57159, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1344b68d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38b09f5f, org.springframework.security.web.session.SessionManagementFilter@bc50197, org.springframework.security.web.access.ExceptionTranslationFilter@368dd8a5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2c5a7587]
+2018-08-22 22:00:08.553  INFO 16340 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-08-22 22:00:08.615  INFO 16340 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-08-22 22:00:08.635  INFO 16340 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2018-08-22 22:00:08.642  INFO 16340 --- [pool-2-thread-1] .s.a.AnnotationAsyncExecutionInterceptor : No TaskExecutor bean found for async processing
+2018-08-22 22:00:08.650 DEBUG 16340 --- [SimpleAsyncTaskExecutor-4] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:00:08.650 DEBUG 16340 --- [SimpleAsyncTaskExecutor-2] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:00:08.650 DEBUG 16340 --- [SimpleAsyncTaskExecutor-3] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:00:08.651 DEBUG 16340 --- [SimpleAsyncTaskExecutor-5] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:00:08.652 DEBUG 16340 --- [SimpleAsyncTaskExecutor-6] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:00:08.744  INFO 16340 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-08-22 22:00:08.751  INFO 16340 --- [SimpleAsyncTaskExecutor-3] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:00:08.751  INFO 16340 --- [SimpleAsyncTaskExecutor-3] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:00:08.755  INFO 16340 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Started IASApplication in 8.287 seconds (JVM running for 9.811)
+2018-08-22 22:00:08.865  INFO 16340 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-08-22 22:00:08.865  INFO 16340 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-08-22 22:00:08.900  INFO 16340 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 35 ms
+2018-08-22 22:00:09.265  INFO 16340 --- [SimpleAsyncTaskExecutor-3] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:00:09.285  INFO 16340 --- [SimpleAsyncTaskExecutor-3] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:00:09.286  INFO 16340 --- [SimpleAsyncTaskExecutor-3] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:00:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-7] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:00:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-8] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:00:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-9] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:00:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-11] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:00:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-10] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:00:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-12] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:00:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-13] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:01:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-15] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:01:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-17] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:01:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-16] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:01:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-18] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:01:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-19] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:01:08.656  INFO 16340 --- [SimpleAsyncTaskExecutor-16] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:01:08.656  INFO 16340 --- [SimpleAsyncTaskExecutor-16] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:01:08.663  INFO 16340 --- [SimpleAsyncTaskExecutor-16] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:01:08.665  INFO 16340 --- [SimpleAsyncTaskExecutor-16] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:01:08.665  INFO 16340 --- [SimpleAsyncTaskExecutor-16] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:01:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-20] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:01:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-21] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:01:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-22] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:01:38.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-24] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:01:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-23] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:01:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-25] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:01:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-26] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:02:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-28] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:02:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-30] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:02:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-31] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:02:08.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-32] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:02:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-29] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:02:08.671  INFO 16340 --- [SimpleAsyncTaskExecutor-29] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:02:08.672  INFO 16340 --- [SimpleAsyncTaskExecutor-29] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:02:08.681  INFO 16340 --- [SimpleAsyncTaskExecutor-29] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:02:08.681  INFO 16340 --- [SimpleAsyncTaskExecutor-29] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:02:08.682  INFO 16340 --- [SimpleAsyncTaskExecutor-29] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:02:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-33] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:02:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-34] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:02:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-35] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:02:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-37] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:02:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-36] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:02:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-38] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:02:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-39] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:03:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-41] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:03:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-43] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:03:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-42] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:03:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-44] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:03:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-45] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:03:08.662  INFO 16340 --- [SimpleAsyncTaskExecutor-42] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:03:08.664  INFO 16340 --- [SimpleAsyncTaskExecutor-42] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:03:08.673  INFO 16340 --- [SimpleAsyncTaskExecutor-42] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:03:08.674  INFO 16340 --- [SimpleAsyncTaskExecutor-42] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:03:08.676  INFO 16340 --- [SimpleAsyncTaskExecutor-42] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:03:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-46] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:03:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-47] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:03:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-48] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:03:38.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-50] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:03:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-49] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:03:53.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-51] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:03:53.647 DEBUG 16340 --- [SimpleAsyncTaskExecutor-52] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:04:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-54] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:04:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-55] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:04:08.645 DEBUG 16340 --- [SimpleAsyncTaskExecutor-58] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:04:08.645 DEBUG 16340 --- [SimpleAsyncTaskExecutor-57] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:04:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-56] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:04:08.654  INFO 16340 --- [SimpleAsyncTaskExecutor-55] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:04:08.654  INFO 16340 --- [SimpleAsyncTaskExecutor-55] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:04:08.659  INFO 16340 --- [SimpleAsyncTaskExecutor-55] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:04:08.659  INFO 16340 --- [SimpleAsyncTaskExecutor-55] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:04:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-55] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:04:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-59] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:04:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-60] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:04:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-61] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:04:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-62] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:04:38.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-63] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:04:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-64] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:04:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-65] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:05:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-67] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:05:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-68] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:05:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-69] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:05:08.645 DEBUG 16340 --- [SimpleAsyncTaskExecutor-70] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:05:08.647 DEBUG 16340 --- [SimpleAsyncTaskExecutor-71] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:05:08.655  INFO 16340 --- [SimpleAsyncTaskExecutor-68] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:05:08.655  INFO 16340 --- [SimpleAsyncTaskExecutor-68] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:05:08.659  INFO 16340 --- [SimpleAsyncTaskExecutor-68] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:05:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-68] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:05:08.661  INFO 16340 --- [SimpleAsyncTaskExecutor-68] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:05:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-72] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:05:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-73] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:05:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-74] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:05:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-76] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:05:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-75] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:05:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-77] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:05:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-78] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:06:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-82] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:06:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-80] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:06:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-81] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:06:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-83] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:06:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-84] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:06:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-81] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:06:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-81] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:06:08.677  INFO 16340 --- [SimpleAsyncTaskExecutor-81] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:06:08.677  INFO 16340 --- [SimpleAsyncTaskExecutor-81] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:06:08.677  INFO 16340 --- [SimpleAsyncTaskExecutor-81] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:06:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-85] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:06:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-86] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:06:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-87] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:06:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-88] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:06:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-89] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:06:53.664 DEBUG 16340 --- [SimpleAsyncTaskExecutor-90] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:06:53.664 DEBUG 16340 --- [SimpleAsyncTaskExecutor-91] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:07:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-93] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:07:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-97] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:07:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-96] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:07:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-95] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:07:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-94] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:07:08.659  INFO 16340 --- [SimpleAsyncTaskExecutor-94] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:07:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-94] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:07:08.664  INFO 16340 --- [SimpleAsyncTaskExecutor-94] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:07:08.665  INFO 16340 --- [SimpleAsyncTaskExecutor-94] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:07:08.665  INFO 16340 --- [SimpleAsyncTaskExecutor-94] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:07:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-98] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:07:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-99] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:07:38.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-100] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:07:38.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-102] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:07:38.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-101] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:07:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-103] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:07:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-104] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:08:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-107] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:08:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-109] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:08:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-108] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:08:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-106] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:08:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-110] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:08:08.655  INFO 16340 --- [SimpleAsyncTaskExecutor-107] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:08:08.655  INFO 16340 --- [SimpleAsyncTaskExecutor-107] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:08:08.661  INFO 16340 --- [SimpleAsyncTaskExecutor-107] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:08:08.661  INFO 16340 --- [SimpleAsyncTaskExecutor-107] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:08:08.663  INFO 16340 --- [SimpleAsyncTaskExecutor-107] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:08:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-111] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:08:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-112] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:08:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-113] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:08:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-115] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:08:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-114] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:08:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-116] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:08:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-117] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:09:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-119] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:09:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-121] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:09:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-122] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:09:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-120] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:09:08.647 DEBUG 16340 --- [SimpleAsyncTaskExecutor-123] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:09:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-120] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:09:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-120] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:09:08.665  INFO 16340 --- [SimpleAsyncTaskExecutor-120] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:09:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-120] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:09:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-120] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:09:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-124] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:09:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-125] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:09:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-126] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:09:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-128] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:09:38.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-127] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:09:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-129] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:09:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-130] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:10:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-132] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:10:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-133] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:10:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-134] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:10:08.647 DEBUG 16340 --- [SimpleAsyncTaskExecutor-136] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:10:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-135] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:10:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-133] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:10:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-133] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:10:08.677  INFO 16340 --- [SimpleAsyncTaskExecutor-133] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:10:08.678  INFO 16340 --- [SimpleAsyncTaskExecutor-133] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:10:08.678  INFO 16340 --- [SimpleAsyncTaskExecutor-133] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:10:23.680 DEBUG 16340 --- [SimpleAsyncTaskExecutor-138] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:10:23.680 DEBUG 16340 --- [SimpleAsyncTaskExecutor-137] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:10:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-139] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:10:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-141] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:10:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-140] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:10:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-142] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:10:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-143] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:11:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-145] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:11:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-148] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:11:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-147] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:11:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-146] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:11:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-149] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:11:08.667  INFO 16340 --- [SimpleAsyncTaskExecutor-146] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:11:08.670  INFO 16340 --- [SimpleAsyncTaskExecutor-146] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:11:08.679  INFO 16340 --- [SimpleAsyncTaskExecutor-146] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:11:08.679  INFO 16340 --- [SimpleAsyncTaskExecutor-146] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:11:08.679  INFO 16340 --- [SimpleAsyncTaskExecutor-146] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:11:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-150] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:11:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-151] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:11:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-152] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:11:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-153] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:11:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-154] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:11:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-155] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:11:53.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-156] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:12:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-159] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:12:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-158] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:12:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-161] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:12:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-160] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:12:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-162] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:12:08.662  INFO 16340 --- [SimpleAsyncTaskExecutor-159] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:12:08.662  INFO 16340 --- [SimpleAsyncTaskExecutor-159] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:12:08.671  INFO 16340 --- [SimpleAsyncTaskExecutor-159] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:12:08.671  INFO 16340 --- [SimpleAsyncTaskExecutor-159] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:12:08.672  INFO 16340 --- [SimpleAsyncTaskExecutor-159] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:12:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-163] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:12:23.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-164] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:12:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-165] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:12:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-167] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:12:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-166] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:12:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-168] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:12:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-169] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:13:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-172] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:13:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-174] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:13:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-173] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:13:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-171] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:13:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-175] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:13:08.661  INFO 16340 --- [SimpleAsyncTaskExecutor-172] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:13:08.661  INFO 16340 --- [SimpleAsyncTaskExecutor-172] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:13:08.668  INFO 16340 --- [SimpleAsyncTaskExecutor-172] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:13:08.670  INFO 16340 --- [SimpleAsyncTaskExecutor-172] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:13:08.670  INFO 16340 --- [SimpleAsyncTaskExecutor-172] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:13:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-176] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:13:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-177] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:13:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-178] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:13:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-180] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:13:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-179] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:13:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-181] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:13:53.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-182] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:14:08.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-184] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:14:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-186] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:14:08.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-185] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:14:08.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-187] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:14:08.647 DEBUG 16340 --- [SimpleAsyncTaskExecutor-188] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:14:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-185] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:14:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-185] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:14:08.669  INFO 16340 --- [SimpleAsyncTaskExecutor-185] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:14:08.669  INFO 16340 --- [SimpleAsyncTaskExecutor-185] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:14:08.670  INFO 16340 --- [SimpleAsyncTaskExecutor-185] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:14:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-189] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:14:23.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-190] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:14:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-191] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:14:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-193] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:14:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-192] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:14:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-194] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:14:53.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-195] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:15:08.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-197] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:15:08.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-198] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:15:08.644 DEBUG 16340 --- [SimpleAsyncTaskExecutor-199] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:15:08.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-201] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:15:08.646 DEBUG 16340 --- [SimpleAsyncTaskExecutor-200] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:15:08.653  INFO 16340 --- [SimpleAsyncTaskExecutor-198] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=
+2018-08-22 22:15:08.654  INFO 16340 --- [SimpleAsyncTaskExecutor-198] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:15:08.659  INFO 16340 --- [SimpleAsyncTaskExecutor-198] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:15:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-198] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:15:08.660  INFO 16340 --- [SimpleAsyncTaskExecutor-198] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:15:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-202] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:15:23.641 DEBUG 16340 --- [SimpleAsyncTaskExecutor-203] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:15:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-204] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:15:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-206] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:15:38.642 DEBUG 16340 --- [SimpleAsyncTaskExecutor-205] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:15:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-207] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:15:53.643 DEBUG 16340 --- [SimpleAsyncTaskExecutor-208] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:20:26.757  INFO 16784 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Starting IASApplication on DESKTOP-TK3VCB4 with PID 16784 (C:\Users\yazik\IdeaProjects\iasboot\target\classes started by yazik in C:\Users\yazik\IdeaProjects\iasboot)
+2018-08-22 22:20:26.758 DEBUG 16784 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Running with Spring Boot v1.5.2.RELEASE, Spring v4.3.7.RELEASE
+2018-08-22 22:20:26.759  INFO 16784 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : No active profile set, falling back to default profiles: default
+2018-08-22 22:20:26.842  INFO 16784 --- [restartedMain] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4ebfb07b: startup date [Wed Aug 22 22:20:26 MSK 2018]; root of context hierarchy
+2018-08-22 22:20:29.282  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$9324e080] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:29.413  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration$$EnhancerBySpringCGLIB$$2bd2a8ba] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:29.438  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:29.443  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5223cb5c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:29.472  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration$$EnhancerBySpringCGLIB$$50a74b6c] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:29.518  INFO 16784 --- [restartedMain] trationDelegate$BeanPostProcessorChecker : Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-22 22:20:30.122  INFO 16784 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
+2018-08-22 22:20:30.133  INFO 16784 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2018-08-22 22:20:30.136  INFO 16784 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.5.11
+2018-08-22 22:20:30.269  INFO 16784 --- [localhost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2018-08-22 22:20:30.270  INFO 16784 --- [localhost-startStop-1] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3431 ms
+2018-08-22 22:20:30.540  INFO 16784 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2018-08-22 22:20:30.541  INFO 16784 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2018-08-22 22:20:30.541  INFO 16784 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2018-08-22 22:20:30.542  INFO 16784 --- [localhost-startStop-1] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2018-08-22 22:20:30.543  INFO 16784 --- [localhost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2018-08-22 22:20:30.544  INFO 16784 --- [localhost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
+2018-08-22 22:20:31.608  INFO 16784 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2018-08-22 22:20:33.300  INFO 16784 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-08-22 22:20:34.993  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@4ebfb07b: startup date [Wed Aug 22 22:20:26 MSK 2018]; root of context hierarchy
+2018-08-22 22:20:35.092  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/]}" onto java.lang.String ru.rushydro.vniig.ias.IASApplication.home()
+2018-08-22 22:20:35.094  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/login]}" onto public java.lang.String ru.rushydro.vniig.ias.IASApplication.login()
+2018-08-22 22:20:35.100  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measure/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveMeasuresParam(ru.rushydro.vniig.ias.types.Measure)
+2018-08-22 22:20:35.101  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSensorsDictionary()
+2018-08-22 22:20:35.102  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Measure> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParams()
+2018-08-22 22:20:35.102  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/measures]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getMeasuresParamsDictionary()
+2018-08-22 22:20:35.103  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/combo/signalTypes]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Dictionary> ru.rushydro.vniig.ias.controller.ExchangeController.getSignalTypesDictionary()
+2018-08-22 22:20:35.103  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signal/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSignal(ru.rushydro.vniig.ias.types.Signal)
+2018-08-22 22:20:35.104  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensor/save]}" onto public ru.rushydro.vniig.ias.types.SimpleResponse ru.rushydro.vniig.ias.controller.ExchangeController.saveSensor(ru.rushydro.vniig.ias.types.Sensor)
+2018-08-22 22:20:35.104  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Sensor> ru.rushydro.vniig.ias.controller.ExchangeController.getSensors()
+2018-08-22 22:20:35.105  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/exchange/signals]}" onto public java.util.List<ru.rushydro.vniig.ias.types.Signal> ru.rushydro.vniig.ias.controller.ExchangeController.getSignals()
+2018-08-22 22:20:35.105  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/test/tags]}" onto public ru.rushydro.vniig.ias.model.TestTagContainer ru.rushydro.vniig.ias.controller.TestController.testTag(java.lang.String)
+2018-08-22 22:20:35.109  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/logs]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.dao.entity.TaskLog> ru.rushydro.vniig.ias.RestController.getLogs(org.springframework.data.domain.Pageable,java.lang.String,java.lang.String,java.lang.String)
+2018-08-22 22:20:35.110  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signalsCount]}" onto public ru.rushydro.vniig.ias.model.PageCount ru.rushydro.vniig.ias.RestController.getSignalsCount()
+2018-08-22 22:20:35.111  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlObjects]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlObjects()
+2018-08-22 22:20:35.111  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/controlElements]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getControlElements()
+2018-08-22 22:20:35.111  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/measurementTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getMeasurementTypes()
+2018-08-22 22:20:35.112  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensors]}" onto public java.util.List<ru.rushydro.vniig.ias.model.Sensor> ru.rushydro.vniig.ias.RestController.getSensors()
+2018-08-22 22:20:35.112  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorGroups]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorGroups()
+2018-08-22 22:20:35.112  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/signals]}" onto public org.springframework.data.domain.Page<ru.rushydro.vniig.ias.model.Signal> ru.rushydro.vniig.ias.RestController.getSignals(org.springframework.data.domain.Pageable)
+2018-08-22 22:20:35.113  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/sensorTypes]}" onto public java.util.List<java.lang.String> ru.rushydro.vniig.ias.RestController.getSensorTypes()
+2018-08-22 22:20:35.116  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2018-08-22 22:20:35.117  INFO 16784 --- [restartedMain] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2018-08-22 22:20:35.226  INFO 16784 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:20:35.228  INFO 16784 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:20:35.308  INFO 16784 --- [restartedMain] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2018-08-22 22:20:35.698  INFO 16784 --- [restartedMain] o.s.w.s.v.f.FreeMarkerConfigurer         : ClassTemplateLoader for Spring macros added to FreeMarker configuration
+2018-08-22 22:20:35.943  INFO 16784 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/css/**'], Ant [pattern='/js/**'], Ant [pattern='/images/**'], Ant [pattern='/webjars/**'], Ant [pattern='/**/favicon.ico'], Ant [pattern='/error']]], []
+2018-08-22 22:20:36.075  INFO 16784 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: org.springframework.security.web.util.matcher.AnyRequestMatcher@1, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55141334, org.springframework.security.web.context.SecurityContextPersistenceFilter@7fe018a2, org.springframework.security.web.header.HeaderWriterFilter@ffa4574, org.springframework.security.web.authentication.logout.LogoutFilter@2beb1cb5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@20a68f8c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1171aefd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79837725, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1e9ffcc8, org.springframework.security.web.session.SessionManagementFilter@65d99c9e, org.springframework.security.web.access.ExceptionTranslationFilter@57e70f14, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1456a920]
+2018-08-22 22:20:36.099  INFO 16784 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/**']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@522c7661, org.springframework.security.web.context.SecurityContextPersistenceFilter@7984c34a, org.springframework.security.web.header.HeaderWriterFilter@51e6de66, org.springframework.security.web.authentication.logout.LogoutFilter@3fcc52ee, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@68a46b69, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c6e8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@67f22d60, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6d3d62a0, org.springframework.security.web.session.SessionManagementFilter@38e9e7e9, org.springframework.security.web.access.ExceptionTranslationFilter@6b825fe5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@325a8ae]
+2018-08-22 22:20:36.501  INFO 16784 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2018-08-22 22:20:36.690  INFO 16784 --- [restartedMain] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-08-22 22:20:36.713  INFO 16784 --- [restartedMain] s.a.ScheduledAnnotationBeanPostProcessor : No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2018-08-22 22:20:36.722  INFO 16784 --- [pool-2-thread-1] .s.a.AnnotationAsyncExecutionInterceptor : No TaskExecutor bean found for async processing
+2018-08-22 22:20:36.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-6] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:20:36.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-5] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:20:36.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-4] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:20:36.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-1] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:20:36.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-3] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:20:36.826  INFO 16784 --- [restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+2018-08-22 22:20:36.846  INFO 16784 --- [restartedMain] ru.rushydro.vniig.ias.IASApplication     : Started IASApplication in 10.489 seconds (JVM running for 13.225)
+2018-08-22 22:20:36.950  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=tag1__tag2__tag3
+2018-08-22 22:20:36.950  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:20:37.054  INFO 16784 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring FrameworkServlet 'dispatcherServlet'
+2018-08-22 22:20:37.054  INFO 16784 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization started
+2018-08-22 22:20:37.101  INFO 16784 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : FrameworkServlet 'dispatcherServlet': initialization completed in 47 ms
+2018-08-22 22:20:37.331  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:20:37.427  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 141 значение сигнала: 12
+2018-08-22 22:20:37.433  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 142 значение сигнала: 15
+2018-08-22 22:20:37.439  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 143 значение сигнала: 187
+2018-08-22 22:20:37.439  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:20:37.504  INFO 16784 --- [SimpleAsyncTaskExecutor-4] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:20:51.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-7] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:20:51.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-8] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:21:06.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-9] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:21:06.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-11] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:21:06.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-10] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:21:21.730 DEBUG 16784 --- [SimpleAsyncTaskExecutor-12] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:21:21.741 DEBUG 16784 --- [SimpleAsyncTaskExecutor-13] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:21:36.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-14] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:21:36.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-16] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:21:36.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-18] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:21:36.730 DEBUG 16784 --- [SimpleAsyncTaskExecutor-19] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:21:36.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-17] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:21:36.758  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=tag1__tag2__tag3
+2018-08-22 22:21:36.758  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:21:36.762  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:21:36.768  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 141 значение сигнала: 12
+2018-08-22 22:21:36.772  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 142 значение сигнала: 15
+2018-08-22 22:21:36.775  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 143 значение сигнала: 187
+2018-08-22 22:21:36.775  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:21:36.788  INFO 16784 --- [SimpleAsyncTaskExecutor-17] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:21:51.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-20] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:21:51.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-21] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:22:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-22] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:22:06.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-24] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:22:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-23] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:22:21.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-25] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:22:21.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-26] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:22:36.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-27] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:22:36.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-29] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:22:36.724 DEBUG 16784 --- [SimpleAsyncTaskExecutor-32] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:22:36.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-30] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:22:36.723 DEBUG 16784 --- [SimpleAsyncTaskExecutor-31] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:22:36.757  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=tag1__tag2__tag3
+2018-08-22 22:22:36.757  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:22:36.762  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:22:36.767  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 141 значение сигнала: 12
+2018-08-22 22:22:36.771  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 142 значение сигнала: 15
+2018-08-22 22:22:36.775  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 143 значение сигнала: 187
+2018-08-22 22:22:36.775  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:22:36.781  INFO 16784 --- [SimpleAsyncTaskExecutor-30] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:22:51.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-33] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:22:51.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-34] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:23:06.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-36] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:23:06.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-37] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:23:06.720 DEBUG 16784 --- [SimpleAsyncTaskExecutor-35] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:23:21.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-39] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:23:21.729 DEBUG 16784 --- [SimpleAsyncTaskExecutor-38] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:23:36.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-40] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:23:36.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-42] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:23:36.723 DEBUG 16784 --- [SimpleAsyncTaskExecutor-45] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:23:36.723 DEBUG 16784 --- [SimpleAsyncTaskExecutor-44] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:23:36.723 DEBUG 16784 --- [SimpleAsyncTaskExecutor-43] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:23:36.757  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=tag1__tag2__tag3
+2018-08-22 22:23:36.757  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:23:36.762  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:23:36.765  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 141 значение сигнала: 12
+2018-08-22 22:23:36.767  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 142 значение сигнала: 15
+2018-08-22 22:23:36.770  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 143 значение сигнала: 187
+2018-08-22 22:23:36.770  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:23:36.774  INFO 16784 --- [SimpleAsyncTaskExecutor-43] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
+2018-08-22 22:23:51.734 DEBUG 16784 --- [SimpleAsyncTaskExecutor-46] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:23:51.734 DEBUG 16784 --- [SimpleAsyncTaskExecutor-47] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:24:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-48] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:24:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-49] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:24:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-50] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:24:21.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-51] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:24:21.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-52] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
