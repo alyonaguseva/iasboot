@@ -1226,3 +1226,16 @@ Caused by: org.postgresql.util.PSQLException: ОШИБКА: столбец senso
 2018-08-22 22:24:06.719 DEBUG 16784 --- [SimpleAsyncTaskExecutor-50] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
 2018-08-22 22:24:21.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-51] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
 2018-08-22 22:24:21.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-52] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:24:36.721 DEBUG 16784 --- [SimpleAsyncTaskExecutor-53] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получение заданий
+2018-08-22 22:24:36.722 DEBUG 16784 --- [SimpleAsyncTaskExecutor-55] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи отправки заданий
+2018-08-22 22:24:36.725 DEBUG 16784 --- [SimpleAsyncTaskExecutor-57] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи парсинга файла
+2018-08-22 22:24:36.731 DEBUG 16784 --- [SimpleAsyncTaskExecutor-58] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи обработки заданий
+2018-08-22 22:24:36.726 DEBUG 16784 --- [SimpleAsyncTaskExecutor-56] ru.rushydro.vniig.ias.ScheduledTasks     : Запуск задачи получения данных с json интерфейса
+2018-08-22 22:24:36.752  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков по url: http://localhost:8080/test/tags?read=tag1__tag2__tag3
+2018-08-22 22:24:36.752  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Получение данных датчиков с помощью java core
+2018-08-22 22:24:36.758  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Данные получены. Значения датчиков: {"tag1":"12","tag2":"15","tag3":"187","tag4":"1123"}
+2018-08-22 22:24:36.762  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 141 значение сигнала: 12
+2018-08-22 22:24:36.765  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 142 значение сигнала: 15
+2018-08-22 22:24:36.767  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Id полученного датчика: 143 значение сигнала: 187
+2018-08-22 22:24:36.767  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных.
+2018-08-22 22:24:36.770  INFO 16784 --- [SimpleAsyncTaskExecutor-56] r.rushydro.vniig.ias.service.TagService  : Сохранение данных датчиков в базу данных успешно.
