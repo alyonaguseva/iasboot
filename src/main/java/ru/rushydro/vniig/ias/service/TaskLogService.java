@@ -39,7 +39,7 @@ public class TaskLogService {
             taskLogs.add(taskLog);
         });
 
-        taskLogRepository.save(taskLogs);
+        taskLogRepository.saveAll(taskLogs);
     }
 
     public Page<TaskLog> findAll(Pageable pageable) {

@@ -23,7 +23,7 @@ public class SignalValueExtService {
     }
 
     public void saveAll(List<SignalValueExt> signalValueExts) {
-        signalValueExtRepository.save(signalValueExts);
+        signalValueExtRepository.saveAll(signalValueExts);
     }
 
     public SignalValueExt findByIdSignal(Integer id, Integer calibrated) {

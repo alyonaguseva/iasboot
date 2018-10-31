@@ -72,7 +72,7 @@ public class ExchangeController {
     @RequestMapping("/measure/save")
     @ResponseBody
     public SimpleResponse saveMeasuresParam(@RequestBody Measure measure){
-        MeasuredParameter measuredParameter = measuredParameterRepository.findOne(measure.getId());
+        MeasuredParameter measuredParameter = measuredParameterRepository.findById(measure.getId()).orElse(null);
         if (measuredParameter == null) {
             measuredParameter = new MeasuredParameter();
             measuredParameter.setId(measure.getId());
@@ -138,7 +138,8 @@ public class ExchangeController {
     @RequestMapping("/sensor/save")
     @ResponseBody
     public SimpleResponse saveSensor(@RequestBody Sensor sensor){
-        ru.rushydro.vniig.ias.dao.entity.Sensor saveSensor = sensorRepository.findOne(sensor.getId());
+        ru.rushydro.vniig.ias.dao.entity.Sensor saveSensor = sensorRepository
+                .findById(sensor.getId()).orElse(null);
         if (saveSensor == null) {
             saveSensor = new ru.rushydro.vniig.ias.dao.entity.Sensor();
             saveSensor.setId(sensor.getId());
@@ -148,9 +149,9 @@ public class ExchangeController {
         saveSensor.setOn(1);
         saveSensor.setInTag(false);
         if (sensor.getObjMonitor() != null) {
-            saveSensor.setObjectMonitor(objectMonitorRepository.findOne(sensor.getObjMonitor().getId()));
+            saveSensor.setObjectMonitor(objectMonitorRepository.findById(sensor.getObjMonitor().getId()).orElse(null));
         } else {
-            saveSensor.setObjectMonitor(objectMonitorRepository.findOne(1));
+            saveSensor.setObjectMonitor(objectMonitorRepository.findById(1).orElse(null));
         }
 
         try {
@@ -190,19 +191,23 @@ public class ExchangeController {
     @RequestMapping("/signal/save")
     @ResponseBody
     public SimpleResponse saveSignal(@RequestBody Signal signal){
-        ru.rushydro.vniig.ias.dao.entity.Signal saveSignal = signalRepository.findOne(signal.getId());
+        ru.rushydro.vniig.ias.dao.entity.Signal saveSignal = signalRepository
+                .findById(signal.getId()).orElse(null);
         if (saveSignal == null) {
             saveSignal = new ru.rushydro.vniig.ias.dao.entity.Signal();
             saveSignal.setId(signal.getId());
         }
         if (signal.getSensor() != null && signal.getSensor().getId() != null) {
-            saveSignal.setSensor(sensorRepository.findOne(signal.getSensor().getId()));
+            saveSignal.setSensor(sensorRepository
+                    .findById(signal.getSensor().getId()).orElse(null));
         }
         if (signal.getType() != null && signal.getType().getId() != null) {
-            saveSignal.setType(signalTypeRepository.findOne(signal.getType().getId()));
+            saveSignal.setType(signalTypeRepository
+                    .findById(signal.getType().getId()).orElse(null));
         }
         if (signal.getMeasureParam() != null && signal.getMeasureParam().getId() != null) {
-            saveSignal.setMeasuredParameter(measuredParameterRepository.findOne(signal.getMeasureParam().getId()));
+            saveSignal.setMeasuredParameter(measuredParameterRepository
+                    .findById(signal.getMeasureParam().getId()).orElse(null));
         }
         try {
             signalRepository.save(saveSignal);

@@ -16,6 +16,6 @@ public class SignalService {
     }
 
     public Signal findById(Integer id) {
-        return signalRepository.findOne(id);
+        return signalRepository.findById(id).orElse(null);
     }
 }

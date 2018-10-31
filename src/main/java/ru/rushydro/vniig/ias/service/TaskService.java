@@ -134,7 +134,7 @@ public class TaskService {
 
     private void addStatus(List<Task> tasks, String systemName) {
         tasks.forEach(task -> task.setStatus(taskStatusService.findBySystemname(systemName)));
-        taskLogService.addStatus(taskRepository.save(tasks), systemName);
+        taskLogService.addStatus(taskRepository.saveAll(tasks), systemName);
     }
 
 

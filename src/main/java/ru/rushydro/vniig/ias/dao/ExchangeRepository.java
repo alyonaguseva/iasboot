@@ -83,10 +83,10 @@ public class ExchangeRepository {
                 LocalDateTime date = rowSet.getTimestamp(1).toLocalDateTime();
                 int sensorId = rowSet.getInt(2);
                 int measuredParameterId = rowSet.getInt(3);
-                Sensor sensor = sensorRepository.findOne(sensorId);
+                Sensor sensor = sensorRepository.findById(sensorId).orElse(null);
                 if (sensor != null) {
                     Signal signal = signalRepository.findBySensorAndMeasuredParameter(sensor,
-                            measuredParameterRepository.findOne(measuredParameterId));
+                            measuredParameterRepository.findById(measuredParameterId).orElse(null));
                     if (signal != null) {
                         log.debug("Обработка сигнала: " + signal.getId() + " код: "
                                 + signal.getMeasuredParameter().getId() + " дата " + date);
@@ -122,7 +122,7 @@ public class ExchangeRepository {
         }
 
         if (!tasks.isEmpty()) {
-            taskLogService.addStatus(taskRepository.save(tasks), TaskLogTypeEnum.NEW.name());
+            taskLogService.addStatus(taskRepository.saveAll(tasks), TaskLogTypeEnum.NEW.name());
         }
     }
 
@@ -146,7 +146,7 @@ public class ExchangeRepository {
                     task.setStatus(taskStatusService.findBySystemname(TaskStatusEnum.COMPLETE.name()));
                     task.setComplete(true);
 
-                    taskLogService.addStatus(taskRepository.save(Collections.singleton(task)),
+                    taskLogService.addStatus(taskRepository.saveAll(Collections.singleton(task)),
                             TaskLogTypeEnum.COMPLETE.name());
 
                 });

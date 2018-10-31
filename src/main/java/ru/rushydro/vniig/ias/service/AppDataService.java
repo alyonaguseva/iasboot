@@ -23,7 +23,7 @@ public class AppDataService {
     }
 
     public AppData findById(Integer id) {
-        return appDataRepository.findOne(id);
+        return appDataRepository.findById(id).orElse(null);
     }
 
 }

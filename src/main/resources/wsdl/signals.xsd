@@ -1,0 +1,28 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://rushydro.ru/vniig/ias/webservice"
+           targetNamespace="http://rushydro.ru/vniig/ias/webservice" elementFormDefault="qualified">
+
+    <xs:element name="sendSignalValuesRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="signalValues" type="tns:SignalValue" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="sendSignalValuesResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="statusCode" type="xs:int" />
+                <xs:element name="statusDescription" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="SignalValue">
+        <xs:sequence>
+            <xs:element name="signalId" type="xs:long"/>
+            <xs:element name="signalValue" type="xs:double"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

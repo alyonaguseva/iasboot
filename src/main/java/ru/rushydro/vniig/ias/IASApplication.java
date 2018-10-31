@@ -23,7 +23,7 @@ import javax.sql.DataSource;
 @SpringBootApplication
 @EnableScheduling
 @EnableAsync
-@EnableGlobalMethodSecurity(securedEnabled = true)
+//@EnableGlobalMethodSecurity(securedEnabled = true)
 public class IASApplication {
 
     @RequestMapping("/")
