@@ -50,7 +50,7 @@ public class SignalValueExtRestService {
                                 " значение сигнала: " + signalValueExt.getValue());
                     } else {
                         response.setStatusCode(2);
-                        response.setStatusDescription("Сигналы с указанным идентификатором не найдены.");
+                        response.setStatusDescription("Сигналы с указанным идентификатором не найдены");
                         response.getNotFoundSignalId().add(value.getSignalId());
                     }
                 }
@@ -59,12 +59,12 @@ public class SignalValueExtRestService {
                 signalValueExtService.saveAll(values);
             } else {
                 response.setStatusCode(3);
-                response.setStatusDescription("Данные сигналов не переданы");
+                response.setStatusDescription("Значения сигналов не переданы");
             }
         } catch (Exception e) {
             log.error("Ошибка сохранение данных сигналов: ", e);
             response.setStatusCode(1);
-            response.setStatusDescription("Ошибка сохранение данных сигналов: " + e.getMessage());
+            response.setStatusDescription("Ошибка сохранение значения сигналов: " + e.getMessage());
         }
 
 
