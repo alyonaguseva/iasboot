@@ -35,24 +35,39 @@ public class SignalValueExtRestService {
         SendSignalValuesResponse response = new SendSignalValuesResponse();
         List<SignalValueExt> values = new ArrayList<>();
 
-        if (request != null && request.getSignalValues() != null) {
-            for (SignalValue value : request.getSignalValues()) {
-                Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
-                if (signal != null) {
-                    SignalValueExt signalValueExt = new SignalValueExt();
-                    signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
-                    signalValueExt.setSignalId(signal.getId());
-                    signalValueExt.setCalibrated(0);
-                    signalValueExt.setValueTime(LocalDateTime.now());
-                    values.add(signalValueExt);
-                    log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
-                            " значение сигнала: " + signalValueExt.getValue());
+        try {
+            if (request != null && request.getSignalValue() != null) {
+                for (SignalValue value : request.getSignalValue()) {
+                    Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
+                    if (signal != null) {
+                        SignalValueExt signalValueExt = new SignalValueExt();
+                        signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
+                        signalValueExt.setSignalId(signal.getId());
+                        signalValueExt.setCalibrated(0);
+                        signalValueExt.setValueTime(LocalDateTime.now());
+                        values.add(signalValueExt);
+                        log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
+                                " значение сигнала: " + signalValueExt.getValue());
+                    } else {
+                        response.setStatusCode(2);
+                        response.setStatusDescription("Сигналы с указанным идентификатором не найдены.");
+                        response.getNotFoundSignalId().add(value.getSignalId());
+                    }
                 }
-            }
 
-            log.info("Сохранение данных датчиков в базу данных.");
-            signalValueExtService.saveAll(values);
+                log.info("Сохранение данных датчиков в базу данных.");
+                signalValueExtService.saveAll(values);
+            } else {
+                response.setStatusCode(3);
+                response.setStatusDescription("Данные сигналов не переданы");
+            }
+        } catch (Exception e) {
+            log.error("Ошибка сохранение данных сигналов: ", e);
+            response.setStatusCode(1);
+            response.setStatusDescription("Ошибка сохранение данных сигналов: " + e.getMessage());
         }
+
+
 
         return response;
     }
