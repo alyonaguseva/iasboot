@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SignalValueExtRestService {
@@ -61,10 +60,39 @@ public class SignalValueExtRestService {
                         .map(String::valueOf)
                         .collect(Collectors.joining(",")));
             }
+        try {
+            if (request != null && request.getSignalValue() != null) {
+                for (SignalValue value : request.getSignalValue()) {
+                    Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
+                    if (signal != null) {
+                        SignalValueExt signalValueExt = new SignalValueExt();
+                        signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
+                        signalValueExt.setSignalId(signal.getId());
+                        signalValueExt.setCalibrated(0);
+                        signalValueExt.setValueTime(LocalDateTime.now());
+                        values.add(signalValueExt);
+                        log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
+                                " значение сигнала: " + signalValueExt.getValue());
+                    } else {
+                        response.setStatusCode(2);
+                        response.setStatusDescription("Сигналы с указанным идентификатором не найдены");
+                        response.getNotFoundSignalId().add(value.getSignalId());
+                    }
+                }
 
-            log.info("Сохранение данных датчиков в базу данных.");
-            signalValueExtService.saveAll(values);
+                log.info("Сохранение данных датчиков в базу данных.");
+                signalValueExtService.saveAll(values);
+            } else {
+                response.setStatusCode(3);
+                response.setStatusDescription("Значения сигналов не переданы");
+            }
+        } catch (Exception e) {
+            log.error("Ошибка сохранение данных сигналов: ", e);
+            response.setStatusCode(1);
+            response.setStatusDescription("Ошибка сохранение значения сигналов: " + e.getMessage());
         }
+
+
 
         return response;
     }

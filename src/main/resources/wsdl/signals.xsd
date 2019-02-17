@@ -4,7 +4,7 @@
     <xs:element name="sendSignalValuesRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="signalValues" type="tns:SignalValue" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element name="signalValue" type="tns:SignalValue" minOccurs="0" maxOccurs="unbounded" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -14,6 +14,7 @@
             <xs:sequence>
                 <xs:element name="statusCode" type="xs:int" />
                 <xs:element name="statusDescription" type="xs:string"/>
+                <xs:element name="notFoundSignalId" type="xs:long" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
