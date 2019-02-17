@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SignalValueExtRestService {
@@ -36,6 +37,8 @@ public class SignalValueExtRestService {
         List<SignalValueExt> values = new ArrayList<>();
 
         if (request != null && request.getSignalValues() != null) {
+            List<Long> notFoundSignals = new ArrayList<>();
+
             for (SignalValue value : request.getSignalValues()) {
                 Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
                 if (signal != null) {
@@ -47,7 +50,16 @@ public class SignalValueExtRestService {
                     values.add(signalValueExt);
                     log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
                             " значение сигнала: " + signalValueExt.getValue());
+                } else {
+                    notFoundSignals.add(value.getSignalId());
                 }
+            }
+
+            if (!notFoundSignals.isEmpty()) {
+                response.setStatusCode(1);
+                response.setStatusDescription(notFoundSignals.stream()
+                        .map(String::valueOf)
+                        .collect(Collectors.joining(",")));
             }
 
             log.info("Сохранение данных датчиков в базу данных.");
