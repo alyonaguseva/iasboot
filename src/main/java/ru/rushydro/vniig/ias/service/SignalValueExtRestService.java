@@ -35,31 +35,6 @@ public class SignalValueExtRestService {
         SendSignalValuesResponse response = new SendSignalValuesResponse();
         List<SignalValueExt> values = new ArrayList<>();
 
-        if (request != null && request.getSignalValues() != null) {
-            List<Long> notFoundSignals = new ArrayList<>();
-
-            for (SignalValue value : request.getSignalValues()) {
-                Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
-                if (signal != null) {
-                    SignalValueExt signalValueExt = new SignalValueExt();
-                    signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
-                    signalValueExt.setSignalId(signal.getId());
-                    signalValueExt.setCalibrated(0);
-                    signalValueExt.setValueTime(LocalDateTime.now());
-                    values.add(signalValueExt);
-                    log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
-                            " значение сигнала: " + signalValueExt.getValue());
-                } else {
-                    notFoundSignals.add(value.getSignalId());
-                }
-            }
-
-            if (!notFoundSignals.isEmpty()) {
-                response.setStatusCode(1);
-                response.setStatusDescription(notFoundSignals.stream()
-                        .map(String::valueOf)
-                        .collect(Collectors.joining(",")));
-            }
         try {
             if (request != null && request.getSignalValue() != null) {
                 for (SignalValue value : request.getSignalValue()) {
@@ -91,8 +66,6 @@ public class SignalValueExtRestService {
             response.setStatusCode(1);
             response.setStatusDescription("Ошибка сохранение значения сигналов: " + e.getMessage());
         }
-
-
 
         return response;
     }
