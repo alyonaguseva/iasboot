@@ -10,6 +10,8 @@ public class Sensor {
 
     String type;
 
+    String tagName;
+
     public Integer getId() {
         return id;
     }
@@ -40,5 +42,13 @@ public class Sensor {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

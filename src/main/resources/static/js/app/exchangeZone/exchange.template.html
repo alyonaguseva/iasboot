@@ -100,6 +100,10 @@
                         <td>Тип данных</td>
                         <td><input class="form-control" type="text" ng-model="$ctrl.sensor.type" /></td>
                     </tr>
+                    <tr>
+                        <td>Системное имя тега PL302</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.sensor.tagName" /></td>
+                    </tr>
                 </table>
                 <div ng-if="$ctrl.errorSensor != null" class="alert alert-danger">
                     {{$ctrl.errorSensor}}

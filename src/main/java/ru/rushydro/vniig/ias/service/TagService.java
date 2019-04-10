@@ -21,6 +21,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.rushydro.vniig.ias.AppProperties;
+import ru.rushydro.vniig.ias.StringUtils;
 import ru.rushydro.vniig.ias.dao.SignalRepository;
 import ru.rushydro.vniig.ias.dao.entity.Sensor;
 import ru.rushydro.vniig.ias.dao.entity.Signal;
@@ -95,7 +96,8 @@ public class TagService {
     private void processPackageTags(List<Sensor> sensors) {
 
         String tags = sensors.stream().map(sensor ->
-                appProperties.getTags().get(sensor.getId().toString()))
+                StringUtils.isNotEmpty(sensor.getTagName()) ?
+                        sensor.getTagName() : appProperties.getTags().get(sensor.getId().toString()))
                 .collect(Collectors.joining("__"));
         RestTemplate rest = new RestTemplate();
         HttpEntity<String> requestEntity = new HttpEntity<>("", headers);

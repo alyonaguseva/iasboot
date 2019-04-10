@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "sensor")
+@SecondaryTable(name = "sensor_setting", pkJoinColumns={@PrimaryKeyJoinColumn(name="id", referencedColumnName="id") })
 public class Sensor {
 
     @Id
@@ -25,6 +26,9 @@ public class Sensor {
 
     @Column(name = "in_tag")
     private Boolean inTag;
+
+    @Column(name = "tag_name", table = "sensor_setting")
+    private String tagName;
 
     public Integer getId() {
         return id;
@@ -72,5 +76,13 @@ public class Sensor {
 
     public void setInTag(Boolean inTag) {
         this.inTag = inTag;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 }

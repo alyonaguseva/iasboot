@@ -64,6 +64,7 @@ module('exchange').component(
                     vm.sensor.name = sensor.name;
                     vm.sensor.type = sensor.type;
                     vm.sensor.objMonitor = sensor.objMonitor;
+                    vm.sensor.tagName = sensor.tagName;
                 };
 
                 vm.addSensor = function () {

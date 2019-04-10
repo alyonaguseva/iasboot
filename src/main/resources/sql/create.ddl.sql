@@ -32,6 +32,13 @@ create table sensor(
   primary key(id)
 );
 
+-- Настройки датчиков
+create table sensor_setting (
+  id integer REFERENCES sensor(id) NOT NULL,
+  tag_name varchar(128) NOT NULL,
+  primary key(id)
+);
+
 -- Тип сигнала
 create table signal_type(
   id integer UNIQUE NOT NULL,

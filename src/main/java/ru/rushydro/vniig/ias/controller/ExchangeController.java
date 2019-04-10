@@ -101,6 +101,7 @@ public class ExchangeController {
             sensor.setName(entity.getName());
             sensor.setObjMonitor(objMon);
             sensor.setType(entity.getType());
+            sensor.setTagName(entity.getTagName());
             result.add(sensor);
         });
         result.sort(Comparator.comparingInt(Sensor::getId));
@@ -148,6 +149,7 @@ public class ExchangeController {
         saveSensor.setType(sensor.getType());
         saveSensor.setOn(1);
         saveSensor.setInTag(false);
+        saveSensor.setTagName(sensor.getTagName());
         if (sensor.getObjMonitor() != null) {
             saveSensor.setObjectMonitor(objectMonitorRepository.findById(sensor.getObjMonitor().getId()).orElse(null));
         } else {
