@@ -23,6 +23,7 @@
         <xs:sequence>
             <xs:element name="signalId" type="xs:long"/>
             <xs:element name="signalValue" type="xs:double"/>
+            <xs:element name="signalDateTime" type="xs:dateTime" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 

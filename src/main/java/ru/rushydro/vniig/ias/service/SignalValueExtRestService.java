@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.dao.SignalRepository;
 import ru.rushydro.vniig.ias.dao.entity.Signal;
 import ru.rushydro.vniig.ias.dao.entity.SignalValueExt;
+import ru.rushydro.vniig.ias.util.TimeUtil;
 import ru.rushydro.vniig.ias.webservice.SendSignalValuesRequest;
 import ru.rushydro.vniig.ias.webservice.SendSignalValuesResponse;
 import ru.rushydro.vniig.ias.webservice.SignalValue;
@@ -44,7 +45,8 @@ public class SignalValueExtRestService {
                         signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
                         signalValueExt.setSignalId(signal.getId());
                         signalValueExt.setCalibrated(0);
-                        signalValueExt.setValueTime(LocalDateTime.now());
+                        signalValueExt.setValueTime(value.getSignalDateTime() != null
+                                ? TimeUtil.convertToLocalDateTime(value.getSignalDateTime()) : LocalDateTime.now());
                         values.add(signalValueExt);
                         log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
                                 " значение сигнала: " + signalValueExt.getValue());
