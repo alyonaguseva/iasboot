@@ -8,6 +8,7 @@ drop table if EXISTS task;
 drop table if EXISTS task_status;
 drop table if EXISTS signal;
 drop table if EXISTS signal_type;
+drop table if EXISTS sensor_setting;
 drop table if EXISTS sensor;
 drop table if EXISTS measured_parameter;
 drop table if EXISTS object_monitor;

@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.rushydro.vniig.ias.StringUtils;
 import ru.rushydro.vniig.ias.dao.entity.AppData;
 import ru.rushydro.vniig.ias.dao.entity.Signal;
 import ru.rushydro.vniig.ias.dao.entity.SignalValueExt;
@@ -38,7 +39,7 @@ public class ParseFileService {
     private final
     AppDataService appDataService;
 
-    @Value("${file.path}")
+    @Value("${file.path:null}")
     private String filePath;
 
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
@@ -51,7 +52,7 @@ public class ParseFileService {
     }
 
     public void parseFile() {
-        if (filePath != null && !filePath.isEmpty()) {
+        if (StringUtils.isNotEmpty(filePath)) {
             File file = new File(filePath);
             if (file.exists()) {
                 try (Reader in = new FileReader(filePath);

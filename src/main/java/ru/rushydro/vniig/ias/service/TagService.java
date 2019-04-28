@@ -49,10 +49,10 @@ public class TagService {
 
     private final static org.slf4j.Logger log = LoggerFactory.getLogger(TagService.class.getName());
 
-    @Value("${tag.service.path}")
+    @Value("${tag.service.path:null}")
     private String tagUrl;
 
-    @Value("${tag.password}")
+    @Value("${tag.password}:null")
     private String tagPassword;
 
     private final
@@ -94,114 +94,118 @@ public class TagService {
     }
 
     private void processPackageTags(List<Sensor> sensors) {
+        if (StringUtils.isNotEmpty(tagUrl)) {
+            String tags = sensors.stream().map(sensor ->
+                    StringUtils.isNotEmpty(sensor.getTagName()) ?
+                            sensor.getTagName() : appProperties.getTags().get(sensor.getId().toString()))
+                    .collect(Collectors.joining("__"));
+            RestTemplate rest = new RestTemplate();
+            HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
 
-        String tags = sensors.stream().map(sensor ->
-                StringUtils.isNotEmpty(sensor.getTagName()) ?
-                        sensor.getTagName() : appProperties.getTags().get(sensor.getId().toString()))
-                .collect(Collectors.joining("__"));
-        RestTemplate rest = new RestTemplate();
-        HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
+            String url = tagUrl + "?read=" + tags;
 
-        String url = tagUrl + "?read=" + tags;
+            log.info("Получение данных датчиков по url: " + url);
 
-        log.info("Получение данных датчиков по url: " + url);
+            String tagValues = null;
 
-        String tagValues = null;
-
-        if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("web")) {
-            log.info("Получение данных датчиков с помощью java web");
-            try {
-                WebClient webClient = new WebClient();
-                webClient.setJavaScriptEnabled(false);
-                HtmlPage currentPage = webClient.getPage(tagUrl); //Load page at the STRING address.
-                HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
-                password.setValueAttribute(tagPassword); //Set value for password
-                List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
-                HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
-                currentPage = submitBtn.click(); //Click on the button.
-                UnexpectedPage page = webClient.getPage(url);
-                page.getWebResponse().getContentAsString();
-                log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
-                tagValues = page.getWebResponse().getContentAsString();
-            } catch (IOException e) {
-                log.error("Ошибка запроса:", e);
-                e.printStackTrace();
-            }
-        } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core")) {
-            log.info("Получение данных датчиков с помощью java core");
-            try {
-                URL getUrl = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
-                String userCredentials = ":201275";
-                String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
-                con.setRequestProperty ("Authorization", basicAuth);
-                con.setRequestMethod("GET");
-                con.setConnectTimeout(5 * 60 * 1000);
-                con.setReadTimeout(60 * 1000);
-                con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-                con.setRequestProperty("Accept-Encoding", "gzip, deflate");
-                try (InputStream is = con.getInputStream();
-                     BufferedReader rd = new BufferedReader(new InputStreamReader(is))) {
-                    StringBuilder response = new StringBuilder();
-                    String line;
-                    while ((line = rd.readLine()) != null) {
-                        response.append(line);
-                        response.append('\r');
-                    }
-                    tagValues = response.toString();
+            if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("web")) {
+                log.info("Получение данных датчиков с помощью java web");
+                try {
+                    WebClient webClient = new WebClient();
+                    webClient.setJavaScriptEnabled(false);
+                    HtmlPage currentPage = webClient.getPage(tagUrl); //Load page at the STRING address.
+                    HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
+                    password.setValueAttribute(tagPassword); //Set value for password
+                    List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
+                    HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
+                    currentPage = submitBtn.click(); //Click on the button.
+                    UnexpectedPage page = webClient.getPage(url);
+                    page.getWebResponse().getContentAsString();
+                    log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
+                    tagValues = page.getWebResponse().getContentAsString();
                 } catch (IOException e) {
                     log.error("Ошибка запроса:", e);
                     e.printStackTrace();
                 }
-            } catch (IOException e) {
-                log.error("Ошибка запроса:", e);
-                e.printStackTrace();
-            }
-
-        } else {
-            ResponseEntity<String> responseEntity = rest.exchange(url,
-                    HttpMethod.GET, requestEntity, String.class);
-            tagValues =  responseEntity.getBody();
-        }
-
-        log.info("Данные получены. Значения датчиков: " + tagValues);
-
-        if (tagValues != null) {
-            ObjectMapper mapper = new ObjectMapper();
-            try {
-                JsonNode actualObj = mapper.readTree(tagValues);
-                List<SignalValueExt> values = new ArrayList<>();
-                for (Sensor sensor : sensors) {
-                    Signal signal = signalRepository.findBySensor(sensor);
-                    if (signal != null) {
-                        String tag = appProperties.getTags().get(sensor.getId().toString());
-                        TreeNode node = actualObj.get(tag);
-                        if (node != null && node.toString() != null
-                                && !node.toString().replaceAll("\"", "").isEmpty()) {
-                            SignalValueExt signalValueExt = new SignalValueExt();
-                            signalValueExt.setValue(new BigDecimal(node.toString()
-                                    .replaceAll("\"", "")));
-                            signalValueExt.setSignalId(signal.getId());
-                            signalValueExt.setCalibrated(1);
-                            signalValueExt.setValueTime(LocalDateTime.now());
-                            values.add(signalValueExt);
-                            log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
-                                    " значение сигнала: " + signalValueExt.getValue());
+            } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core")) {
+                log.info("Получение данных датчиков с помощью java core");
+                try {
+                    URL getUrl = new URL(url);
+                    HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
+                    String userCredentials = ":201275";
+                    String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
+                    con.setRequestProperty ("Authorization", basicAuth);
+                    con.setRequestMethod("GET");
+                    con.setConnectTimeout(5 * 60 * 1000);
+                    con.setReadTimeout(60 * 1000);
+                    con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                    con.setRequestProperty("Accept-Encoding", "gzip, deflate");
+                    try (InputStream is = con.getInputStream();
+                         BufferedReader rd = new BufferedReader(new InputStreamReader(is))) {
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = rd.readLine()) != null) {
+                            response.append(line);
+                            response.append('\r');
                         }
+                        tagValues = response.toString();
+                    } catch (IOException e) {
+                        log.error("Ошибка запроса:", e);
+                        e.printStackTrace();
                     }
-
+                } catch (IOException e) {
+                    log.error("Ошибка запроса:", e);
+                    e.printStackTrace();
                 }
-                log.info("Сохранение данных датчиков в базу данных.");
-                signalValueExtService.saveAll(values);
-                log.info("Сохранение данных датчиков в базу данных успешно.");
-            } catch (NumberFormatException e) {
-                log.error("Ошибка разбора json. Получены значения датчиков в невверном формате: " + e.getMessage());
-                e.printStackTrace();
-            } catch (IOException e) {
-                log.error("Ошибка разбора json: " + e.getMessage());
-                e.printStackTrace();
+
+            } else {
+                ResponseEntity<String> responseEntity = rest.exchange(url,
+                        HttpMethod.GET, requestEntity, String.class);
+                tagValues =  responseEntity.getBody();
             }
+
+            log.info("Данные получены. Значения датчиков: " + tagValues);
+
+            if (tagValues != null) {
+                ObjectMapper mapper = new ObjectMapper();
+                try {
+                    JsonNode actualObj = mapper.readTree(tagValues);
+                    List<SignalValueExt> values = new ArrayList<>();
+                    for (Sensor sensor : sensors) {
+                        Signal signal = signalRepository.findBySensor(sensor);
+                        if (signal != null) {
+                            String tag = appProperties.getTags().get(sensor.getId().toString());
+                            TreeNode node = actualObj.get(tag);
+                            if (node != null && node.toString() != null
+                                    && !node.toString().replaceAll("\"", "").isEmpty()) {
+                                SignalValueExt signalValueExt = new SignalValueExt();
+                                signalValueExt.setValue(new BigDecimal(node.toString()
+                                        .replaceAll("\"", "")));
+                                signalValueExt.setSignalId(signal.getId());
+                                signalValueExt.setCalibrated(1);
+                                signalValueExt.setValueTime(LocalDateTime.now());
+                                values.add(signalValueExt);
+                                log.info("Id полученного датчика: " + signalValueExt.getSignalId() +
+                                        " значение сигнала: " + signalValueExt.getValue());
+                            }
+                        }
+
+                    }
+                    log.info("Сохранение данных датчиков в базу данных.");
+                    signalValueExtService.saveAll(values);
+                    log.info("Сохранение данных датчиков в базу данных успешно.");
+                } catch (NumberFormatException e) {
+                    log.error("Ошибка разбора json. Получены значения датчиков в невверном формате: " + e.getMessage());
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    log.error("Ошибка разбора json: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            log.info("Путь к pl302 не указан");
         }
+
     }
 
 }

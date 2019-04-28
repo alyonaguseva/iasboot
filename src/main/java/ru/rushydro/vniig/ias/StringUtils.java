@@ -6,7 +6,7 @@ package ru.rushydro.vniig.ias;
 public class StringUtils {
 
     public static boolean isNotEmpty(String str) {
-        return str != null && !str.isEmpty();
+        return str != null && !str.isEmpty() && !str.equalsIgnoreCase("null");
     }
 
 }
