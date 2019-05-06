@@ -1,6 +1,6 @@
 var app = angular.module('aisApp', [
     'ngRoute', 'signalList', 'archiveSignalList', 'sensorList',
-    'pagination', 'logList', 'exchange'
+    'pagination', 'logList', 'exchange', 'signalValueExtList'
 ]);
 
 app.controller('HeaderController', function ($scope, $location)

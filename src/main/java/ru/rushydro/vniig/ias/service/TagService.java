@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import ru.rushydro.vniig.ias.AppProperties;
 import ru.rushydro.vniig.ias.StringUtils;
 import ru.rushydro.vniig.ias.dao.SignalRepository;
+import ru.rushydro.vniig.ias.dao.entity.Pl302;
 import ru.rushydro.vniig.ias.dao.entity.Sensor;
 import ru.rushydro.vniig.ias.dao.entity.Signal;
 import ru.rushydro.vniig.ias.dao.entity.SignalValueExt;
@@ -36,7 +37,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -52,7 +55,7 @@ public class TagService {
     @Value("${tag.service.path:null}")
     private String tagUrl;
 
-    @Value("${tag.password}:null")
+    @Value("${tag.password:null}")
     private String tagPassword;
 
     private final
@@ -79,22 +82,46 @@ public class TagService {
 
     public void processTags() {
 
+        Pl302 pl302 = new Pl302();
+        pl302.setId(-1);
+        pl302.setUrl(tagUrl);
+        pl302.setPassword(tagPassword);
+
         List<Sensor> sensors = sensorService.findByInTag(true);
-        List<Sensor> temps = new ArrayList<>();
 
-        for (int i = 0; i < sensors.size(); i++) {
-            if (i % 4 == 0 && i > 0) {
-                processPackageTags(temps);
-                temps = new ArrayList<>();
+
+        Map<Integer, Pl302> pl302Map = new HashMap<>();
+        Map<Integer, List<Sensor>> sensorMap = new HashMap<>();
+
+        sensors.forEach(s -> {
+            if (s.getPl302() == null) {
+                s.setPl302(pl302);
             }
-            temps.add(sensors.get(i));
-        }
+            pl302Map.putIfAbsent(s.getPl302().getId(), s.getPl302());
 
-        processPackageTags(temps);
+            List<Sensor> list = sensorMap.computeIfAbsent(s.getPl302().getId(), k -> new ArrayList<>());
+            list.add(s);
+        });
+
+        sensorMap.forEach((key, value) -> {
+            List<Sensor> temps = new ArrayList<>();
+
+            for (int i = 0; i < value.size(); i++) {
+                if (i % 4 == 0 && i > 0) {
+                    processPackageTags(pl302Map.get(key), temps);
+                    temps = new ArrayList<>();
+                }
+                temps.add(sensors.get(i));
+            }
+
+            processPackageTags(pl302Map.get(key), temps);
+        });
+
+
     }
 
-    private void processPackageTags(List<Sensor> sensors) {
-        if (StringUtils.isNotEmpty(tagUrl)) {
+    private void processPackageTags(Pl302 pl302, List<Sensor> sensors) {
+        if (StringUtils.isNotEmpty(pl302.getUrl())) {
             String tags = sensors.stream().map(sensor ->
                     StringUtils.isNotEmpty(sensor.getTagName()) ?
                             sensor.getTagName() : appProperties.getTags().get(sensor.getId().toString()))
@@ -102,7 +129,7 @@ public class TagService {
             RestTemplate rest = new RestTemplate();
             HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
 
-            String url = tagUrl + "?read=" + tags;
+            String url = pl302.getUrl() + "?read=" + tags;
 
             log.info("Получение данных датчиков по url: " + url);
 
@@ -113,9 +140,9 @@ public class TagService {
                 try {
                     WebClient webClient = new WebClient();
                     webClient.setJavaScriptEnabled(false);
-                    HtmlPage currentPage = webClient.getPage(tagUrl); //Load page at the STRING address.
+                    HtmlPage currentPage = webClient.getPage(pl302.getUrl()); //Load page at the STRING address.
                     HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
-                    password.setValueAttribute(tagPassword); //Set value for password
+                    password.setValueAttribute(pl302.getPassword()); //Set value for password
                     List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
                     HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
                     currentPage = submitBtn.click(); //Click on the button.
@@ -132,7 +159,7 @@ public class TagService {
                 try {
                     URL getUrl = new URL(url);
                     HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
-                    String userCredentials = ":201275";
+                    String userCredentials = ":" + pl302.getPassword();
                     String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
                     con.setRequestProperty ("Authorization", basicAuth);
                     con.setRequestMethod("GET");
@@ -174,7 +201,8 @@ public class TagService {
                     for (Sensor sensor : sensors) {
                         Signal signal = signalRepository.findBySensor(sensor);
                         if (signal != null) {
-                            String tag = appProperties.getTags().get(sensor.getId().toString());
+                            String tag = StringUtils.isNotEmpty(sensor.getTagName()) ? sensor.getTagName()
+                                    : appProperties.getTags().get(sensor.getId().toString());
                             TreeNode node = actualObj.get(tag);
                             if (node != null && node.toString() != null
                                     && !node.toString().replaceAll("\"", "").isEmpty()) {

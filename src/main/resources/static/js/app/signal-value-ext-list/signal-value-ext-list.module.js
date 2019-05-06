@@ -1,0 +1,1 @@
+angular.module('signalValueExtList', ['core.signalValueExt']);

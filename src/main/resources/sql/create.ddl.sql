@@ -32,10 +32,21 @@ create table sensor(
   primary key(id)
 );
 
+-- Настройки pl302
+
+create table pl302(
+  id integer REFERENCES sensor(id) NOT NULL,
+  name varchar(128) not null,
+  url varchar(512) not null,
+  password varchar(512) not null,
+  primary key(id)
+);
+
 -- Настройки датчиков
 create table sensor_setting (
   id integer REFERENCES sensor(id) NOT NULL,
   tag_name varchar(128) NOT NULL,
+  id_pl302 integer REFERENCES pl302(id),
   primary key(id)
 );
 

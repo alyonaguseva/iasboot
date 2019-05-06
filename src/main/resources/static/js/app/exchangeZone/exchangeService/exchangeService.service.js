@@ -90,6 +90,21 @@ factory('SaveSignals', ['$resource',
         return $resource('exchange/signal/save');
     }
 ]).
+factory('GetPL302s', ['$resource',
+    function($resource) {
+        return $resource('exchange/pl302s', {}, {
+            query: {
+                method: 'GET',
+                isArray: true
+            }
+        });
+    }
+]).
+factory('SavePL302s', ['$resource',
+    function($resource) {
+        return $resource('exchange/pl302/save');
+    }
+]).
 factory('GetComboSignalTypes', ['$resource',
     function($resource) {
         return $resource('exchange/combo/signalTypes', {}, {

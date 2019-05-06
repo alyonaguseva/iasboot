@@ -1,0 +1,19 @@
+<div class="container container-fluid">
+    <legend>Список текущих значений</legend>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Идентификатор сигнала</th>
+                        <th>Значение</th>
+                    </tr>
+                    <tr ng-repeat="signalValueExt in $ctrl.signalValueExts">
+                        <td>{{signalValueExt.signalId}}</td>
+                        <td>{{signalValueExt.value}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -104,6 +104,14 @@
                         <td>Системное имя тега PL302</td>
                         <td><input class="form-control" type="text" ng-model="$ctrl.sensor.tagName" /></td>
                     </tr>
+                    <tr>
+                        <td>PL302</td>
+                        <td>
+                            <select data-ng-model="$ctrl.sensor.pl302"
+                                    data-ng-options="pl302.name for pl302 in $ctrl.pl302s track by pl302.id">
+                            </select>
+                        </td>
+                    </tr>
                 </table>
                 <div ng-if="$ctrl.errorSensor != null" class="alert alert-danger">
                     {{$ctrl.errorSensor}}
@@ -185,6 +193,63 @@
         </div>
     </div>
 
-
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3>PL302</h3>
+                </div>
+                <div class="col-xs-4 text-right" style="padding-top: 18px">
+                    <button type="button" class="btn btn-default" ng-click="$ctrl.addPL302()">Добавить</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>Идентификатор</th>
+                                <th>Датчик</th>
+                                <th>Измеряеный параметр</th>
+                            </tr>
+                            <tr ng-repeat="pl302 in $ctrl.pl302s" ng-click="$ctrl.setPL302(pl302)">
+                                <td>{{pl302.id}}</td>
+                                <td>{{pl302.name}}</td>
+                                <td>{{pl302.url}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <h3>Информация о PL302 <span ng-if="$ctrl.pl302 != null">{{$ctrl.pl302.id}}</span></h3>
+            <div ng-if="$ctrl.pl302 != null">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Идентификатор</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.pl302.id"
+                                   ng-disabled="$ctrl.selectedPL302 != null"/></td>
+                    </tr>
+                    <tr>
+                        <td>Наименование</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.pl302.name" /></td>
+                    </tr>
+                    <tr>
+                        <td>URL PL302</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.pl302.url" /></td>
+                    </tr>
+                    <tr>
+                        <td>Пароль</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.pl302.password" /></td>
+                    </tr>
+                </table>
+                <div ng-if="$ctrl.errorPL302 != null" class="alert alert-danger">
+                    {{$ctrl.errorPL302}}
+                </div>
+                <button class="btn btn-default" ng-click="$ctrl.savePL302($ctrl.pl302)">Сохранить</button>
+            </div>
+        </div>
+    </div>
 
 </div>

@@ -30,6 +30,10 @@ public class Sensor {
     @Column(name = "tag_name", table = "sensor_setting")
     private String tagName;
 
+    @JoinColumn(name = "id_pl302", table = "sensor_setting")
+    @ManyToOne
+    private Pl302 pl302;
+
     public Integer getId() {
         return id;
     }
@@ -84,5 +88,13 @@ public class Sensor {
 
     public void setTagName(String tagName) {
         this.tagName = tagName;
+    }
+
+    public Pl302 getPl302() {
+        return pl302;
+    }
+
+    public void setPl302(Pl302 pl302) {
+        this.pl302 = pl302;
     }
 }

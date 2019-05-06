@@ -24,11 +24,17 @@
     <script src="<@spring.url "/js/app/sensor/sensor.module.js" />"></script>
     <script src="<@spring.url "/js/app/sensor/sensor.service.js" />"></script>
 
+    <script src="<@spring.url "/js/app/signal-value-ext/signal-value-ext.module.js" />"></script>
+    <script src="<@spring.url "/js/app/signal-value-ext/signal-value-ext.service.js" />"></script>
+
     <script src="<@spring.url "/js/app/dictionary/dictionary.module.js" />"></script>
     <script src="<@spring.url "/js/app/dictionary/dictionary.service.js" />"></script>
 
     <script src="<@spring.url "/js/app/signal-list/signal-list.module.js" />"></script>
     <script src="<@spring.url "/js/app/signal-list/signal-list.component.js" />"></script>
+
+    <script src="<@spring.url "/js/app/signal-value-ext-list/signal-value-ext-list.module.js" />"></script>
+    <script src="<@spring.url "/js/app/signal-value-ext-list/signal-value-ext-list.component.js" />"></script>
 
     <script src="<@spring.url "/js/app/log-list/log-list.module.js" />"></script>
     <script src="<@spring.url "/js/app/log-list/log-list.component.js" />"></script>
@@ -71,6 +77,7 @@
                 <#--<li ng-class="{ active: isActive('/archive')}"><a href="#!archive">Архив событий</a></li>-->
                     <li ng-class="{ active: isActive('/logs')}"><a href="#!logs">Журнал событий</a></li>
                     <li ng-class="{ active: isActive('/sensors')}"><a href="#!sensors">Работа с датчиками</a></li>
+                <li ng-class="{ active: isActive('/signalvalues')}"><a href="#!signalvalues">Текущие значения</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

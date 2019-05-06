@@ -20,6 +20,9 @@ config(['$locationProvider', '$routeProvider',
         when('/logs', {
             template: '<log-list></log-list>'
         }).
+        when('/signalvalues', {
+            template: '<signal-value-ext-list></signal-value-ext-list>'
+        }).
         otherwise('/logs');
     }
 ]);

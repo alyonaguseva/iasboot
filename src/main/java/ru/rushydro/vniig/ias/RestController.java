@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.rushydro.vniig.ias.dao.SignalValueExtRepository;
 import ru.rushydro.vniig.ias.dao.entity.TaskLog;
 import ru.rushydro.vniig.ias.dao.specification.TaskLogSpecification;
 import ru.rushydro.vniig.ias.model.PageCount;
@@ -15,6 +16,7 @@ import ru.rushydro.vniig.ias.model.Sensor;
 import ru.rushydro.vniig.ias.model.Signal;
 import ru.rushydro.vniig.ias.service.SensorService;
 import ru.rushydro.vniig.ias.service.TaskLogService;
+import ru.rushydro.vniig.ias.types.SignalValueExt;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +40,8 @@ public class RestController {
 
     private final
     SensorService sensorService;
+
+    private final SignalValueExtRepository signalValueExtRepository;
 
     private static String[] controlObjects = {"Ж/Б плотина", "Ж/Б плотина 2", "Ж/Б плотина 3"};
     private static String[] controlElements = {"Низовая грань", "Низовая грань 2", "Низовая грань 3"};
@@ -70,9 +74,10 @@ public class RestController {
 
     @Autowired
     public RestController(TaskLogService taskLogService,
-                          SensorService sensorService) {
+                          SensorService sensorService, SignalValueExtRepository signalValueExtRepository) {
         this.taskLogService = taskLogService;
         this.sensorService = sensorService;
+        this.signalValueExtRepository = signalValueExtRepository;
     }
 
     @RequestMapping("/signals")
@@ -118,6 +123,20 @@ public class RestController {
             s.setSensorType(sensor.getType());
             s.setOn(sensor.getOn());
             return s;
+        }).collect(Collectors.toList());
+    }
+
+    @RequestMapping("/signalvalueext")
+    @ResponseBody
+    public List<SignalValueExt> getSignalValueExt() {
+        return signalValueExtRepository.findNew().stream().map(sve -> {
+            SignalValueExt signalValueExt = new SignalValueExt();
+            signalValueExt.setId(sve.getId());
+            signalValueExt.setSignalId(sve.getSignalId());
+            signalValueExt.setValue(sve.getValue());
+            signalValueExt.setCalibrated(sve.getCalibrated());
+            signalValueExt.setValueTime(sve.getValueTime());
+            return signalValueExt;
         }).collect(Collectors.toList());
     }
 

@@ -4,25 +4,32 @@ module('exchange').component(
         templateUrl: '/js/app/exchangeZone/exchange.template.html',
         controller: ['GetMeasures','GetComboMeasures','SaveMeasures',
                         'GetSensors','GetComboSensors','SaveSensors','GetSignals','SaveSignals', 'GetComboSignalTypes',
+                        'GetPL302s','SavePL302s',
             function SensorsController(GetMeasures, GetComboMeasures, SaveMeasures,
-                        GetSensors, GetComboSensors, SaveSensors, GetSignals, SaveSignals, GetComboSignalTypes) {
+                        GetSensors, GetComboSensors, SaveSensors, GetSignals, SaveSignals, GetComboSignalTypes,
+                                       GetPL302s, SavePL302s) {
                 var vm = this;
                 vm.sensors = null;
                 vm.comboSensors = null;
                 vm.signals = null;
                 vm.measures = null;
                 vm.comboMeasures = null;
+                vm.pl302s = null;
                 vm.meas = null;
                 vm.sensor = null;
                 vm.signal = null;
+                vm.pl302 = null;
                 vm.selectedMeas = null;
                 vm.selectedSensor = null;
                 vm.selectedSignal = null;
+                vm.selectedPL302 = null;
                 vm.error = null;
                 vm.errorSensor = null;
                 vm.errorSignal = null;
+                vm.errorPL302 = null;
                 vm.comboSignalTypes = null;
                 vm.$onInit = function () {
+                    vm.pl302s = GetPL302s.query();
                     vm.measures = GetMeasures.query();
                     vm.sensors = GetSensors.query();
                     vm.signals = GetSignals.query();
@@ -65,6 +72,7 @@ module('exchange').component(
                     vm.sensor.type = sensor.type;
                     vm.sensor.objMonitor = sensor.objMonitor;
                     vm.sensor.tagName = sensor.tagName;
+                    vm.sensor.pl302 = sensor.pl302;
                 };
 
                 vm.addSensor = function () {
@@ -107,6 +115,32 @@ module('exchange').component(
                             vm.errorSignal = null;
                             vm.signals = GetSignals.query();
                             vm.selectedSignal = signal;
+                        }
+                    })
+                };
+
+                vm.setPL302 = function (pl302) {
+                    vm.selectedPL302 = pl302;
+                    vm.pl302 = {};
+                    vm.pl302.id = pl302.id;
+                    vm.pl302.name = pl302.name;
+                    vm.pl302.url = pl302.url;
+                    vm.pl302.password = pl302.password;
+                };
+
+                vm.addPL302 = function () {
+                    vm.selectedPL302 = null;
+                    vm.pl302 = {};
+                };
+
+                vm.savePL302 = function(pl302) {
+                    SavePL302s.save({}, pl302).$promise.then(function(data) {
+                        if (!data.result) {
+                            vm.errorPL302 = 'Ошибка сохранения pl302: ' + data.message;
+                        } else {
+                            vm.errorPL302 = null;
+                            vm.pl302s = GetPL302s.query();
+                            vm.selectedPL302 = pl302;
                         }
                     })
                 };

@@ -12,6 +12,8 @@ public class Sensor {
 
     String tagName;
 
+    Dictionary pl302;
+
     public Integer getId() {
         return id;
     }
@@ -50,5 +52,13 @@ public class Sensor {
 
     public void setTagName(String tagName) {
         this.tagName = tagName;
+    }
+
+    public Dictionary getPl302() {
+        return pl302;
+    }
+
+    public void setPl302(Dictionary pl302) {
+        this.pl302 = pl302;
     }
 }

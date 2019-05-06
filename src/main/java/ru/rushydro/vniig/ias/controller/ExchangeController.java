@@ -27,17 +27,20 @@ public class ExchangeController {
 
     private final ObjectMonitorRepository objectMonitorRepository;
 
+    private final PL302Repository pl302Repository;
+
     @Autowired
     public ExchangeController(MeasuredParameterRepository measuredParameterRepository,
                               SensorRepository sensorRepository,
                               SignalRepository signalRepository,
                               SignalTypeRepository signalTypeRepository,
-                              ObjectMonitorRepository objectMonitorRepository) {
+                              ObjectMonitorRepository objectMonitorRepository, PL302Repository pl302Repository) {
         this.measuredParameterRepository = measuredParameterRepository;
         this.sensorRepository = sensorRepository;
         this.signalRepository = signalRepository;
         this.signalTypeRepository = signalTypeRepository;
         this.objectMonitorRepository = objectMonitorRepository;
+        this.pl302Repository = pl302Repository;
     }
 
     @RequestMapping("/measures")
@@ -97,6 +100,12 @@ public class ExchangeController {
             Dictionary objMon = new Dictionary();
             objMon.setId(entity.getObjectMonitor().getId());
             objMon.setName(entity.getObjectMonitor().getName());
+            if (entity.getPl302() != null) {
+                Dictionary pl302 = new Dictionary();
+                pl302.setId(entity.getPl302().getId());
+                pl302.setName(entity.getPl302().getName());
+                sensor.setPl302(pl302);
+            }
             sensor.setId(entity.getId());
             sensor.setName(entity.getName());
             sensor.setObjMonitor(objMon);
@@ -148,12 +157,15 @@ public class ExchangeController {
         saveSensor.setName(sensor.getName());
         saveSensor.setType(sensor.getType());
         saveSensor.setOn(1);
-        saveSensor.setInTag(false);
         saveSensor.setTagName(sensor.getTagName());
         if (sensor.getObjMonitor() != null) {
             saveSensor.setObjectMonitor(objectMonitorRepository.findById(sensor.getObjMonitor().getId()).orElse(null));
         } else {
             saveSensor.setObjectMonitor(objectMonitorRepository.findById(1).orElse(null));
+        }
+
+        if (sensor.getPl302() != null) {
+            saveSensor.setPl302(pl302Repository.findById(sensor.getPl302().getId()).orElse(null));
         }
 
         try {
@@ -213,6 +225,43 @@ public class ExchangeController {
         }
         try {
             signalRepository.save(saveSignal);
+            return new SimpleResponse(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new SimpleResponse(false, e.getMessage());
+        }
+    }
+
+    @RequestMapping("/pl302s")
+    @ResponseBody
+    public List<PL302> getPL302s(){
+        List<PL302> result = new ArrayList<>();
+        pl302Repository.findAll().forEach(entity -> {
+            PL302 pl302 = new PL302();
+            pl302.setId(entity.getId());
+            pl302.setName(entity.getName());
+            pl302.setUrl(entity.getUrl());
+            pl302.setPassword(entity.getPassword());
+            result.add(pl302);
+        });
+        result.sort(Comparator.comparingInt(PL302::getId));
+        return result;
+    }
+
+    @RequestMapping("/pl302/save")
+    @ResponseBody
+    public SimpleResponse savePL302(@RequestBody PL302 pl302){
+        ru.rushydro.vniig.ias.dao.entity.Pl302 savePL302 = pl302Repository
+                .findById(pl302.getId()).orElse(null);
+        if (savePL302 == null) {
+            savePL302 = new ru.rushydro.vniig.ias.dao.entity.Pl302();
+            savePL302.setId(pl302.getId());
+        }
+        savePL302.setName(pl302.getName());
+        savePL302.setUrl(pl302.getUrl());
+        savePL302.setPassword(pl302.getPassword());
+        try {
+            pl302Repository.save(savePL302);
             return new SimpleResponse(true);
         } catch (Exception e) {
             e.printStackTrace();
