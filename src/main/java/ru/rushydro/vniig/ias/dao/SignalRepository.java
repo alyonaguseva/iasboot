@@ -15,4 +15,6 @@ public interface SignalRepository extends CrudRepository<Signal, Integer> {
 
     Signal findBySensor(Sensor sensor);
 
+    Iterable<Signal> findByInTag(Boolean tag);
+
 }

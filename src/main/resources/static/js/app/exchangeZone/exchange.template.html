@@ -100,18 +100,6 @@
                         <td>Тип данных</td>
                         <td><input class="form-control" type="text" ng-model="$ctrl.sensor.type" /></td>
                     </tr>
-                    <tr>
-                        <td>Системное имя тега PL302</td>
-                        <td><input class="form-control" type="text" ng-model="$ctrl.sensor.tagName" /></td>
-                    </tr>
-                    <tr>
-                        <td>PL302</td>
-                        <td>
-                            <select data-ng-model="$ctrl.sensor.pl302"
-                                    data-ng-options="pl302.name for pl302 in $ctrl.pl302s track by pl302.id">
-                            </select>
-                        </td>
-                    </tr>
                 </table>
                 <div ng-if="$ctrl.errorSensor != null" class="alert alert-danger">
                     {{$ctrl.errorSensor}}
@@ -181,6 +169,22 @@
                         <td>
                             <select ng-model="$ctrl.signal.measureParam"
                                     ng-options="option.name for option in $ctrl.comboMeasures track by option.id">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Получать данные сигнала из PL302</td>
+                        <td><input class="form-control" type="checkbox" ng-model="$ctrl.signal.inTag" /></td>
+                    </tr>
+                    <tr>
+                        <td>Системное имя тега PL302</td>
+                        <td><input class="form-control" type="text" ng-model="$ctrl.signal.tagName" /></td>
+                    </tr>
+                    <tr>
+                        <td>PL302</td>
+                        <td>
+                            <select data-ng-model="$ctrl.signal.pl302"
+                                    data-ng-options="pl302.name for pl302 in $ctrl.pl302s track by pl302.id">
                             </select>
                         </td>
                     </tr>

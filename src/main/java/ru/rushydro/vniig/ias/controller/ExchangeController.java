@@ -100,17 +100,12 @@ public class ExchangeController {
             Dictionary objMon = new Dictionary();
             objMon.setId(entity.getObjectMonitor().getId());
             objMon.setName(entity.getObjectMonitor().getName());
-            if (entity.getPl302() != null) {
-                Dictionary pl302 = new Dictionary();
-                pl302.setId(entity.getPl302().getId());
-                pl302.setName(entity.getPl302().getName());
-                sensor.setPl302(pl302);
-            }
+
             sensor.setId(entity.getId());
             sensor.setName(entity.getName());
             sensor.setObjMonitor(objMon);
             sensor.setType(entity.getType());
-            sensor.setTagName(entity.getTagName());
+
             result.add(sensor);
         });
         result.sort(Comparator.comparingInt(Sensor::getId));
@@ -157,15 +152,10 @@ public class ExchangeController {
         saveSensor.setName(sensor.getName());
         saveSensor.setType(sensor.getType());
         saveSensor.setOn(1);
-        saveSensor.setTagName(sensor.getTagName());
         if (sensor.getObjMonitor() != null) {
             saveSensor.setObjectMonitor(objectMonitorRepository.findById(sensor.getObjMonitor().getId()).orElse(null));
         } else {
             saveSensor.setObjectMonitor(objectMonitorRepository.findById(1).orElse(null));
-        }
-
-        if (sensor.getPl302() != null) {
-            saveSensor.setPl302(pl302Repository.findById(sensor.getPl302().getId()).orElse(null));
         }
 
         try {
@@ -196,6 +186,17 @@ public class ExchangeController {
             measureParam.setId(entity.getMeasuredParameter().getId());
             measureParam.setName(entity.getMeasuredParameter().getName());
             signal.setMeasureParam(measureParam);
+
+            if (entity.getPl302() != null) {
+                Dictionary pl302 = new Dictionary();
+                pl302.setId(entity.getPl302().getId());
+                pl302.setName(entity.getPl302().getName());
+                signal.setPl302(pl302);
+            }
+
+            signal.setTagName(entity.getTagName());
+            signal.setInTag(entity.getInTag());
+
             result.add(signal);
         });
         result.sort(Comparator.comparingInt(Signal::getId));
@@ -222,6 +223,13 @@ public class ExchangeController {
         if (signal.getMeasureParam() != null && signal.getMeasureParam().getId() != null) {
             saveSignal.setMeasuredParameter(measuredParameterRepository
                     .findById(signal.getMeasureParam().getId()).orElse(null));
+        }
+
+        saveSignal.setInTag(signal.getInTag());
+        saveSignal.setTagName(signal.getTagName());
+
+        if (signal.getPl302() != null) {
+            saveSignal.setPl302(pl302Repository.findById(signal.getPl302().getId()).orElse(null));
         }
         try {
             signalRepository.save(saveSignal);

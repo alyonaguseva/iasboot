@@ -63,7 +63,16 @@ create table signal(
   id_sensor integer REFERENCES sensor(id) NOT NULL,
   id_type integer REFERENCES signal_type(id) NOT NULL,
   id_measured_parameter INTEGER REFERENCES measured_parameter(id) not null,
+  in_tag BOOLEAN,
   primary key(id)
+);
+
+-- Настройки сигналов
+create table signal_setting (
+    id integer REFERENCES signal(id) NOT NULL,
+    tag_name varchar(128) NOT NULL,
+    id_pl302 integer REFERENCES pl302(id),
+    primary key(id)
 );
 
 -- Состояние задания

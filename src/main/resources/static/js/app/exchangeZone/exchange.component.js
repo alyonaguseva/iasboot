@@ -71,8 +71,6 @@ module('exchange').component(
                     vm.sensor.name = sensor.name;
                     vm.sensor.type = sensor.type;
                     vm.sensor.objMonitor = sensor.objMonitor;
-                    vm.sensor.tagName = sensor.tagName;
-                    vm.sensor.pl302 = sensor.pl302;
                 };
 
                 vm.addSensor = function () {
@@ -100,6 +98,9 @@ module('exchange').component(
                     vm.signal.type = signal.type;
                     vm.signal.sensor = signal.sensor;
                     vm.signal.measureParam = signal.measureParam;
+                    vm.signal.tagName = signal.tagName;
+                    vm.signal.inTag = signal.inTag;
+                    vm.signal.pl302 = signal.pl302;
                 };
 
                 vm.addSignal = function () {

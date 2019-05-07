@@ -7,6 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "signal")
+@SecondaryTable(name = "signal_setting", pkJoinColumns={@PrimaryKeyJoinColumn(name="id", referencedColumnName="id") })
 public class Signal {
 
     @Id
@@ -23,6 +24,16 @@ public class Signal {
     @ManyToOne
     @JoinColumn(name = "id_measured_parameter")
     private MeasuredParameter measuredParameter;
+
+    @Column(name = "in_tag")
+    private Boolean inTag;
+
+    @Column(name = "tag_name", table = "signal_setting")
+    private String tagName;
+
+    @JoinColumn(name = "id_pl302", table = "signal_setting")
+    @ManyToOne
+    private Pl302 pl302;
 
     public Integer getId() {
         return id;
@@ -54,5 +65,29 @@ public class Signal {
 
     public void setMeasuredParameter(MeasuredParameter measuredParameter) {
         this.measuredParameter = measuredParameter;
+    }
+
+    public Boolean getInTag() {
+        return inTag;
+    }
+
+    public void setInTag(Boolean inTag) {
+        this.inTag = inTag;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Pl302 getPl302() {
+        return pl302;
+    }
+
+    public void setPl302(Pl302 pl302) {
+        this.pl302 = pl302;
     }
 }

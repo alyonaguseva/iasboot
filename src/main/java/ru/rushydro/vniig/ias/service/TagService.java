@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gargoylesoftware.htmlunit.UnexpectedPage;
 import com.gargoylesoftware.htmlunit.WebClient;
-import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlInput;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -40,8 +39,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
@@ -62,6 +59,9 @@ public class TagService {
     SensorService sensorService;
 
     private final
+    SignalService signalService;
+
+    private final
     AppProperties appProperties;
 
     private final HttpHeaders headers;
@@ -71,8 +71,10 @@ public class TagService {
     private final SignalRepository signalRepository;
 
     @Autowired
-    public TagService(SensorService sensorService, AppProperties appProperties, SignalValueExtService signalValueExtService, SignalRepository signalRepository) {
+    public TagService(SensorService sensorService, SignalService signalService, AppProperties appProperties,
+                      SignalValueExtService signalValueExtService, SignalRepository signalRepository) {
         this.sensorService = sensorService;
+        this.signalService = signalService;
         this.appProperties = appProperties;
         this.signalValueExtService = signalValueExtService;
         this.signalRepository = signalRepository;
@@ -87,31 +89,31 @@ public class TagService {
         pl302.setUrl(tagUrl);
         pl302.setPassword(tagPassword);
 
-        List<Sensor> sensors = sensorService.findByInTag(true);
+        List<Signal> signals = signalService.findByInTag(true);
 
 
         Map<Integer, Pl302> pl302Map = new HashMap<>();
-        Map<Integer, List<Sensor>> sensorMap = new HashMap<>();
+        Map<Integer, List<Signal>> sensorMap = new HashMap<>();
 
-        sensors.forEach(s -> {
+        signals.forEach(s -> {
             if (s.getPl302() == null) {
                 s.setPl302(pl302);
             }
             pl302Map.putIfAbsent(s.getPl302().getId(), s.getPl302());
 
-            List<Sensor> list = sensorMap.computeIfAbsent(s.getPl302().getId(), k -> new ArrayList<>());
+            List<Signal> list = sensorMap.computeIfAbsent(s.getPl302().getId(), k -> new ArrayList<>());
             list.add(s);
         });
 
         sensorMap.forEach((key, value) -> {
-            List<Sensor> temps = new ArrayList<>();
+            List<Signal> temps = new ArrayList<>();
 
             for (int i = 0; i < value.size(); i++) {
                 if (i % 4 == 0 && i > 0) {
                     processPackageTags(pl302Map.get(key), temps);
                     temps = new ArrayList<>();
                 }
-                temps.add(sensors.get(i));
+                temps.add(signals.get(i));
             }
 
             processPackageTags(pl302Map.get(key), temps);
@@ -120,11 +122,11 @@ public class TagService {
 
     }
 
-    private void processPackageTags(Pl302 pl302, List<Sensor> sensors) {
+    private void processPackageTags(Pl302 pl302, List<Signal> signals) {
         if (StringUtils.isNotEmpty(pl302.getUrl())) {
-            String tags = sensors.stream().map(sensor ->
-                    StringUtils.isNotEmpty(sensor.getTagName()) ?
-                            sensor.getTagName() : appProperties.getTags().get(sensor.getId().toString()))
+            String tags = signals.stream().map(signal ->
+                    StringUtils.isNotEmpty(signal.getTagName()) ?
+                            signal.getTagName() : appProperties.getTags().get(signal.getId().toString()))
                     .collect(Collectors.joining("__"));
             RestTemplate rest = new RestTemplate();
             HttpEntity<String> requestEntity = new HttpEntity<>("", headers);
@@ -198,11 +200,10 @@ public class TagService {
                 try {
                     JsonNode actualObj = mapper.readTree(tagValues);
                     List<SignalValueExt> values = new ArrayList<>();
-                    for (Sensor sensor : sensors) {
-                        Signal signal = signalRepository.findBySensor(sensor);
+                    for (Signal signal : signals) {
                         if (signal != null) {
-                            String tag = StringUtils.isNotEmpty(sensor.getTagName()) ? sensor.getTagName()
-                                    : appProperties.getTags().get(sensor.getId().toString());
+                            String tag = StringUtils.isNotEmpty(signal.getTagName()) ? signal.getTagName()
+                                    : appProperties.getTags().get(signal.getId().toString());
                             TreeNode node = actualObj.get(tag);
                             if (node != null && node.toString() != null
                                     && !node.toString().replaceAll("\"", "").isEmpty()) {

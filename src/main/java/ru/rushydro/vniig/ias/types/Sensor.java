@@ -10,9 +10,7 @@ public class Sensor {
 
     String type;
 
-    String tagName;
 
-    Dictionary pl302;
 
     public Integer getId() {
         return id;
@@ -44,21 +42,5 @@ public class Sensor {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getTagName() {
-        return tagName;
-    }
-
-    public void setTagName(String tagName) {
-        this.tagName = tagName;
-    }
-
-    public Dictionary getPl302() {
-        return pl302;
-    }
-
-    public void setPl302(Dictionary pl302) {
-        this.pl302 = pl302;
     }
 }

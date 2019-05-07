@@ -2,13 +2,19 @@ package ru.rushydro.vniig.ias.types;
 
 public class Signal {
 
-    Integer id;
+    private Integer id;
 
-    Dictionary sensor;
+    private Dictionary sensor;
 
-    Dictionary type;
+    private Dictionary type;
 
-    Dictionary measureParam;
+    private Dictionary measureParam;
+
+    private String tagName;
+
+    private Dictionary pl302;
+
+    private Boolean inTag;
 
     public Integer getId() {
         return id;
@@ -40,5 +46,29 @@ public class Signal {
 
     public void setMeasureParam(Dictionary measureParam) {
         this.measureParam = measureParam;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Dictionary getPl302() {
+        return pl302;
+    }
+
+    public void setPl302(Dictionary pl302) {
+        this.pl302 = pl302;
+    }
+
+    public void setInTag(Boolean inTag) {
+        this.inTag = inTag;
+    }
+
+    public Boolean getInTag() {
+        return inTag;
     }
 }
