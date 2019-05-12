@@ -1,0 +1,99 @@
+package ru.rushydro.vniig.ias.service;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ru.rushydro.vniig.ias.StringUtils;
+import ru.rushydro.vniig.ias.dao.entity.AppData;
+
+import java.util.Calendar;
+import java.util.Date;
+
+@Service
+public class InterrogationService {
+
+    private final static Logger log = LoggerFactory.getLogger(InterrogationService.class);
+
+    private Date interrogationInclinometersDate;
+
+    private Date interrogationStringSensorsDate;
+
+    @Autowired
+    private AppDataService appDataService;
+
+    public void interrogationInclinometers() {
+        AppData appData = appDataService.findByName("inclinometersUrl");
+        if (appData != null && StringUtils.isNotEmpty(appData.getValue())) {
+            pingUrl(appData.getValue(), null);
+        }
+    }
+
+    public void interrogationStringSensors() {
+        AppData appData = appDataService.findByName("stringSensorsUrl");
+        if (appData != null && StringUtils.isNotEmpty(appData.getValue())) {
+
+            String json;
+            AppData sensorData = appDataService.findByName("stringSensorsList");
+
+            if (StringUtils.isNotEmpty(sensorData.getValue())) {
+                json = "{\"ids\":[" + sensorData.getValue() + "]}";
+            } else {
+                json = "{\"ids\":[]}";
+            }
+
+            pingUrl(appData.getValue(), json);
+        }
+    }
+
+    public Date getInterrogationInclinometersNext() {
+        return getNextTime(interrogationInclinometersDate, "inclinometersTime");
+    }
+
+    public Date getinterrogationStringSensorsNext() {
+        return getNextTime(interrogationStringSensorsDate, "stringSensorsTime");
+    }
+
+    private Date getNextTime(Date date, String propertyName) {
+        if (date == null) {
+            date = new Date();
+        }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int time = 60000;
+        AppData appData = appDataService.findByName(propertyName);
+        if (appData != null && StringUtils.isNotEmpty(appData.getValue()) && appData.getValue().matches("\\d+")) {
+            time = Integer.parseInt(appData.getValue());
+        }
+        calendar.add(Calendar.MILLISECOND, time);
+        date = calendar.getTime();
+        return date;
+    }
+
+    private void pingUrl(String url, String json) {
+        try {
+            HttpClient httpClient = HttpClientBuilder.create().build();
+            HttpPost request = new HttpPost(url);
+            if (StringUtils.isNotEmpty(json)) {
+                StringEntity params = new StringEntity(json);
+                request.setHeader("Content-type", "application/json");
+                request.setEntity(params);
+            }
+
+            HttpResponse response = httpClient.execute(request);
+            if (response.getStatusLine().getStatusCode() != 200) {
+                log.error("Ошибка отправки сообщения по url. Код ошибки: " + response.getStatusLine().getStatusCode());
+            }
+
+        } catch (Exception e) {
+            log.error("Ошибка отправки сообщения по url", e);
+            e.printStackTrace();
+        }
+    }
+
+}

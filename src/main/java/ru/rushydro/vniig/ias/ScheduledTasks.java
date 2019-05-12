@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,11 @@ public class ScheduledTasks {
 
     private boolean processSendTaskProgress;
 
+    private Long time = 1000L;
+
+    @Value("${work.exchange.repository:true}")
+    private boolean workExchangeRepository;
+
     @Value("${insert.test.data:false}")
     private boolean insertTestData;
 
@@ -53,17 +59,19 @@ public class ScheduledTasks {
     @Async
     @Scheduled(fixedRateString = "${get.task.time}")
     public void getTasksFromExchange() {
-        try {
-            if (!getTaskProgress) {
-                getTaskProgress = true;
-                log.debug("Запуск задачи получение заданий");
-                exchangeRepository.getTasks();
+        if (workExchangeRepository) {
+            try {
+                if (!getTaskProgress) {
+                    getTaskProgress = true;
+                    log.debug("Запуск задачи получение заданий");
+                    exchangeRepository.getTasks();
+                    getTaskProgress = false;
+                }
+
+            } catch (Exception e) {
+                log.error("Ошибка получения заданий: ", e);
                 getTaskProgress = false;
             }
-
-        } catch (Exception e) {
-            log.error("Ошибка получения заданий: ", e);
-            getTaskProgress = false;
         }
     }
 
@@ -122,4 +130,22 @@ public class ScheduledTasks {
         tagService.processTags();
     }
 
+//    @Async
+//    @Scheduled(fixedRateString = "#{@getInclinometersRate}")
+//    public void interrogationInclinometers() {
+//        System.out.println("Тест 1");
+//    }
+//
+//    @Async
+//    @Scheduled(fixedRate = 1000L)
+//    public void interrogationStringSensors() {
+//        System.out.println("Тест 2");
+//    }
+//
+//    @Bean
+//    public Long getInclinometersRate() {
+//        time = time * 2;
+//        System.out.println("Получаем настройку");
+//        return time;
+//    }
 }

@@ -26,4 +26,8 @@ public class AppDataService {
         return appDataRepository.findById(id).orElse(null);
     }
 
+    public AppData findByName(String name) {
+        return appDataRepository.findByName(name).orElse(null);
+    }
+
 }

@@ -1,5 +1,6 @@
 package ru.rushydro.vniig.ias;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -7,13 +8,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.Trigger;
+import org.springframework.scheduling.TriggerContext;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import ru.rushydro.vniig.ias.service.InterrogationService;
 
 import javax.sql.DataSource;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by yazik on 12.03.2017.
@@ -66,5 +74,4 @@ public class IASApplication {
     public DataSource exchangeDataSource() {
         return exchangeDataSourceProperties().initializeDataSourceBuilder().build();
     }
-
 }

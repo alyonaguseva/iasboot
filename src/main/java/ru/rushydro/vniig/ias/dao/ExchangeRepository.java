@@ -1,12 +1,15 @@
 package ru.rushydro.vniig.ias.dao;
 
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.dao.entity.Sensor;
 import ru.rushydro.vniig.ias.dao.entity.Signal;
@@ -18,6 +21,7 @@ import ru.rushydro.vniig.ias.service.TaskLogService;
 import ru.rushydro.vniig.ias.service.TaskStatusService;
 
 import javax.sql.DataSource;
+import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -115,10 +119,17 @@ public class ExchangeRepository {
             jdbcTemplate.execute("UNLOCK TABLES");
 
             commit();
-        } catch (DataAccessException e) {
-            log.error("Ошибка получения заданий: ", e);
-            jdbcTemplate.execute("UNLOCK TABLES");
-            rollback();
+        } catch (CannotGetJdbcConnectionException e) {
+            log.error("Ошибка подкчлючения к mysql БД.");
+        } catch (Throwable e) {
+            if (e instanceof CommunicationsException || e instanceof ConnectException) {
+                log.error("Ошибка подкчлючения к mysql БД.");
+            } else {
+                log.error("Ошибка получения заданий: ", e);
+                jdbcTemplate.execute("UNLOCK TABLES");
+                rollback();
+            }
+
         }
 
         if (!tasks.isEmpty()) {
@@ -154,10 +165,16 @@ public class ExchangeRepository {
                 jdbcTemplate.execute("UNLOCK TABLES");
 
                 commit();
-            } catch (DataAccessException e) {
+            } catch (CannotGetJdbcConnectionException e) {
+                log.error("Ошибка подкчлюения к mysql БД.");
+            }  catch (Exception e) {
                 log.error("Ошибка отправки заданий: ", e);
                 jdbcTemplate.execute("UNLOCK TABLES");
                 rollback();
+            } catch (Throwable e) {
+                if (e instanceof CommunicationsException || e instanceof ConnectException) {
+                    log.error("Ошибка подкчлюения к mysql БД.");
+                }
             }
         }
     }
