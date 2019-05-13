@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.StringUtils;
 import ru.rushydro.vniig.ias.dao.entity.AppData;
+import ru.rushydro.vniig.ias.model.InterrogationSetting;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -91,9 +92,61 @@ public class InterrogationService {
             }
 
         } catch (Exception e) {
-            log.error("Ошибка отправки сообщения по url", e);
+            log.error("Ошибка отправки сообщения по url: " + url, e);
             e.printStackTrace();
         }
     }
 
+    public InterrogationSetting getSetting() {
+        InterrogationSetting setting = new InterrogationSetting();
+        AppData data = appDataService.findByName("inclinometersUrl");
+        if (data != null && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setInclinometersUrl(data.getValue());
+        }
+
+        data = appDataService.findByName("inclinometersTime");
+        if (data != null && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setInclinometersTime(Integer.parseInt(data.getValue()));
+        }
+
+        data = appDataService.findByName("stringSensorsUrl");
+        if (data != null && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setStringSensorsUrl(data.getValue());
+        }
+
+        data = appDataService.findByName("stringSensorsTime");
+        if (data != null && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setStringSensorsTime(Integer.parseInt(data.getValue()));
+        }
+
+        data = appDataService.findByName("stringSensorsList");
+        if (data != null && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setStringSensorsList(data.getValue());
+        }
+
+        return setting;
+    }
+
+    public void saveSetting(InterrogationSetting interrogationSetting) {
+        saveData(3, "inclinometersUrl", interrogationSetting.getInclinometersUrl());
+        saveData(4, "inclinometersTime", interrogationSetting.getInclinometersTime() != null
+                ? interrogationSetting.getInclinometersTime().toString() : null);
+        saveData(5, "stringSensorsUrl", interrogationSetting.getStringSensorsUrl());
+        saveData(6, "stringSensorsTime", interrogationSetting.getStringSensorsTime() != null
+                ? interrogationSetting.getStringSensorsTime().toString() : null);
+        saveData(7, "stringSensorsList", interrogationSetting.getStringSensorsList());
+    }
+
+    private void saveData(Integer id, String propertyName, String value) {
+        AppData data = appDataService.findByName(propertyName);
+        if (data != null) {
+            data.setValue(value);
+            appDataService.save(data);
+        } else {
+            data = new AppData();
+            data.setId(id);
+            data.setName(propertyName);
+            data.setValue(value);
+        }
+    }
 }

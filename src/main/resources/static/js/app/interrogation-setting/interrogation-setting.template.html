@@ -1,0 +1,51 @@
+<div class="container container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <div ng-if="$ctrl.error != null" class="alert alert-danger">
+                {{$ctrl.error}}
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><h3>Настройки инклинометров</h3></div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-xs-12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Ссылка опроса</td>
+                            <td><input class="form-control" type="text" ng-model="$ctrl.setting.inclinometersUrl"
+                                       ng-disabled="$ctrl.selectedMeas != null"/></td>
+                        </tr>
+                        <tr>
+                            <td>Время между опросами в миллисекундах</td>
+                            <td><input class="form-control" type="number" ng-model="$ctrl.setting.inclinometersTime" /></td>
+                        </tr>
+                    </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12"><h3>Настройки струнных датчиков</h3></div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-xs12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Ссылка опроса</td>
+                            <td><input class="form-control" type="text" ng-model="$ctrl.setting.stringSensorsUrl"
+                                       ng-disabled="$ctrl.selectedMeas != null"/></td>
+                        </tr>
+                        <tr>
+                            <td>Время между опросами в миллисекундах</td>
+                            <td><input class="form-control" type="number" ng-model="$ctrl.setting.stringSensorsTime" /></td>
+                        </tr>
+                        <tr>
+                            <td>Список идентификаторов сигналов (через запятую)</td>
+                            <td><input class="form-control" type="text" ng-model="$ctrl.setting.stringSensorsList" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn-default" ng-click="$ctrl.save($ctrl.meas)">Сохранить</button>
+        </div>
+    </div>
+</div>

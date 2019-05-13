@@ -1,0 +1,1 @@
+angular.module('interrogationSetting', ['core.interrogation']);

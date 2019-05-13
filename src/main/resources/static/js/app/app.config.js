@@ -23,6 +23,9 @@ config(['$locationProvider', '$routeProvider',
         when('/signalvalues', {
             template: '<signal-value-ext-list></signal-value-ext-list>'
         }).
+        when('/interrogation', {
+            template: '<interrogation-setting></interrogation-setting>'
+        }).
         otherwise('/logs');
     }
 ]);
