@@ -185,7 +185,10 @@ public class ParseFileService {
                 Signal signal = signalService.findById(sId);
                 if (signal != null) {
                     SignalValueExt signalValueExt = new SignalValueExt();
-                    signalValueExt.setValue(new BigDecimal(value));
+                    if (StringUtils.isNotEmpty(value)) {
+                        value = value.replaceAll(",", ".");
+                        signalValueExt.setValue(new BigDecimal(value));
+                    }
                     signalValueExt.setSignalId(sId);
                     signalValueExt.setCalibrated(signalId > 999 ? 1 : 0);
                     signalValueExt.setValueTime(LocalDateTime.now());

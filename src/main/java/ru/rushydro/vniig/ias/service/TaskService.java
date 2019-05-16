@@ -1,5 +1,7 @@
 package ru.rushydro.vniig.ias.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +24,8 @@ import java.util.stream.Collectors;
  */
 @Service
 public class TaskService {
+
+    private static final Logger log = LoggerFactory.getLogger(TaskService.class);
 
     private final TaskRepository taskRepository;
 
@@ -123,6 +127,10 @@ public class TaskService {
                         signalValueRepository.save(signalValue);
                     }
                     addStatus(Collections.singletonList(task), TaskStatusEnum.NEEDTOSEND.name());
+                } else {
+                    log.debug("Не были найдены данные для задачи №" + task.getId()
+                            + " id сигнала: " + signal.getId() + " в базе данных. Данные сигнала должны быть "
+                            + (signal.getMeasuredParameter().getDataType() == 0 ? "откалиброваны." : "не откалиброваны."));
                 }
             }
         });
