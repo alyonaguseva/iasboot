@@ -55,6 +55,12 @@ public class TagService {
     @Value("${tag.password:null}")
     private String tagPassword;
 
+    @Value("${password.field.name:passcfg}")
+    private String passwordFieldName;
+
+    @Value("${password.button.tag:input}")
+    private String passwordButtonTag;
+
     private final
     SensorService sensorService;
 
@@ -143,9 +149,9 @@ public class TagService {
                     WebClient webClient = new WebClient();
                     webClient.setJavaScriptEnabled(false);
                     HtmlPage currentPage = webClient.getPage(pl302.getUrl()); //Load page at the STRING address.
-                    HtmlInput password = currentPage.getElementByName("passcfg"); //Find element called loginpassword for password
+                    HtmlInput password = currentPage.getElementByName(passwordFieldName); //Find element called loginpassword for password
                     password.setValueAttribute(pl302.getPassword()); //Set value for password
-                    List<HtmlElement> inputs = currentPage.getElementsByTagName("input");
+                    List<HtmlElement> inputs = currentPage.getElementsByTagName(passwordButtonTag);
                     HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
                     currentPage = submitBtn.click(); //Click on the button.
                     UnexpectedPage page = webClient.getPage(url);
