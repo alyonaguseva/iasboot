@@ -55,7 +55,7 @@ public class TagService {
     @Value("${tag.password:null}")
     private String tagPassword;
 
-    @Value("${password.field.name:passcfg}")
+    @Value("${password.field.name:passb}")
     private String passwordFieldName;
 
     @Value("${password.button.tag:input}")
@@ -153,7 +153,24 @@ public class TagService {
                     password.setValueAttribute(pl302.getPassword()); //Set value for password
                     List<HtmlElement> inputs = currentPage.getElementsByTagName(passwordButtonTag);
                     HtmlSubmitInput submitBtn = (HtmlSubmitInput) inputs.get(inputs.size() - 1); //Find element called Submit to submit form.
-                    currentPage = submitBtn.click(); //Click on the button.
+                    try {
+                        currentPage = submitBtn.click(); //Click on the button.
+                    } catch (Throwable e) {
+                        log.debug("Пришла следующая ошибка: " + e.getMessage() + " прокускаем её. Считаем, что сайт не настроен на pl302.");
+                    }
+                    UnexpectedPage page = webClient.getPage(url);
+                    page.getWebResponse().getContentAsString();
+                    log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
+                    tagValues = page.getWebResponse().getContentAsString();
+                } catch (IOException e) {
+                    log.error("Ошибка запроса:", e);
+                    e.printStackTrace();
+                }
+            } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("web-noauth")) {
+                log.info("Получение данных датчиков с помощью java web-noauth");
+                try {
+                    WebClient webClient = new WebClient();
+                    webClient.setJavaScriptEnabled(false);
                     UnexpectedPage page = webClient.getPage(url);
                     page.getWebResponse().getContentAsString();
                     log.info("Получение страницы данных: " + page.getWebResponse().getContentAsString());
@@ -170,6 +187,34 @@ public class TagService {
                     String userCredentials = ":" + pl302.getPassword();
                     String basicAuth = "Basic " + new String(new Base64().encode(userCredentials.getBytes()));
                     con.setRequestProperty ("Authorization", basicAuth);
+                    con.setRequestMethod("GET");
+                    con.setConnectTimeout(5 * 60 * 1000);
+                    con.setReadTimeout(60 * 1000);
+                    con.setRequestProperty("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                    con.setRequestProperty("Accept-Encoding", "gzip, deflate");
+                    try (InputStream is = con.getInputStream();
+                         BufferedReader rd = new BufferedReader(new InputStreamReader(is))) {
+                        StringBuilder response = new StringBuilder();
+                        String line;
+                        while ((line = rd.readLine()) != null) {
+                            response.append(line);
+                            response.append('\r');
+                        }
+                        tagValues = response.toString();
+                    } catch (IOException e) {
+                        log.error("Ошибка запроса:", e);
+                        e.printStackTrace();
+                    }
+                } catch (IOException e) {
+                    log.error("Ошибка запроса:", e);
+                    e.printStackTrace();
+                }
+
+            } else if (appProperties.getType() != null && appProperties.getType().equalsIgnoreCase("core-noauth")) {
+                log.info("Получение данных датчиков с помощью java core-noauth");
+                try {
+                    URL getUrl = new URL(url);
+                    HttpURLConnection con = (HttpURLConnection) getUrl.openConnection();
                     con.setRequestMethod("GET");
                     con.setConnectTimeout(5 * 60 * 1000);
                     con.setReadTimeout(60 * 1000);
