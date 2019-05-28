@@ -1,3 +1,11 @@
+-- Версия БД
+create table versions(
+  id integer,
+  name varchar(64),
+  version varchar(16),
+  primary key (id)
+);
+
 -- Пользователи, пароль хранится в md5
 create table users(
   id serial,
@@ -161,5 +169,22 @@ create table app_data (
   id integer UNIQUE NOT NULL,
   name VARCHAR(256) UNIQUE NOT NULL,
   value VARCHAR(256),
+  primary key(id)
+);
+
+-- Связь с Bing3 наших сигналов
+create table bing3_signal_mapping (
+  id integer references signal(id) NOT NULL,
+  id_external_signal varchar(100),
+  primary key(id)
+);
+
+-- Таблица обмена
+create table bing3_exchange(
+  id serial,
+  id_external_signal varchar(100) NOT NULL,
+  value float NOT NULL,
+  calculated_value float,
+  value_time TIMESTAMP,
   primary key(id)
 );
