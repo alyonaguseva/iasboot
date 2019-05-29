@@ -28,4 +28,10 @@ public class SignalService {
         signalRepository.findByInTag(inTag).forEach(signals::add);
         return signals;
     }
+
+    public List<Signal> getAll() {
+        List<Signal> signals = new ArrayList<>();
+        signalRepository.findAll().forEach(signals::add);
+        return signals;
+    }
 }

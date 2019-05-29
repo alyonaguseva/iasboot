@@ -18,6 +18,11 @@ public interface SignalValueExtRepository extends JpaRepository<SignalValueExt, 
             "order by signalValueExt.id desc")
     Page<SignalValueExt> findByIdSignal(Integer id, Integer calibrated, Pageable pageable);
 
+    @Query("Select signalValueExt From SignalValueExt signalValueExt " +
+            "where signalValueExt.signalId = ?1 " +
+            "order by signalValueExt.id desc")
+    Page<SignalValueExt> findByIdSignal(Integer id, Pageable pageable);
+
     @Query("select s1 from SignalValueExt s1 " +
             "where s1.id = (select max(s2.id) from SignalValueExt s2 where s1.signalId = s2.signalId) order by s1.signalId")
     List<SignalValueExt> findNew();

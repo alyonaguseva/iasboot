@@ -34,4 +34,12 @@ public class SignalValueExtService {
         return null;
     }
 
+    public SignalValueExt findByIdSignal(Integer id) {
+        Page<SignalValueExt> page = signalValueExtRepository.findByIdSignal(id, new PageRequest(0,1));
+        if (page.getContent() != null && page.getContent().size() > 0) {
+            return page.getContent().get(0);
+        }
+        return null;
+    }
+
 }

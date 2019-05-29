@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import ru.rushydro.vniig.ias.dao.ExchangeRepository;
+import ru.rushydro.vniig.ias.service.Bing3ExchangeService;
 import ru.rushydro.vniig.ias.service.ParseFileService;
 import ru.rushydro.vniig.ias.service.TagService;
 import ru.rushydro.vniig.ias.service.TaskService;
@@ -32,6 +32,8 @@ public class ScheduledTasks {
     private final
     TagService tagService;
 
+    private final Bing3ExchangeService bing3ExchangeService;
+
     private boolean getTaskProgress;
 
     private boolean processTaskProgress;
@@ -46,14 +48,18 @@ public class ScheduledTasks {
     @Value("${insert.test.data:false}")
     private boolean insertTestData;
 
+    @Value("${bing3.exchange:false}")
+    private boolean bing3Exchange;
+
     @Autowired
     public ScheduledTasks(ExchangeRepository exchangeRepository,
                           TaskService taskService,
-                          ParseFileService parseFileService, TagService tagService) {
+                          ParseFileService parseFileService, TagService tagService, Bing3ExchangeService bing3ExchangeService) {
         this.exchangeRepository = exchangeRepository;
         this.taskService = taskService;
         this.parseFileService = parseFileService;
         this.tagService = tagService;
+        this.bing3ExchangeService = bing3ExchangeService;
     }
 
     @Async
@@ -128,6 +134,15 @@ public class ScheduledTasks {
     public void processTag() {
         log.debug("Запуск задачи получения данных с json интерфейса");
         tagService.processTags();
+    }
+
+    @Async
+    @Scheduled(fixedRateString = "${bing3.exchange.time:60000}")
+    public void bing3Exchange() {
+        log.debug("Запуск задачи обмена данными с bing3");
+        if (bing3Exchange) {
+            bing3ExchangeService.updateData();
+        }
     }
 
 //    @Async

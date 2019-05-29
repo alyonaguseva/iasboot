@@ -7,7 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "signal")
-@SecondaryTable(name = "signal_setting", pkJoinColumns={@PrimaryKeyJoinColumn(name="id", referencedColumnName="id") })
+@SecondaryTables(
+        {
+                @SecondaryTable(name = "signal_setting", pkJoinColumns={@PrimaryKeyJoinColumn(name="id", referencedColumnName="id") }),
+        @SecondaryTable(name = "bing3_signal_mapping", pkJoinColumns={@PrimaryKeyJoinColumn(name="id", referencedColumnName="id") })}
+)
+
 public class Signal {
 
     @Id
@@ -34,6 +39,9 @@ public class Signal {
     @JoinColumn(name = "id_pl302", table = "signal_setting")
     @ManyToOne
     private Pl302 pl302;
+
+    @Column(name = "id_external_signal", table = "bing3_signal_mapping")
+    private String idExternalSignal;
 
     public Integer getId() {
         return id;
@@ -89,5 +97,13 @@ public class Signal {
 
     public void setPl302(Pl302 pl302) {
         this.pl302 = pl302;
+    }
+
+    public String getIdExternalSignal() {
+        return idExternalSignal;
+    }
+
+    public void setIdExternalSignal(String idExternalSignal) {
+        this.idExternalSignal = idExternalSignal;
     }
 }
