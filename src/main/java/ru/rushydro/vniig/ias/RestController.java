@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.rushydro.vniig.ias.dao.SignalValueExtRepository;
+import ru.rushydro.vniig.ias.dao.entity.Log;
 import ru.rushydro.vniig.ias.dao.entity.TaskLog;
+import ru.rushydro.vniig.ias.dao.specification.LogSpecification;
 import ru.rushydro.vniig.ias.dao.specification.TaskLogSpecification;
 import ru.rushydro.vniig.ias.model.PageCount;
 import ru.rushydro.vniig.ias.model.Sensor;
 import ru.rushydro.vniig.ias.model.Signal;
+import ru.rushydro.vniig.ias.service.LogService;
 import ru.rushydro.vniig.ias.service.SensorService;
 import ru.rushydro.vniig.ias.service.TaskLogService;
 import ru.rushydro.vniig.ias.types.SignalValueExt;
@@ -37,6 +40,9 @@ public class RestController {
 
     private final
     TaskLogService taskLogService;
+
+    private final
+    LogService logService;
 
     private final
     SensorService sensorService;
@@ -74,8 +80,9 @@ public class RestController {
 
     @Autowired
     public RestController(TaskLogService taskLogService,
-                          SensorService sensorService, SignalValueExtRepository signalValueExtRepository) {
+                          LogService logService, SensorService sensorService, SignalValueExtRepository signalValueExtRepository) {
         this.taskLogService = taskLogService;
+        this.logService = logService;
         this.sensorService = sensorService;
         this.signalValueExtRepository = signalValueExtRepository;
     }
@@ -101,6 +108,16 @@ public class RestController {
 
         return taskLogService.findAll(new TaskLogSpecification(startDate, endDate, success), pageable);
 //        return taskLogService.findAll(pageable);
+    }
+
+    @RequestMapping("/text-logs")
+    @ResponseBody
+    public Page<Log> getTextLogs(Pageable pageable,
+                                 @RequestParam(value = "startDate", required = false) String startDate,
+                                 @RequestParam(value = "endDate", required = false) String endDate,
+                                 @RequestParam(value = "type", required = false) String type) {
+
+        return logService.findAll(new LogSpecification(startDate, endDate, type), pageable);
     }
 
     @RequestMapping("/signalsCount")

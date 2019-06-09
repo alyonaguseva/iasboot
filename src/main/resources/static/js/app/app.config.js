@@ -20,12 +20,15 @@ config(['$locationProvider', '$routeProvider',
         when('/logs', {
             template: '<log-list></log-list>'
         }).
+        when('/text-logs', {
+            template: '<text-log-list></text-log-list>'
+        }).
         when('/signalvalues', {
             template: '<signal-value-ext-list></signal-value-ext-list>'
         }).
         when('/interrogation', {
             template: '<interrogation-setting></interrogation-setting>'
         }).
-        otherwise('/logs');
+        otherwise(logLink);
     }
 ]);

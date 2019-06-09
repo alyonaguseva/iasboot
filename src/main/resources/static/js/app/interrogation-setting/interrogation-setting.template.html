@@ -4,8 +4,11 @@
             <div ng-if="$ctrl.error != null" class="alert alert-danger">
                 {{$ctrl.error}}
             </div>
+            <div ng-if="$ctrl.message != null" class="alert alert-info">
+                {{$ctrl.message}}
+            </div>
             <div class="row">
-                <div class="col-xs-12"><h3>Настройки инклинометров</h3></div>
+                <div class="col-xs-12"><h3>Настройки опроса инклинометров</h3></div>
             </div>
             <div class="row" style="margin-bottom: 10px;">
                 <div class="col-xs-12">
@@ -24,7 +27,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12"><h3>Настройки струнных датчиков</h3></div>
+                <div class="col-xs-12"><h3>Настройки опроса струнных датчиков</h3></div>
             </div>
             <div class="row" style="margin-bottom: 10px;">
                 <div class="col-xs12">
@@ -45,7 +48,21 @@
                     </table>
                 </div>
             </div>
-            <button class="btn btn-default" ng-click="$ctrl.save($ctrl.meas)">Сохранить</button>
+            <div class="row">
+                <div class="col-xs-12"><h3>Настройки взаимодействия с Bing3</h3></div>
+            </div>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-xs12">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>Время между выгрузкой данных в Bing3</td>
+                            <td><input class="form-control" type="number" ng-model="$ctrl.setting.bing3ExchangeTime" /></td>
+                            <td style="text-align: center"><button class="btn btn-default" ng-click="$ctrl.bing3Exchange()">Выгрузить сейчас</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <button class="btn btn-primary" ng-click="$ctrl.save($ctrl.meas)">Сохранить</button>
         </div>
     </div>
 </div>

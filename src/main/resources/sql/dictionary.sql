@@ -15,4 +15,4 @@ insert into task_log_type VALUES (5, 'Просрочено', 'OVERDUE');
 
 insert into app_data values(1, 'lastParseRow', '0');
 
-insert into versions values(1, 'db', '6');
+insert into versions values(1, 'db', '7');

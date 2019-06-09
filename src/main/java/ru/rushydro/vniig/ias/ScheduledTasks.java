@@ -136,31 +136,12 @@ public class ScheduledTasks {
         tagService.processTags();
     }
 
-    @Async
-    @Scheduled(fixedRateString = "${bing3.exchange.time:60000}")
-    public void bing3Exchange() {
-        log.debug("Запуск задачи обмена данными с bing3");
-        if (bing3Exchange) {
-            bing3ExchangeService.updateData();
-        }
-    }
-
 //    @Async
-//    @Scheduled(fixedRateString = "#{@getInclinometersRate}")
-//    public void interrogationInclinometers() {
-//        System.out.println("Тест 1");
-//    }
-//
-//    @Async
-//    @Scheduled(fixedRate = 1000L)
-//    public void interrogationStringSensors() {
-//        System.out.println("Тест 2");
-//    }
-//
-//    @Bean
-//    public Long getInclinometersRate() {
-//        time = time * 2;
-//        System.out.println("Получаем настройку");
-//        return time;
+//    @Scheduled(fixedRateString = "${bing3.exchange.time:60000}")
+//    public void bing3Exchange() {
+//        log.debug("Запуск задачи обмена данными с bing3");
+//        if (bing3Exchange) {
+//            bing3ExchangeService.updateData();
+//        }
 //    }
 }

@@ -8,6 +8,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.rushydro.vniig.ias.StringUtils;
 import ru.rushydro.vniig.ias.dao.entity.AppData;
@@ -25,12 +26,21 @@ public class InterrogationService {
 
     private Date interrogationStringSensorsDate;
 
+    private Date bing3ExchangeDate;
+
     @Autowired
     private AppDataService appDataService;
+
+    @Value("${bing3.exchange.time:60000}")
+    private Integer bing3ExchangeTime;
+
+    @Autowired
+    private LogService logService;
 
     public void interrogationInclinometers() {
         AppData appData = appDataService.findByName("inclinometersUrl");
         if (appData != null && StringUtils.isNotEmpty(appData.getValue())) {
+            logService.info("Запрос получения данных инклинометров по ссылке: " + appData.getValue());
             pingUrl(appData.getValue(), null);
         }
     }
@@ -48,6 +58,7 @@ public class InterrogationService {
                 json = "{\"ids\":[]}";
             }
 
+            logService.info("Запрос получения данных струнных датчиков по ссылке: " + appData.getValue());
             pingUrl(appData.getValue(), json);
         }
     }
@@ -60,13 +71,21 @@ public class InterrogationService {
         return getNextTime(interrogationStringSensorsDate, "stringSensorsTime");
     }
 
+    public Date getBing3ExchangeNext() {
+        return getNextTime(bing3ExchangeDate, "bing3ExchangeTime", bing3ExchangeTime);
+    }
+
     private Date getNextTime(Date date, String propertyName) {
+        return getNextTime(date, propertyName, 60000);
+    }
+
+    private Date getNextTime(Date date, String propertyName, Integer defaultTime) {
         if (date == null) {
             date = new Date();
         }
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        int time = 60000;
+        int time = defaultTime;
         AppData appData = appDataService.findByName(propertyName);
         if (appData != null && StringUtils.isNotEmpty(appData.getValue()) && appData.getValue().matches("\\d+")) {
             time = Integer.parseInt(appData.getValue());
@@ -88,10 +107,12 @@ public class InterrogationService {
 
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
+                logService.error("Ошибка отправки сообщения по url:" + url + ". Код ошибки: " + response.getStatusLine().getStatusCode());
                 log.error("Ошибка отправки сообщения по url. Код ошибки: " + response.getStatusLine().getStatusCode());
             }
 
         } catch (Exception e) {
+            logService.error("Ошибка отправки сообщения по url: " + url + ". " + e.getMessage());
             log.error("Ошибка отправки сообщения по url: " + url, e);
             e.printStackTrace();
         }
@@ -124,6 +145,11 @@ public class InterrogationService {
             setting.setStringSensorsList(data.getValue());
         }
 
+        data = appDataService.findByName("bing3ExchangeTime");
+        if (data != null  && StringUtils.isNotEmpty(data.getValue())) {
+            setting.setBing3ExchangeTime(Integer.parseInt(data.getValue()));
+        }
+
         return setting;
     }
 
@@ -135,18 +161,20 @@ public class InterrogationService {
         saveData(6, "stringSensorsTime", interrogationSetting.getStringSensorsTime() != null
                 ? interrogationSetting.getStringSensorsTime().toString() : null);
         saveData(7, "stringSensorsList", interrogationSetting.getStringSensorsList());
+        saveData(8, "bing3ExchangeTime", interrogationSetting.getBing3ExchangeTime() != null
+                ? interrogationSetting.getBing3ExchangeTime().toString() : null);
     }
 
     private void saveData(Integer id, String propertyName, String value) {
         AppData data = appDataService.findByName(propertyName);
         if (data != null) {
             data.setValue(value);
-            appDataService.save(data);
         } else {
             data = new AppData();
             data.setId(id);
             data.setName(propertyName);
             data.setValue(value);
         }
+        appDataService.save(data);
     }
 }

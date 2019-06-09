@@ -25,16 +25,21 @@ public class SignalValueExtRestService {
 
     private final SignalValueExtService signalValueExtService;
 
+    private final LogService logService;
+
     @Autowired
-    public SignalValueExtRestService(SignalRepository signalRepository, SignalValueExtService signalValueExtService) {
+    public SignalValueExtRestService(SignalRepository signalRepository, SignalValueExtService signalValueExtService, LogService logService) {
         this.signalRepository = signalRepository;
         this.signalValueExtService = signalValueExtService;
+        this.logService = logService;
     }
 
 
     public SendSignalValuesResponse sendSignalValues(SendSignalValuesRequest request) {
         SendSignalValuesResponse response = new SendSignalValuesResponse();
         List<SignalValueExt> values = new ArrayList<>();
+
+        logService.info("Получены значения сигналов с rest-сервиса");
 
         try {
             if (request != null && request.getSignalValue() != null) {
@@ -54,16 +59,21 @@ public class SignalValueExtRestService {
                         response.setStatusCode(2);
                         response.setStatusDescription("Сигналы с указанным идентификатором не найдены");
                         response.getNotFoundSignalId().add(value.getSignalId());
+
+                        logService.warning("Сигнал с указанным идентификатором: " + value.getSignalId() + " не найден");
                     }
                 }
 
                 log.info("Сохранение данных датчиков в базу данных.");
                 signalValueExtService.saveAll(values);
+                logService.info("Сохранение данных датчиков в базу данных");
             } else {
                 response.setStatusCode(3);
                 response.setStatusDescription("Значения сигналов не переданы");
+                logService.warning("Значения сигналов не переданы");
             }
         } catch (Exception e) {
+            logService.error("Ошибка сохранение данных сигналов: " + e.getMessage());
             log.error("Ошибка сохранение данных сигналов: ", e);
             response.setStatusCode(1);
             response.setStatusDescription("Ошибка сохранение значения сигналов: " + e.getMessage());

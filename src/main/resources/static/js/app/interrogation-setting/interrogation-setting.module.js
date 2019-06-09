@@ -1,1 +1,1 @@
-angular.module('interrogationSetting', ['core.interrogation']);
+angular.module('interrogationSetting', ['core.interrogation', 'core.bing3']);

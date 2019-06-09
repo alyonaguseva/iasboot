@@ -1,6 +1,7 @@
 package ru.rushydro.vniig.ias;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -16,6 +17,7 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.rushydro.vniig.ias.service.InterrogationService;
 
@@ -34,8 +36,12 @@ import java.util.Date;
 //@EnableGlobalMethodSecurity(securedEnabled = true)
 public class IASApplication {
 
+    @Value("${bing3.exchange:false}")
+    private boolean bing3Exchange;
+
     @RequestMapping("/")
-    String home() {
+    String home(Model model) {
+        model.addAttribute("bing3Exchange", bing3Exchange);
         return "index";
     }
 

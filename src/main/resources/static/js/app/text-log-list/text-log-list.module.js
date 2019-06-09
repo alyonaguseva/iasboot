@@ -1,0 +1,1 @@
+angular.module('textLogList', ['core.text-log']);

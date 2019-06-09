@@ -1,0 +1,1 @@
+angular.module('core.bing3', ['ngResource']);

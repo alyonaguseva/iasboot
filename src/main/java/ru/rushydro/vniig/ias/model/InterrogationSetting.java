@@ -12,6 +12,8 @@ public class InterrogationSetting {
 
     private String stringSensorsList;
 
+    private Integer bing3ExchangeTime;
+
     public String getInclinometersUrl() {
         return inclinometersUrl;
     }
@@ -50,5 +52,13 @@ public class InterrogationSetting {
 
     public void setStringSensorsList(String stringSensorsList) {
         this.stringSensorsList = stringSensorsList;
+    }
+
+    public Integer getBing3ExchangeTime() {
+        return bing3ExchangeTime;
+    }
+
+    public void setBing3ExchangeTime(Integer bing3ExchangeTime) {
+        this.bing3ExchangeTime = bing3ExchangeTime;
     }
 }

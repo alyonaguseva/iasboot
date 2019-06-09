@@ -1,0 +1,51 @@
+<div class="container container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="startDate">Начальная дата</label>
+                    <input type="text" class="form-control datepicker" id="startDate" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="endDate">Конечная дата</label>
+                    <input type="text" class="form-control datepicker" id="endDate" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="type">Тип</label>
+                    <select id="type" class="form-control">
+                        <option></option>
+                        <option value="info">Информация</option>
+                        <option value="warning">Предупреждение</option>
+                        <option value="error">Ошибка</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-default" ng-click="$ctrl.setFilter()">Применить</button>
+                <button type="button" class="btn btn-default" ng-click="$ctrl.clearFilter()">Очистить фильтр</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <pagination
+                    page = "$ctrl.page"
+                    page-count = "$ctrl.pageCount"
+                    page-clean = "$ctrl.pageClean"
+                    on-page-change="$ctrl.setPage($event.page)" />
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <tr>
+                        <th>Статус</th>
+                        <th>Время</th>
+                        <th>Комментарий</th>
+                    </tr>
+                    <tr ng-repeat="log in $ctrl.logs" class="{{$ctrl.getClass(log.type)}}">
+                        <td>{{$ctrl.getText(log.type)}}</td>
+                        <td>{{log.date}}</td>
+                        <td>{{log.message}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
