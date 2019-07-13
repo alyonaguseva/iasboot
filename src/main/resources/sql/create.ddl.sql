@@ -36,7 +36,6 @@ create table sensor(
   id_object_monitor integer REFERENCES object_monitor(id) NOT NULL,
   type varchar(32) NOT NULL,
   on_sensor integer NOT NULL,
-  in_tag BOOLEAN,
   primary key(id)
 );
 
