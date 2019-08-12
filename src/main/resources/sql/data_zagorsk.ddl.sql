@@ -18,6 +18,8 @@ insert into measured_parameter VALUES(8, 'Среднеквадратическа
 insert into measured_parameter VALUES(9, 'Среднеквадратическая погрешность угла по оси Y', 0);
 insert into measured_parameter VALUES(10, 'Температура', 0);
 
+
+
 -- Заполнение таблицы датчиков
 insert into sensor VALUES (1, 'ИС3701.Т-com1', 1, 'Оптические', 1, false);
 insert into sensor VALUES (2, 'ИС3701.Т-com2', 1, 'Оптические', 1, false);
