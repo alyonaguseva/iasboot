@@ -178,7 +178,7 @@ insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (63, '1�
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (64, '1ПД3_9', 10, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (65, '1ПБ5_9', 10, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (66, '2ПБ3_1', 11, 'Токовый', 1);
-insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (67, '2ПБ1_2', 11, 'Токовый', 1);
+insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (67, '2ПБ1_1', 11, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (68, '2ПД6_1', 11, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (69, '2ПД1_1', 11, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (70, '2ПБ5_1', 11, 'Токовый', 1);
@@ -209,11 +209,11 @@ insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (91, '1�
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (92, '1П2_МП', 15, 'Токовый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (93, '1П3_МП', 15, 'Токовый', 1);
 
-insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (94, '1ДДВ_1.СП_1', 2, 'Аналоговый', 1);
+insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (94, '1ДДВ.1.СП_1', 2, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (95, '1ДДВ.2.СП_1', 2, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (96, '1ДДВ.3.СП_1', 2, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (97, '1ДДВ.4.СП_1', 2, 'Аналоговый', 1);
-insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (98, '1ДДВ_5.СП_2', 3, 'Аналоговый', 1);
+insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (98, '1ДДВ.5.СП_2', 3, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (99, '1ДДВ.6.СП_2', 3, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (100, '1ДДВ.7.СП_2', 3, 'Аналоговый', 1);
 insert into sensor(id, name, id_object_monitor, type, on_sensor) VALUES (101, '1ДДВ.8.СП_2', 3, 'Аналоговый', 1);
