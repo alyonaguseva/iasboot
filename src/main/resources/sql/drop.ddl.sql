@@ -1,3 +1,7 @@
+drop table if exists log;
+drop table if exists versions;
+drop table if exists bing3_signal_mapping;
+drop table if exists bing3_exchange;
 drop table if exists signal_value_ext;
 drop table if EXISTS output_signal_value;
 drop table if EXISTS output_signal;

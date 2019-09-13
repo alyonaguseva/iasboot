@@ -70,7 +70,7 @@ create table signal(
   id_sensor integer REFERENCES sensor(id) NOT NULL,
   id_type integer REFERENCES signal_type(id) NOT NULL,
   id_measured_parameter INTEGER REFERENCES measured_parameter(id) not null,
-  in_tag BOOLEAN,
+  in_tag BOOLEAN default false,
   primary key(id)
 );
 
