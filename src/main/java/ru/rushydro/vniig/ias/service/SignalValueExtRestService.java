@@ -46,15 +46,23 @@ public class SignalValueExtRestService {
                 for (SignalValue value : request.getSignalValue()) {
                     Signal signal = signalRepository.findById((int) value.getSignalId()).orElse(null);
                     if (signal != null) {
-                        SignalValueExt signalValueExt = new SignalValueExt();
-                        signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
-                        signalValueExt.setSignalId(signal.getId());
-                        signalValueExt.setCalibrated(0);
-                        signalValueExt.setValueTime(value.getSignalDateTime() != null
-                                ? TimeUtil.convertToLocalDateTime(value.getSignalDateTime()) : LocalDateTime.now());
-                        values.add(signalValueExt);
-                        log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
-                                " значение сигнала: " + signalValueExt.getValue());
+                        LocalDateTime localDateTime = value.getSignalDateTime() != null
+                                ? TimeUtil.convertToLocalDateTime(value.getSignalDateTime()) : LocalDateTime.now();
+                        SignalValueExt signalValueExt = signalValueExtService.findByIdSignalAndValueTime(signal.getId(), localDateTime);
+                        if (signalValueExt == null) {
+                            signalValueExt = new SignalValueExt();
+                            signalValueExt.setValue(new BigDecimal(value.getSignalValue()));
+                            signalValueExt.setSignalId(signal.getId());
+                            signalValueExt.setCalibrated(0);
+                            signalValueExt.setValueTime(localDateTime);
+                            values.add(signalValueExt);
+                            log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
+                                    " значение сигнала: " + signalValueExt.getValue());
+                        } else {
+                            log.debug("Id полученного датчика: " + signalValueExt.getSignalId() +
+                                    " значение сигнала: " + signalValueExt.getValue() + " уже были добавлены в БД");
+                        }
+
                     } else {
                         response.setStatusCode(2);
                         response.setStatusDescription("Сигналы с указанным идентификатором не найдены");

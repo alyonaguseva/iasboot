@@ -51,4 +51,12 @@ public class SignalValueExtService {
         return null;
     }
 
+    public SignalValueExt findByIdSignalAndValueTime(Integer id, LocalDateTime dateTime) {
+        Page<SignalValueExt> page = signalValueExtRepository.findByIdSignalAndValueTime(id,dateTime, new PageRequest(0,1));
+        if (page.getContent() != null && page.getContent().size() > 0) {
+            return page.getContent().get(0);
+        }
+        return null;
+    }
+
 }

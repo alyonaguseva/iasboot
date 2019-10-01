@@ -1,6 +1,7 @@
 package ru.rushydro.vniig.ias.dao;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -29,7 +30,14 @@ public interface SignalValueExtRepository extends JpaRepository<SignalValueExt, 
             "order by signalValueExt.id desc")
     Page<SignalValueExt> findByIdSignalAndValueTimeIsAfter(Integer id, LocalDateTime dateTime, Pageable pageable);
 
+    @Query("Select signalValueExt From SignalValueExt signalValueExt " +
+            "where signalValueExt.signalId = ?1 and signalValueExt.valueTime = ?2 " +
+            "order by signalValueExt.id desc")
+    Page<SignalValueExt> findByIdSignalAndValueTime(Integer id, LocalDateTime dateTime, PageRequest pageRequest);
+
     @Query("select s1 from SignalValueExt s1 " +
             "where s1.id = (select max(s2.id) from SignalValueExt s2 where s1.signalId = s2.signalId) order by s1.signalId")
     List<SignalValueExt> findNew();
+
+
 }

@@ -31,7 +31,7 @@ public class InterrogationService {
     @Autowired
     private AppDataService appDataService;
 
-    @Value("${bing3.exchange.time:60000}")
+    @Value("${bing3.exchange.time:600000}")
     private Integer bing3ExchangeTime;
 
     @Autowired
